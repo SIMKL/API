@@ -1,5 +1,5 @@
 # Simkl TV Tracker API Repository
 
-Simkl API Documentation on Apiary
+[Simkl API Documentation on Apiary] (http://api.simkl.com) 
 
-by Simkl
+by [Simkl] (https://simkl.com) 

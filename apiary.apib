@@ -26,7 +26,7 @@ HOST: https://api.simkl.com
 This guide will walk you through how to use Simkl API on your website, media server app, browser extension or in your mobile app. 
 
 
-### Before You Start
+## Before You Start
 To successfully start using Simkl API, you need to:
 
 1. **[Sign up for a Simkl account] (https://passport.simkl.com/register/)**.
@@ -34,7 +34,7 @@ To successfully start using Simkl API, you need to:
 3. **[Join the Google+ Community] (https://plus.google.com/u/0/communities/106081147921797342801/stream/e377d10b-b3dc-411b-9dd2-dd1017da75a4)**
 <br><br>Join the [community] (https://plus.google.com/u/0/communities/106081147921797342801/stream/e377d10b-b3dc-411b-9dd2-dd1017da75a4) to talk, learn about and discuss the Simkl APIs. Just request access and we'll approve you.
 
-### Ho to use the API
+## Ho to use the API
 1. Get user's `token` using [OAuth] (/#reference/authentication-oauth-2.0) or [PIN Authentication] (/#reference/authentication-pin) and save it on user's device.
 2. Post API requests with the user's `token` and your API Key (`client_id`)
 
@@ -62,7 +62,7 @@ Please [contact us] (http://support.simkl.com) if you're interested in an API we
 
 Here's what you need to know to get started quickly:
 
-### Use Cases
+## Use Cases
 The Simkl API lets you build a variety of applications and scripts to integrate Simkl with your apps, show Simkl data in other contexts, and update your watch history from various locations.
 
 Here are some examples of the things you can build with the Simkl API:
@@ -71,16 +71,16 @@ Here are some examples of the things you can build with the Simkl API:
 - A Movie, TV or Anime app for iOS or Android.
 - Plugin for your favorite media center app to sync your watch history with Simkl.
 
-### Api URL
+## Api URL
 `https://api.simkl.com/`
-### Verbs
+## Verbs
 HTTP Verb|Description
 ---|----
 `GET`| Retrieve the item.  Success returns `200` status code.
 `POST`| Create a new item.  Success returns `201` status code.
 `DELETE`| Delete the item. Success returns `200` or `204` status code.
 
-### HTTP Status Codes
+## HTTP Status Codes
 The Simkl API attempts to return appropriate HTTP status codes for every request.
 
 Code|Text|Description
@@ -102,7 +102,7 @@ Code|Text|Description
 `502`| Bad Gateway | Simkl is down or being upgraded.
 `503`| Service Unavailable | The Simkl servers are up, but overloaded with requests. Try again later.
 
-### Required Headers
+## Required Headers
 When making API calls you'lll need to send some headers to identify your app.
 
 Header|Value
@@ -110,13 +110,13 @@ Header|Value
 `Content-Type` * | `application/json`
 `simkl-api-key` * | Your `client_id` listed under [your Simkl applications] (https://simkl.com/apps/manage/).
 
-### Dates
+## Dates
 [In Development] Currently dates are returned as (GMT - 05:00 New York time zone)
 
 All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30:11.000Z. Adjust 
 accordingly in your app for the user's local timezone.
 
-### Standard Media Objects
+## Standard Media Objects
 
 All methods will accept or return standard media objects for `movie`, `show`, `episode` items. 
 Here are examples for all objects:
@@ -207,7 +207,7 @@ Here are examples for all objects:
 </table>
 
 
-### Help us improve!
+## Help us improve!
 If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [let us know] (https://support.simkl.com/forums/264009-top-ideas-from-the-community/category/86437-api) and we’ll try to make you happy. You are also welcome to [join our development community] (https://plus.google.com/u/0/communities/106081147921797342801).
 
 <br><br>

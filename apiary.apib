@@ -220,7 +220,7 @@ There's no reinventing the wheel here so the API uses OAuth2.
 Requesting user assosiated information requires `token` that needs to be included in all request headers made to the API.
 
 
-To obtain a `client_id` and `client_secret`, contact us support@simkl.com. 
+To obtain the `client_id` and `client_secret` please [create an app first] (https://simkl.com/settings/developer/new/). 
 
 
 To make calls on behalf of a user you have to obtain an `access_token`. To do this, first use **https://simkl.com/oauth/authorize** method to get `code` and then post it in JSON format to **https://api.simkl.com/oauth/token** url. In response you'll get the `access_token`.

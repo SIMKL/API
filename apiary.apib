@@ -303,23 +303,21 @@ User has to obtain a URL and a device code using his device then he switch to PC
 
 You should do the following step to authorize your device
 
-1. Request a device code
+1. [Request a device code] (#reference/authentication-pin/get-code).
 
-2. Display `USER_CODE` and `VERIFICATION_URL` to the user
+2. Display `user_code` and instruct the user to visit the [`verification_url`](https://simkl.com/pin/).
 
-3. Begin polling Simkl's authorization server
+3. [Begin polling Simkl's authorization server](#reference/authentication-pin/check-user_code).
 
-4. User enters `USER_CODE` on PC or Mobile
+4. User enters `user_code` at  the [`verification_url`](https://simkl.com/pin/) on their computer or mobile device.
 
-5. User logs in to Simkl account to enter `USER_CODE`
-
-6. Simkl returns `ACCESS_TOKEN` to the device where the polling is in progress 
+5. Simkl returns `access_token` to the device where the polling is in progress. Your app will be polling to see if the user successfully authorizes your app. Once they have, refresh you UI to indicate a successful connection has been made.
 
 ## Request a device code [/oauth/pin?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316&redirect=http://simkl.com/test]
 
 ### Get CODE [GET]
  
-In response you'll get USER_CODE and VERIFICATION_URL which should be displayed to the user. Store `expires_in` and `interval` values for step 3.
+In response you'll get `user_code` and `verification_url` (in most cases [https://simkl.com/pin/](https://simkl.com/pin/)) which should be displayed to the user. Store `expires_in` and `interval` values for step 3.
 
 + Parameters
     + client_id (string) ... Get this from your app settings
@@ -333,7 +331,7 @@ In response you'll get USER_CODE and VERIFICATION_URL which should be displayed 
                 'result': 'OK', 
                 'device_code': DEVICE_CODE, 
                 'user_code': USER_CODE, 
-                'verification_url': VERIFICATION_URL, 
+                'verification_url': https://simkl.com/pin/, 
                 'expires_in': 900, 
                 'interval': 5 
             }
@@ -1242,6 +1240,3 @@ Currently the API does not supports Cross Origin Resource Sharing (CORS) for AJA
 
 ## Get in touch
 We’re always happy to help you get set up with Simkl. If you're stuck, want to find out more or need to speak to us, [visit our API developer group] (https://plus.google.com/u/0/communities/106081147921797342801) or see the [support center] (https://support.simkl.com).
-
-
-

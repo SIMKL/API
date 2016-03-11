@@ -1229,7 +1229,44 @@ list|`dropped`|Found in users's Not Interesting list
                 "result": "not_found"
             }]
             
-         
+# Group Users
+If you want to store all of your watched history or download your history list from simkl then *syncing* is what you are looking for.  
+
+## Settings [/sync/collection]
+### Receive settings [POST]
+<h4>OAuth Required</h4>
+You can sync user's settings with your apps/site settings
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "user": 
+                {
+                    "name": "Andrew Masyk",
+                    "joined_at": "2007-11-04T22:04:46.000Z",
+                    "gender": "male",
+                    "avatar": "https:\/\/graph.facebook.com\/736253775\/picture?width=100&height=100",
+                    "bio": "I'm a founder and developer at simkl.com - a socially powered TV show and movie tracking service",
+                    "loc": "New York, NY, USA",
+                    "age": "30 years"
+                },
+                "account": 
+                {
+                    "timezone": "America\/New_York"
+                },
+                "connections": 
+                {
+                    "facebook": true
+                }
+            }
 
 # Group Need some help?
 

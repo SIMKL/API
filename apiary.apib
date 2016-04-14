@@ -298,10 +298,10 @@ Invalid code will give you a 401 error
         
 
 # Group Authentication - PIN
-This flow is designed for devices that have limited input capabilities, such as media center plugins, game consoles etc.
-User has to obtain a URL and a device code using his device then he switch to PC or smartphone, that has more input capabilities to authorize the device code.
+This flow is designed for devices that have limited input capabilities, such as media center plugins, game consoles, smart watches, smart TVs, command line scripts, and system services, etc.
+Your app displays an alphanumeric code (typically 5 characters) to the user. They are then instructed to visit the verification URL on their computer or mobile device. After entering the code, the user will be prompted to grant permission for your app. After your app gets permissions, the device receives an access_token and works like standard OAuth from that point on.
 
-You should do the following step to authorize your device
+You should do the following step to authorize user's device:
 
 1. [Request a device code] (#reference/authentication-pin/request-a-device-code/get-code).
 
@@ -312,13 +312,20 @@ You should do the following step to authorize your device
 
 4. User enters `user_code` at  the [`verification_url`](https://simkl.com/pin/) on their computer or mobile device.
 
-5. Simkl returns `access_token` to the device where the polling is in progress. Your app will be polling to see if the user successfully authorizes your app. Once they have, refresh you UI to indicate a successful connection has been made.
+5. Simkl returns `access_token` to the device where the polling is in progress. Your app will be polling to see if the user successfully authorizes your app. Use `expires_in` to stop polling after that many seconds, and gracefully instruct the user to restart the process. **It is important to poll at the correct interval and also stop polling when expired**.
+
+6. Once they have, refresh your UI to indicate a successful connection has been made. 
 
 ## Request a device code [/oauth/pin?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316&redirect=http://simkl.com/test]
 
 ### Get CODE [GET]
  
 In response you'll get `user_code` and `verification_url` (in most cases [https://simkl.com/pin/](https://simkl.com/pin/)) which should be displayed to the user. Store `expires_in` and `interval` values for step 3.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+client_id|string|Get this in your app settings
 
 + Parameters
     + client_id (string) ... Get this from your app settings

@@ -1243,6 +1243,29 @@ list|`dropped`|Found in users's Not Interesting list
 # Group Users
 User's public data will return all info with GET methods withoud OAuth authorization
 
+## Last watched arts [/users/recently-watched-background]
+### Receive user's last watched art [POST]
+You can get the arts of your favorite TV show or Movie using this method
+
++ Request (application/json) Request https://api.simkl.com/users/recently-watched-background/51/?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id":342828,
+                "url":"//simkl.com/movies/342828/midnight-special",
+                "title":"Midnight Special",
+                "poster":"//simkl.in/posters/30/3082850367420132f_0.jpg",
+                "fanart":"//simkl.in/fanart/43/4389778c118f40a6f_0.jpg"
+            }
+
 ## Settings [/users/settings]
 ### Receive settings [POST]
 <h4>OAuth Required</h4>

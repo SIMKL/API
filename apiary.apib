@@ -1243,16 +1243,13 @@ list|`dropped`|Found in users's Not Interesting list
 # Group Users
 User's public data will return all info with GET methods withoud OAuth authorization
 
-## Last watched arts [/users/recently-watched-background]
+## Last Watched Arts [/users/recently-watched-background/{user_id}]
 ### Receive user's last watched art [POST]
 You can get the arts of your favorite TV show or Movie using this method
-
-+ Request (application/json) Request https://api.simkl.com/users/recently-watched-background/51/?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
-
-    + Header
++ Parameters
+    + user_id = (required, integer) ... Any simkl user id which profile has public permissions.
             
-            authorization: Bearer [token]
-            simkl-api-key: [client_id]
++ Request https://api.simkl.com/users/recently-watched-background/51?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
             
 + Response 200 (application/json)
 

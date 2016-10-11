@@ -699,8 +699,8 @@ Use it if you have a file name and want to get simkl_id based on it.
 Key|Value|Description
 ---|----|-----
 simkl_id|`integer`| Found the movie
-id_type|`1` or `2`| if value is `1` then this is a Movie or TV Show id. If equals `2` then this is Episode id. 
-part|`1`|if `1` is returned when there are more episodes within the file. Pass `part` parameters to get next episode
+id_type|`movie`, `show`, `episode`| This is the type of id. 
+part|`1`| Pass part number to get next episode information. First episode = 0, next = 1 and so on.
 
 You have to use correct methods to get info about the ID. Some of the methods accept episode id and others Movie or TV, or pass type of your id.
 
@@ -761,6 +761,7 @@ Here are some examples of the things you can build with the Random Search API:
     + year_from (optional, integer, `2004`) ...  First released movie starts from 1920.
     + year_to (optional, integer, `2010`)
     + client_id (required, integer, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... If using [POST] with OAuth, `client_id` can be set in headers. If using without OAuth `client_id` is required. Please use your `client_id`. 
+   
             
 + Request
     

@@ -690,7 +690,45 @@ The more parameters you'll pass, the more accurate redirect will be.
     + Body
 
 # Group Search
- 
+
+## File [/search/file]
+### Find show, anime or movie by file[POST]
+Use it if you have a file name and want to get simkl_id based on it.
+
+<h4>JSON RESPONSE DATA</h4>
+Key|Value|Description
+---|----|-----
+simkl_id|`integer`| Found the movie
+id_type|`1` or `2`| if value is `1` then this is a Movie or TV Show id. If equals `2` then this is Episode id. 
+part|`1`|if `1` is returned when there are more episodes within the file. Pass `part` parameters to get next episode
+
+You have to use correct methods to get info about the ID. Some of the methods accept episode id and others Movie or TV, or pass type of your id.
+
++ Parameters
+    + file (required, string,`The.Simpsons.S025E17.720p.HDTV.X264-DIMENSION.mkv`) ... Trying to find this file in our DB
+    + part (optional, integer,`0`) ... Some of the files consist of 2+ episodes. If it's second part of it pass "1"
+    + hash (optional, string) ... In progress
+
++ Request (application/json)
+    + Header
+            simkl-api-key: [client_id]
+    + Body
+    
+            {
+                "file": "Were.The.Fugawis.S01E01E02.WS.DSR.x264-NY2.mkv",
+                "part": 1
+            }   
+
++ Response 201 (application/json)
+        
+    + Body
+
+            {
+                "simkl_id": 967218,
+                "id_type": 2,
+                "part" : 0
+            }
+
 ## Random [/search/random{?service,type,genre,rating_from,rating_to,year_from,year_to,client_id}]
 ### Find random show, anime or movie [POST]
 <h4>OAuth Optional</h4>

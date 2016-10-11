@@ -694,19 +694,12 @@ The more parameters you'll pass, the more accurate redirect will be.
 ## File [/search/file]
 ### Find show, anime or movie by file[POST]
 Use it if you have a file name and want to get simkl_id based on it.
-
-<h4>JSON RESPONSE DATA</h4>
-Key|Value|Description
----|----|-----
-simkl_id|`integer`| Found the movie
-id_type|`movie`, `show`, `episode`| This is the type of id. 
-part|`1`| Pass part number to get next episode information. First episode = 0, next = 1 and so on.
-
-You have to use correct methods to get info about the ID. Some of the methods accept episode id and others Movie or TV, or pass type of your id.
+This method will response with standart media object + some new fields.
+`multipart` = we have 2+ episodes in one filename, use `part` parameter. Possible values `0` or `1`. If no more episodes left it will be `0` 
 
 + Parameters
     + file (required, string,`The.Simpsons.S025E17.720p.HDTV.X264-DIMENSION.mkv`) ... Trying to find this file in our DB
-    + part (optional, integer,`0`) ... Some of the files consist of 2+ episodes. If it's second part of it pass "1"
+    + part (optional, integer,`1`) ... Some filenames consist of 2 or more parts. If you want toget info about second part for example you can pass `2` to this parameter
     + hash (optional, string) ... In progress
 
 + Request (application/json)
@@ -724,9 +717,25 @@ You have to use correct methods to get info about the ID. Some of the methods ac
     + Body
 
             {
-                "simkl_id": 967218,
-                "id_type": `show`,
-                "part" : 0
+                "type": "episode",
+                "show": {
+                    "title": "We're the Fugawis",
+                    "year": 2013,
+                    "ids": {
+                        "simkl": 43283,
+                        "zap2it": "EP01767728",
+                        "tvdb": 272581
+                    }
+                },
+                "episode": {
+                    "title": "The Fug Life",
+                    "season": 1,
+                    "episode": 1,
+                    "multipart": 1,
+                    "ids": {
+                        "simkl": 967216
+                    }
+                }
             }
 
 ## Random [/search/random{?service,type,genre,rating_from,rating_to,year_from,year_to,client_id}]
@@ -760,7 +769,7 @@ Here are some examples of the things you can build with the Random Search API:
     + rating_to (optional, integer, `10`)
     + year_from (optional, integer, `2004`) ...  First released movie starts from 1920.
     + year_to (optional, integer, `2010`)
-    + client_id (required, integer, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... If using [POST] with OAuth, `client_id` can be set in headers. If using without OAuth `client_id` is required. Please use your `client_id`. 
+    + client_id (required, integer, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... If using [POST] with OAuth, it can be set in headers. If using without OAuth it's required. 
    
             
 + Request

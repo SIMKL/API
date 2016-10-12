@@ -713,7 +713,7 @@ This method will respond with [`Standard Media Object`] (/introduction/about-sim
                 "file": "Were.The.Fugawis.S01E01E02.WS.DSR.x264-NY2.mkv",
                 "part": 1
             }   
-
+  
 + Response 201 (application/json)
         
     + Body
@@ -739,6 +739,44 @@ This method will respond with [`Standard Media Object`] (/introduction/about-sim
                     }
                 }
             }
+            
++ Request (application/json)
+    + Header
+            simkl-api-key: [client_id]
+    
+    + Body
+            {
+                "file": "/series/The Office/Season 4/The Office [401] Fun Run.avi"
+            }  
+            
++ Response 201 (application/json)
+        
+    + Body
+
+            {
+                "type": "episode",
+                "show": {
+                    "title": "The Office (US)",
+                    "year": 2005,
+                    "ids": {
+                        "simkl": 2753,
+                        "imdb": "tt0386676",
+                        "zap2it": "SH00726133",
+                        "netflix": "70136120",
+                        "tvdb": "73244"
+                    }
+                },
+                "episode": {
+                    "title": "Fun Run (1)",
+                    "season": 4,
+                    "episode": 1,
+                    "multipart": false,
+                    "ids": {
+                        "simkl": 343712
+                    }
+                }
+            }
+
 
 ## Random [/search/random{?service,type,genre,rating_from,rating_to,year_from,year_to,client_id}]
 ### Find random show, anime or movie [POST]

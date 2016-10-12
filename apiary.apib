@@ -697,7 +697,7 @@ Use it if you have a filename and want to get simkl_id based on it. Right now TV
 
 This method will respond with [`Standard Media Object`] (/introduction/about-simkl-api/standard-media-objects) + some new fields.
 
-`multipart` = we have 2+ episodes in one filename, use `part` parameter to get necessary episode. Possible `multipart` values `0` (no more episodes left) or `1` (you can get info on one more episode after this one in this filename ). 
+`multipart` = we have 2+ episodes in one filename, use `part` parameter to get necessary episode. Possible `multipart` values `false` (not multipart), `0` (no more episodes left) or `1` (you can get info on one more episode after this one in this filename ). 
 
 + Parameters
     + file (required, string,`The.Simpsons.S025E17.720p.HDTV.X264-DIMENSION.mkv`) ... Trying to find this file in our DB

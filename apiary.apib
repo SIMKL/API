@@ -693,6 +693,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 
 ## File [/search/file]
 ### Find show, anime or movie by file[POST]
+<h4>OAuth Not Required</h4>
 Use it if you have a filename and want to get simkl_id based on it. Right now TV Shows and Anime files can be recognized the best. Movies are harder to recognize without using the hash. 
 
 This method will respond with [`Standard Media Object`] (/introduction/about-simkl-api/standard-media-objects) + some new fields.
@@ -702,8 +703,8 @@ This method will respond with [`Standard Media Object`] (/introduction/about-sim
 <h4>POSSIBLE JSON RESPONSE DATA</h4>
 Key|Value|Description
 ---|----|-----
-type|`episode`| This is an episode of a TV Show or Anime
-type|`movie`| This is movie
+type|`episode`| this is an episode of a TV Show or Anime
+type|`movie`| this is movie
 episode: multipart |`false`| not multipart
 episode: multipart |`0`| no more episodes left
 episode: multipart |`1`| you can get info on one more episode after this one in this filename

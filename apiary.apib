@@ -114,7 +114,7 @@ Header|Value
 
 ## Full Info
 
-By default methods are not returnig additional data for movies, anime, show etc. They return minimal info you need to match in the local database. But, if you need more information just add `extendet={level}` to the URL.
+By default methods are not returnig additional data for movies, anime, show etc. They return minimal info you need to match in the local database. But, if you need more information just add `extended={level}` to the URL.
 
 *Level*|*Description*
 ---|---|----
@@ -1175,10 +1175,10 @@ Key|Type|Value
 
 + Response 200 (application/json)
 
-## Get All Items [/sync/all-items/type]
+## Get All Items [/sync/all-items/type?extended=full]
 ### Get all items in the user's watchlist [POST]
 <h4>OAuth Required Full Info</h4>
-Returns all items that user has watched(or watching, plat to watch, dropped), movies,shows,anime. 
+Returns all items that user has in his watchlist(watching, plat to watch, dropped), movies,shows,anime. 
 
 + Parameters
     + type (optional, string, `shows`) ... 

@@ -1167,10 +1167,11 @@ Key|Type|Value
 
 + Response 200 (application/json)
 
-## Get Watched [/sync/all-watched/type]
-### Get Watched [POST]
+## Get All Items [/sync/all-items/type?seasons=y]
+### Get all items in the user's watchlist [POST]
 <h4>OAuth Required</h4>
-Returns all items that user has watched, movies,shows,anime. 
+Returns all items that user has watched(or watching, plat to watch, dropped), movies,shows,anime. 
+If you do not pass `season` parameter then TV Shows won't have seasons and episodes user has watched.
 
 + Parameters
     + type (optional, string, `shows`) ... 
@@ -1212,6 +1213,8 @@ Returns all items that user has watched, movies,shows,anime.
                             "year": 2014,
                             "rate": "-",
                             "status": "watching",
+                            "next": "S01E02",
+                            "last": "S01E01"
                             "ids": {
                                 "simkl": 46116,
                                 "imdb": "tt3621796",

@@ -112,6 +112,14 @@ Header|Value
 `Content-Type` * | `application/json`
 `simkl-api-key` * | Your `client_id` listed under [your Simkl applications] (https://simkl.com/apps/manage/).
 
+## Full Info
+
+By default methods are not returnig additional data for movies, anime, show etc. They return minimal info you need to match in the local database. But, if you need more information just add `extendet={level}` to the URL.
+
+*Level*|*Description*
+---|---|----
+`full`| Complete info
+
 ## Dates
 [In Development] Currently dates are returned as (GMT - 05:00 New York time zone)
 
@@ -1167,11 +1175,10 @@ Key|Type|Value
 
 + Response 200 (application/json)
 
-## Get All Items [/sync/all-items/type?seasons=y]
+## Get All Items [/sync/all-items/type]
 ### Get all items in the user's watchlist [POST]
-<h4>OAuth Required</h4>
+<h4>OAuth Required</h4><h4>Full Info</h4>
 Returns all items that user has watched(or watching, plat to watch, dropped), movies,shows,anime. 
-If you do not pass `season` parameter then TV Shows won't have seasons and episodes user has watched.
 
 + Parameters
     + type (optional, string, `shows`) ... 

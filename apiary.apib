@@ -110,7 +110,7 @@ When making API calls you'lll need to send some headers to identify your app.
 Header|Value
 ---|----
 `Content-Type` * | `application/json`
-`simkl-api-key` * | Your `client_id` listed under [your Simkl applications] (https://simkl.com/apps/manage/).
+`simkl-api-key` * | Your `client_id` listed under [your Simkl applications] (https://simkl.com/settings/developer/).
 
 ## Full Info
 
@@ -395,7 +395,7 @@ Mobile apps can do checkin manually. If you are watching a movie in a theater yo
 ## Checkin [/checkin]
 
 ### Check into an item [GET]
-<h4>OAuth Required</h4>
+<h4>`token` Required</h4>
 This should be tied to a user manual action. The item will be as watching on the site and if the time has elapsed it will switch to completed. 
 
 
@@ -583,7 +583,7 @@ The more parameters you'll pass, the more accurate redirect will be.
             + `http://www.imdb.com/title/tt1520211/`
     + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
     + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
-    + client_id (string) ... Get this from [your app settings] (https://simkl.com/apps/manage/).
+    + client_id (string) ... Get this from [your app settings] (https://simkl.com/settings/developer/).
 
 
 + Request
@@ -1356,20 +1356,20 @@ list|`dropped`|Found in users's Not Interesting list
 
     + Body
     
-            [{
+            {
                 "netflix": 70262639,
                 "type": "movie"
             },{
                 "netflix": 70080650
             },{
                 "hulu":764084
-            }]
+            }
             
 + Response 200 (application/json)
 
     + Body
     
-            [{
+            {
                 "netflix": 70262639,
                 "list": "watching",
                 "result": true
@@ -1381,23 +1381,31 @@ list|`dropped`|Found in users's Not Interesting list
             {
                 "hulu":764084,
                 "result": "not_found"
-            }]
-            
+            }
+
+
+
 # Group Users
 User's public data will return all info with GET methods withoud OAuth authorization
 
-## Last Watched Arts [/users/recently-watched-background/{user_id}]
-### Receive user's last watched art [POST]
-You can get arts of your favorite TV show or Movie using this method
+## Last Watched Arts [/users/recently-watched-background/{user_id}{?image,client_id}]
+Get users last watched image to for example to create an app that will update user's wallwaper on computer or phone
+
+### Get last watched images and data [GET]
+
+Will reply with user's id, URL, TV Show\Movie title, large poster and large fanart image.
+
+*Please cache the image on device, do not redownload if the same image url.*
+
 + Parameters
-    + user_id = (required, integer) ... Any simkl user id which profile has public permissions.
+    + user_id = (required, integer, `51`) ... Simkl user id which has public privacy settings.
+    + client_id (string) ... Get this from [your app settings] (https://simkl.com/settings/developer/).
             
 + Request https://api.simkl.com/users/recently-watched-background/51?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
             
 + Response 200 (application/json)
 
     + Body
-    
             {
                 "id":342828,
                 "url":"https://simkl.com/movies/342828/midnight-special",
@@ -1405,6 +1413,30 @@ You can get arts of your favorite TV show or Movie using this method
                 "poster":"https://simkl.in/posters/30/3082850367420132f_0.jpg",
                 "fanart":"https://simkl.in/fanart/43/4389778c118f40a6f_0.jpg"
             }
+            
+### Redirect to last watched image [GET]
+
+Will simply redirect to the image for your app to download or display.
+
+*Please cache the image on device, do not redownload if the same image url.*
+
++ Parameters
+    + user_id = (required, integer, `51`) ... Simkl user id which has public privacy settings.
+    + image = (required, string, `fanart`) ... can be "poster" or "fanart".
+        + Values
+            + `poster`
+            + `fanart`
+    + client_id (string) ... Get this from [your app settings] (https://simkl.com/settings/developer/).
+            
++ Request https://api.simkl.com/users/recently-watched-background/51?image=fanart&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+            
++ Response 302 
+
+    + Headers
+    
+            location: https://simkl.net/fanart/50/500671636445e211e_0.jpg
+
+    + Body
 
 ## Settings [/users/settings]
 ### Receive settings [POST]

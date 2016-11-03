@@ -27,13 +27,13 @@ This guide will walk you through how to use Simkl API on your website, media ser
 ## Before You Start
 To successfully start using Simkl API, you need to:
 
-1. **[Sign up for a Simkl account] (https://passport.simkl.com/register/)**.
-2. **[Create a new app in your account] (https://simkl.com/settings/developer/new/)** to get your API key (`client_id`).
-3. **[Join the Google+ Community] (https://plus.google.com/u/0/communities/106081147921797342801/stream/e377d10b-b3dc-411b-9dd2-dd1017da75a4)**
-<br><br>Join the [community] (https://plus.google.com/u/0/communities/106081147921797342801/stream/e377d10b-b3dc-411b-9dd2-dd1017da75a4) to talk, learn about and discuss the Simkl APIs. Just request access and we'll approve you.
+1. **[Sign up for a Simkl account](https://passport.simkl.com/register/)**.
+2. **[Create a new app in your account](https://simkl.com/settings/developer/new/)** to get your API key (`client_id`).
+3. **[Join the Google+ Community](https://plus.google.com/u/0/communities/106081147921797342801/stream/e377d10b-b3dc-411b-9dd2-dd1017da75a4)**
+<br><br>Join the [community](https://plus.google.com/u/0/communities/106081147921797342801/stream/e377d10b-b3dc-411b-9dd2-dd1017da75a4) to talk, learn about and discuss the Simkl APIs. Just request access and we'll approve you.
 
 ## Ho to use the API
-1. Get user's `token` using [OAuth] (/#reference/authentication-oauth-2.0) or [PIN Authentication] (/#reference/authentication-pin) and save it on user's device.
+1. Get user's `token` using [OAuth](/#reference/authentication-oauth-2.0) or [PIN Authentication](/#reference/authentication-pin) and save it on user's device.
 2. Post API requests with the user's `token` and your API Key (`client_id`)
 
 <br><br><br><br>
@@ -47,9 +47,9 @@ Check out some of the apps that are using the Simkl API.
 
 Browser Extensions|Windows apps|Web apps|iOS apps|Android Apps
 ---|----|----|----|----
-[Simkl for Netflix, Hulu, Crunchyroll and others] (https://chrome.google.com/webstore/detail/simkl-for-netflix-hulu-cr/dbpjfmehfpcgmlpfnfilcnhbckmecmca)| [Sublight] (http://www.sublight.me/Article/299/Improved-watched-videos-functionality-integration-with-Simklcom-service)|[TVmaze API] (http://www.tvmaze.com/api)|[`Add your app`](https://simkl.com/settings/developer/new/)|[`Add your app`](https://simkl.com/settings/developer/new/)
+[Simkl for Netflix, Hulu, Crunchyroll and others](https://chrome.google.com/webstore/detail/simkl-for-netflix-hulu-cr/dbpjfmehfpcgmlpfnfilcnhbckmecmca)| [Sublight](http://www.sublight.me/Article/299/Improved-watched-videos-functionality-integration-with-Simklcom-service)|[TVmaze API](http://www.tvmaze.com/api)|[`Add your app`](https://simkl.com/settings/developer/new/)|[`Add your app`](https://simkl.com/settings/developer/new/)
 
-[Contact us] (mailto:support@simkl.com?subject=Add an app to the list) to add your app to the list.
+[Contact us](mailto:support@simkl.com?subject=Add an app to the list) to add your app to the list.
 
 <br><br><br><br>
 
@@ -57,7 +57,7 @@ Browser Extensions|Windows apps|Web apps|iOS apps|Android Apps
 ***
 
 All API access is over HTTPS. All responses are returned as JSON. The API is (mostly) RESTful.<br>
-Please [contact us] (http://support.simkl.com) if you're interested in an API we don't yet support.
+Please [contact us](http://support.simkl.com) if you're interested in an API we don't yet support.
 
 
 Here's what you need to know to get started quickly:
@@ -90,7 +90,7 @@ Code|Text|Description
 `204`| OK | Success - *no content to return (DELETE)*
 `302`| Found | Redirected to correct URL
 `400`| Bad Request | The request was invalid or cannot be otherwise served. An accompanying error message will explain further.
-`401`| Unauthorized | [Authentication credentials] (#reference/authentication-oauth-2.0) were missing or incorrect.
+`401`| Unauthorized | [Authentication credentials](#reference/authentication-oauth-2.0) were missing or incorrect.
 `403`| Forbidden | The request is understood, but it has been refused or access is not allowed. An accompanying error message will explain why. This code is used whe using invalid API key or unapproved app or requests are being denied due to API limits.
 `404`| Not Found | The URI requested is invalid or the resource requested. Also returned when the requested format is not supported by the requested method.
 `405`| Not Found | *[IN_DEV]*
@@ -98,7 +98,7 @@ Code|Text|Description
 `412`| *[IN_DEV]* | *[IN_DEV]*
 `422`| *[IN_DEV]* | *[IN_DEV]*
 `429`| *[IN_DEV]* | Rate Limit Exceeded
-`500`| Internal Server Error | Something is broken. Please post to the [developer forums] (https://plus.google.com/u/0/communities/106081147921797342801) so the Simkl team can investigate.
+`500`| Internal Server Error | Something is broken. Please post to the [developer forums](https://plus.google.com/u/0/communities/106081147921797342801) so the Simkl team can investigate.
 `502`| Bad Gateway | Simkl is down or being upgraded.
 `503`| Service Unavailable | The Simkl servers are up, but overloaded with requests. Try again later.
 
@@ -108,7 +108,7 @@ When making API calls you'lll need to send some headers to identify your app.
 Header|Value
 ---|----
 `Content-Type` * | `application/json`
-`simkl-api-key` * | Your `client_id` listed under [your Simkl applications] (https://simkl.com/settings/developer/).
+`simkl-api-key` * | Your `client_id` listed under [your Simkl applications](https://simkl.com/settings/developer/).
 
 ## Full Info
 
@@ -216,7 +216,7 @@ Here are examples for all objects:
 
 
 ## Help us improve!
-If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [let us know] (https://support.simkl.com/forums/264009-top-ideas-from-the-community/category/86437-api) and we’ll try to make you happy. You are also welcome to [join our development community] (https://plus.google.com/u/0/communities/106081147921797342801).
+If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [let us know](https://support.simkl.com/forums/264009-top-ideas-from-the-community/category/86437-api) and we’ll try to make you happy. You are also welcome to [join our development community](https://plus.google.com/u/0/communities/106081147921797342801).
 
 <br><br>
 
@@ -226,7 +226,7 @@ There's no reinventing the wheel here so the API uses OAuth2.
 Requesting user assosiated information requires `token` that needs to be included in all request headers made to the API.
 
 
-To obtain the `client_id` and `client_secret` please [create an app first] (https://simkl.com/settings/developer/new/). 
+To obtain the `client_id` and `client_secret` please [create an app first](https://simkl.com/settings/developer/new/). 
 
 
 To make calls on behalf of a user you have to obtain an `access_token`. To do this, first use **https://simkl.com/oauth/authorize** method to get `code` and then post it in JSON format to **https://api.simkl.com/oauth/token** url. In response you'll get the `access_token`.
@@ -274,7 +274,7 @@ grant_type|string|`authorization_code`
 
 `access_token` do not have expiration date (Never expire).
 
-`access_token` can be deleted by user when revoking app access rights in [Connected Apps settings] (https://simkl.com/settings/connected-apps/).
+`access_token` can be deleted by user when revoking app access rights in [Connected Apps settings](https://simkl.com/settings/connected-apps/).
 
 + Request (application/json)
 
@@ -309,7 +309,7 @@ Your app displays an alphanumeric code (typically 5 characters) to the user. The
 
 You should do the following step to authorize user's device:
 
-1. [Request a device code] (#reference/authentication-pin/request-a-device-code/get-code).
+1. [Request a device code](#reference/authentication-pin/request-a-device-code/get-code).
 
 2. Display `user_code` and instruct the user to visit the [`verification_url`](https://simkl.com/pin/).
 <img src="https://us.simkl.in/img_tv/api_demo_pin.png" alt="Simkl PIN" width="779" height="479"/>
@@ -513,7 +513,7 @@ item*|object|episode or movie object.
 <h4>OAuth Not Required</h4>
 Returns rating (between 0 and 10), rank (movie, tv, anime have their own rank), external ratings (IMDB, MAL), drop rate and if we have trailers for the movie or not(add /trailer parameter to the link and the best trailer will be opened).
 
-Possible url parameters: [see Redirect method] (/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect).
+Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect).
             
 + Request https://api.simkl.com/ratings?simkl=10280&fields=rank,droprate,simkl,ext,has_trailer&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
 
@@ -581,7 +581,7 @@ The more parameters you'll pass, the more accurate redirect will be.
             + `http://www.imdb.com/title/tt1520211/`
     + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
     + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
-    + client_id (string) ... Get this from [your app settings] (https://simkl.com/settings/developer/).
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 
 + Request
@@ -598,7 +598,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 
     You will get "location" header (browser redirect) where the user should be redirected.
     
-    In this example user will be redirected to [Simkl: The Walking Dead S01E4] (https://simkl.com/tv/2090/the-walking-dead/season-1/episode-4/)
+    In this example user will be redirected to [Simkl: The Walking Dead S01E4](https://simkl.com/tv/2090/the-walking-dead/season-1/episode-4/)
 
     + Headers
     
@@ -620,7 +620,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 
     You will get "location" header (browser redirect) where the user should be redirected.
     
-    In this example user will be redirected to [Simkl: The Vampire Diaries S06E11] (https://simkl.com/tv/15578/the-vampire-diaries/season-6/episode-11/)
+    In this example user will be redirected to [Simkl: The Vampire Diaries S06E11](https://simkl.com/tv/15578/the-vampire-diaries/season-6/episode-11/)
 
     + Headers
     
@@ -642,7 +642,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 
     You will get "location" header (browser redirect) where the user should be redirected.
     
-    In this example user will be redirected to [Simkl: The Walking Dead] (https://simkl.com/tv/2090/the-walking-dead)
+    In this example user will be redirected to [Simkl: The Walking Dead](https://simkl.com/tv/2090/the-walking-dead)
 
     + Headers
     
@@ -664,7 +664,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 
     You will get "location" header (browser redirect) where the user should be redirected.
     
-    In this example user will be redirected to [Simkl: Guardians of the Galaxy (2014)] (https://simkl.com/movies/212566/guardians-of-the-galaxy)
+    In this example user will be redirected to [Simkl: Guardians of the Galaxy (2014)](https://simkl.com/movies/212566/guardians-of-the-galaxy)
 
     + Headers
     
@@ -687,7 +687,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 
     You will get "location" header (browser redirect) where the user should be redirected.
     
-    In this example user will be redirected to [twitter: Share a link with your followers] (https://twitter.com/intent/tweet?text=The%20Walking%20Dead+1x04+%22Vatos%22&url=https%3A%2F%2Fsimkl.com%2Ftv%2F2090%2Fthe-walking-dead%2Fseason-1%2Fepisode-4%2F)
+    In this example user will be redirected to [twitter: Share a link with your followers](https://twitter.com/intent/tweet?text=The%20Walking%20Dead+1x04+%22Vatos%22&url=https%3A%2F%2Fsimkl.com%2Ftv%2F2090%2Fthe-walking-dead%2Fseason-1%2Fepisode-4%2F)
 
     + Headers
     
@@ -704,7 +704,7 @@ Use it if you have a filename and want to get simkl_id based on it. Right now TV
 
 You can search by filename or by full folder+filename (see request examples).
 
-This method will respond with [`Standard Media Object`] (/introduction/about-simkl-api/standard-media-objects) + some new fields.
+This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects) + some new fields.
 
 `multipart` = we have 2+ episodes in one filename, use `part` parameter to get necessary episode.
 
@@ -879,8 +879,8 @@ Items colletcted in the past should send `collected_at` UTC datetime. If you sen
 <h4>JSON POST DATA</h4>
 Key|Type|Value
 ---|----|-----
-`movies`|array| Array of `movie` objects ([see examples] (#introduction/quick-start/standard-media-objects)) 
-`shows`|array| Array of `show` objects ([see examples] (#introduction/quick-start/standard-media-objects))
+`movies`|array| Array of `movie` objects ([see examples](#introduction/quick-start/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/quick-start/standard-media-objects))
 
 <h4>MEDIA OBJECTS POST DATA</h4>
 Key|Type|Value
@@ -986,8 +986,8 @@ Using this method you can remove one or more items from a user's collection.
 <h4>JSON POST DATA</h4>
 Key|Type|Value
 ---|----|-----
-`movies`|array| Array of `movie` objects ([see examples] (#introduction/quick-start/standard-media-objects)) 
-`shows`|array| Array of `show` objects ([see examples] (#introduction/quick-start/standard-media-objects))
+`movies`|array| Array of `movie` objects ([see examples](#introduction/quick-start/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/quick-start/standard-media-objects))
 
 
 + Request (application/json)
@@ -1085,9 +1085,9 @@ If `ids` field has more than 1 resources then we will search better.
 <h4>JSON POST DATA</h4>
 Key|Type|Value
 ---|----|-----
-`movies`|array| Array of `movie` objects ([see examples] (#introduction/quick-start/standard-media-objects)) 
-`shows`|array| Array of `show` objects ([see examples] (#introduction/quick-start/standard-media-objects))
-`episodes`|array| Array of `episode` objects ([see examples] (#introduction/quick-start/standard-media-objects))
+`movies`|array| Array of `movie` objects ([see examples](#introduction/quick-start/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/quick-start/standard-media-objects))
+`episodes`|array| Array of `episode` objects ([see examples](#introduction/quick-start/standard-media-objects))
 
 <h4>MEDIA OBJECTS POST DATA</h4>
 Key|Type|Value
@@ -1397,7 +1397,7 @@ Will reply with user's id, Show\Movie URL, Show\Movie title, large poster, and l
 
 + Parameters
     + user_id = (required, integer, `51`) ... Simkl user id which has public privacy settings.
-    + client_id (string) ... Get this from [your app settings] (https://simkl.com/settings/developer/).
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
 + Request https://api.simkl.com/users/recently-watched-background/51?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
             
@@ -1424,7 +1424,7 @@ Will simply redirect to the image for your app to download or display.
         + Values
             + `poster`
             + `fanart`
-    + client_id (string) ... Get this from [your app settings] (https://simkl.com/settings/developer/).
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
 + Request https://api.simkl.com/users/recently-watched-background/51?image=fanart&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
             
@@ -1478,7 +1478,7 @@ You can sync user's settings with your apps/site settings
 <a href="http://uptime.statuscake.com/?TestID=JBfz26Wtd2" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=rVMgFtK0BZ&Days=1&Design=1" /></a>
 
 ## CORS
-Currently the API does not supports Cross Origin Resource Sharing (CORS) for AJAX requests. You can read the [CORS W3C working draft] (http://www.w3.org/TR/cors), or [this intro] (http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity) from the HTML 5 Security Guide. If you need support for CORS, please contact us at [support@simkl.com] (mailto:support@simkl.com) with description of your app.
+Currently the API does not supports Cross Origin Resource Sharing (CORS) for AJAX requests. You can read the [CORS W3C working draft](http://www.w3.org/TR/cors), or [this intro](http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity) from the HTML 5 Security Guide. If you need support for CORS, please contact us at [support@simkl.com](mailto:support@simkl.com) with description of your app.
 
 ## Get in touch
-We’re always happy to help you get set up with Simkl. If you're stuck, want to find out more or need to speak to us, [visit our API developer group] (https://plus.google.com/u/0/communities/106081147921797342801) or see the [support center] (https://support.simkl.com).
+We’re always happy to help you get set up with Simkl. If you're stuck, want to find out more or need to speak to us, [visit our API developer group](https://plus.google.com/u/0/communities/106081147921797342801) or see the [support center](https://support.simkl.com).

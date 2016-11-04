@@ -500,7 +500,7 @@ item*|object|episode or movie object.
 ## Ratings API [/ratings]
 
 ### Get movie, tv show or anime rating [GET]
-<h4>OAuth Not Required</h4>
+<h4>Token Not Required</h4>
 Returns rating (between 0 and 10), rank (movie, tv, anime have their own rank), external ratings (IMDB, MAL), drop rate and if we have trailers for the movie or not(add /trailer parameter to the link and the best trailer will be opened).
 
 Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect).
@@ -862,7 +862,7 @@ If you want to store all of your watched history or download your history list f
 
 ## Add to Collection [/sync/collection]
 ### Add items to watched/watching history [POST]
-<h4>OAuth Required</h4>
+<h4>&#128274; Token Required</h4>
 If you want to add something to a user's collection use this method. Accepts shows, season and movies. If seasons skipped then all seasons for the show will be collected otherwise only specified seasons.
 Items colletcted in the past should send `collected_at` UTC datetime. If you send item second time then it will be updated with new values.
 
@@ -970,7 +970,7 @@ Key|Type|Value
             
 ## Remove from Collection [/sync/collection/remove]
 ### Delete items from collection [POST]
-<h4>OAuth Required</h4>
+<h4>&#128274; Token Required</h4>
 Using this method you can remove one or more items from a user's collection.
 
 <h4>JSON POST DATA</h4>
@@ -1065,7 +1065,7 @@ Key|Type|Value
 
 ## Add to History [/sync/history]
 ### Add items to watched/watching history [POST]
-<h4>OAuth Required</h4>
+<h4>&#128274; Token Required</h4>
 Add items to a user's watched history. You can pass shows,seasons,episodes and movies. If no episode for the show is passed then it will be marked as completed. If season will be specified then only episodes in those seasons will be marked.
 
 if `watched_at` UTC datetime is passed then all will be marked as watched in the past. 
@@ -1165,7 +1165,7 @@ Key|Type|Value
 
 ## Get All Items [/sync/all-items/type?extended=full]
 ### Get all items in the user's watchlist [POST]
-<h4>🔒 OAuth Required ✨ Full Info</h4>
+<h4>&#128274; Token Required &#10024; Full Info</h4>
 Returns all items that user has in his watchlist(watching, plan to watch, dropped), movies,shows,anime. 
 
 + Parameters
@@ -1299,7 +1299,7 @@ Returns all items that user has in his watchlist(watching, plan to watch, droppe
 
 ## Check watched [/sync/watched]
 ### Get specific user's watched items [POST]
-<h4>OAuth Required</h4>
+<h4>&#128274; Token Required</h4>
 Use this method if you want to see which shows or episodes user has seen. You can pass different ids and get their appropriate statuses in a user's list.
 
 <h4>POSSIBLE JSON RESPONSE DATA</h4>
@@ -1428,7 +1428,7 @@ Will simply redirect to the image for your app to download or display.
 
 ## Settings [/users/settings]
 ### Receive settings [POST]
-<h4>OAuth Required</h4>
+<h4>&#128274; Token Required</h4>
 You can sync user's settings with your apps/site settings
 
 + Request (application/json)

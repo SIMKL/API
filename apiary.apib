@@ -715,7 +715,8 @@ episode: multipart |`1`| you can get info on one more episode after this one in 
 
 
 + Request (application/json)
-
+    + Headers
+            simkl-api-key: [client_id]
     + Attributes
         + file: `Were.The.Fugawis.S01E01E02.WS.DSR.x264-NY2.mkv` (required, string) - Trying to find this file in our DB
         + part: `1` (optional, number) - Some filenames consist of 2 or more parts. If you want to get info about second part for example you can pass `2` to this parameter

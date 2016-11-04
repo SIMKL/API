@@ -228,8 +228,8 @@ For more details see Authorize and Token sections below.
         
 + Response 200
 
+## Authorize [/oauth/authorize{?response_type,client_id,redirect_uri,state}]
 
-## Authorize [/oauth/authorize?response_type=code&client_id=client_id&redirect_uri=redirect_uri&state=state]
 ### Authorize Application [GET]
 Redirect a user to this URL. There the user will grant permissions for you app and if everything is fine you'll get a `code` which you can exchange for `access_token`. 
 Once you have an access token you can use it to make calls on behalf of a user.
@@ -237,10 +237,10 @@ Once you have an access token you can use it to make calls on behalf of a user.
 **Note:** You should use the https://simkl.com domain when creating this URL and not the API URL.
 
 + Parameters
-    + response_type (string) ... must be "code"
+    + response_type (string, `code`) ... must be "code"
     + client_id (string) ... Get this from your app settings
-    + redirect_uri (string) ... URI in your app settings
-    + state (optional, string) ... your custom variable
+    + redirect_uri (string, `https://example.com/welcome/`) ...  [URI in your app settings](https://simkl.com/settings/developer/)
+    + state (optional, string, `state`) ... your custom variable
   
 + Request https://simkl.com/oauth/authorize?response_type=code&client_id=c7be48f1559a6d794w1925237c626326c7bsdfsa559a6d794w1925137c626316&redirect_uri=http://yourdomain.com/oauth.html
         

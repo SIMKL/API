@@ -713,21 +713,14 @@ episode: multipart |`false`| not multipart
 episode: multipart |`0`| no more episodes left
 episode: multipart |`1`| you can get info on one more episode after this one in this filename
 
-+ Parameters
-    + file (required, string,`The.Simpsons.S025E17.720p.HDTV.X264-DIMENSION.mkv`) ... Trying to find this file in our DB
-    + part (optional, integer,`1`) ... Some filenames consist of 2 or more parts. If you want to get info about second part for example you can pass `2` to this parameter
-    + hash (optional, string) ... In progress
 
 + Request (application/json)
-    + Headers
-            simkl-api-key: [client_id]
-    + Body
-    
-            {
-                "file": "Were.The.Fugawis.S01E01E02.WS.DSR.x264-NY2.mkv",
-                "part": 1
-            }   
-  
+
+    + Attributes
+        + file: `Were.The.Fugawis.S01E01E02.WS.DSR.x264-NY2.mkv` (required, string) - Trying to find this file in our DB
+        + part: `1` (optional, number) - Some filenames consist of 2 or more parts. If you want to get info about second part for example you can pass `2` to this parameter
+        + hash (optional, string) - [IN_DEV]
+
 + Response 201 (application/json)
         
     + Body

@@ -382,7 +382,9 @@ Application can poll this url to get `USER_CODE` status or `ACCESS_TOKEN`. Retur
 
 
 # Group Checkin
-Mobile apps can do checkin manually. If you are watching a movie in a theater you can simply do checkin from your phone or tablet.
+Mobile apps can do checkin manually. If you are curretlty watching a movie or an episode you can simply do checkin from your phone or tablet and the episode will be automatically marked as watched in 15-40 minutes (based on the episode\movie lenth).
+
+If you wish to instantly mark episode\movie as watched please use [Sync, Add to History method](/#reference/sync/add-to-history/check-into-an-item)
 
 ## Checkin [/checkin]
 
@@ -862,7 +864,14 @@ Here are some examples of the things you can build with the Random Search API:
 
 
 # Group Sync
-If you want to store all of your watched history or download your history list from simkl then *syncing* is what you are looking for.  
+
+Simkl can be one central place where you store all your watch history. Syncing allows all your devices and apps have your watch history up to date and can be used as a cloud backup.
+
+<h3>Collection</h3> 
+is a list of movies and episodes that you have on your hard drive, CDs or elsewhere.
+
+<h3>History</h3>
+is a list of all your movies and episodes that you watched.
 
 ## Add to Collection [/sync/collection]
 ### Add items to watched/watching history [POST]

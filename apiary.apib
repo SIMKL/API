@@ -386,7 +386,7 @@ Mobile apps can do checkin manually. If you are watching a movie in a theater yo
 ## Checkin [/checkin]
 
 ### Check into an item [GET]
-<h4>`token` Required</h4>
+<h4>&#128274; Token Required</h4>
 This should be tied to a user manual action. The item will be as watching on the site and if the time has elapsed it will switch to completed. 
 
 
@@ -548,7 +548,7 @@ Here are some examples of the things you can build with the Redirect API:
 - Get all Simkl IDs for your own API.
 
 ### Redirect [GET]
-<h4>OAuth Not Required</h4>
+<h4>&#128275; Token Not Required</h4>
 Use this if you want to make a redirect to Simkl or (fast post) to Twitter using show's title or id. It will return "location" header.
 
 The more parameters you'll pass, the more accurate redirect will be.
@@ -692,7 +692,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 
 ## File [/search/file]
 ### Find show, anime or movie by file[POST]
-<h4>OAuth Not Required</h4>
+<h4>&#128275; Token Not Required</h4>
 Use it if you have a filename and want to get simkl_id based on it. Right now TV Shows and Anime files can be recognized the best. Movies are harder to recognize without using the hash.
 
 You can search by filename or by full folder+filename (see request examples).
@@ -791,7 +791,7 @@ episode: multipart |`1`| you can get info on one more episode after this one in 
 
 ## Random [/search/random{?service,type,genre,rating_from,rating_to,year_from,year_to,client_id}]
 ### Find random show, anime or movie [POST]
-<h4>OAuth Optional</h4>
+<h4>&#128275; Token Optional</h4>
 Use it if you want to find random item based on your filters. If OAuth is passed, wacthed items will be excluded.
 
 ### Use Cases

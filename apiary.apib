@@ -751,12 +751,9 @@ episode: multipart |`1`| you can get info on one more episode after this one in 
 + Request (application/json)
     + Header
             simkl-api-key: [client_id]
-    
-    + Body
-            {
-                "file": "/series/The Office/Season 4/The Office [401] Fun Run.avi"
-            }  
-            
+    + Attributes
+        + file: `/series/The Office/Season 4/The Office [401] Fun Run.avi` (required, string) - You can use folders in the file request as well
+
 + Response 201 (application/json)
         
     + Body

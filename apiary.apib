@@ -239,13 +239,16 @@ Once you have an access token you can use it to make calls on behalf of a user.
 + Parameters
     + response_type (string, `code`) ... must be "code"
     + client_id (string) ... Get this from your app settings
-    + redirect_uri (string, `https://example.com/welcome/`) ...  [URI in your app settings](https://simkl.com/settings/developer/)
+    + redirect_uri (string, `http://yourdomain.com/oauth.html`) ...  [URI in your app settings](https://simkl.com/settings/developer/)
     + state (optional, string, `state`) ... your custom variable
-  
+
 + Request https://simkl.com/oauth/authorize?response_type=code&client_id=c7be48f1559a6d794w1925237c626326c7bsdfsa559a6d794w1925137c626316&redirect_uri=http://yourdomain.com/oauth.html
-        
-        
+
+    + Body
+
 + Response 200
+
+    + Body
 
 ## Token [/oauth/token]
 ### Exchange code for access_token [POST]

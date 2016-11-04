@@ -315,7 +315,7 @@ You should do the following step to authorize user's device:
 
 6. Once they have, refresh your UI to indicate a successful connection has been made. 
 
-## Request a device code [/oauth/pin?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316&redirect=http://simkl.com/test]
+## Request a device code [/oauth/pin{?client_id,redirect}]
 
 ### Get CODE [GET]
  
@@ -327,8 +327,8 @@ Key|Type|Value
 client_id|string|Get this in your app settings
 
 + Parameters
-    + client_id (string) ... Get this from your app settings
-    + redirect (string,optional) ... url where you want to redirect user when he approved you application
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from your app settings
+    + redirect (string,optional,`http://yourdomain.com/welcome`) ... URL where you want to redirect user when he approved you application
             
 + Response 200 (application/json)
 

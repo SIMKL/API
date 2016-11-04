@@ -343,14 +343,15 @@ client_id|string|Get this in your app settings
                 'interval': 5 
             }
 
-## Get CODE status [/oauth/pin/USER_CODE?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316]
+## Get CODE status [/oauth/pin/{USER_CODE}{?client_id}]
 
 ### Check USER_CODE [GET]
 
 Application can poll this url to get `USER_CODE` status or `ACCESS_TOKEN`. Returned interval in step 1 response specifies the minimum amount of time(seconds), that your app should wait between polling requests.
 
 + Parameters
-    + client_id (string) ... Get this from your app settings
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from your app settings
+    + USER_CODE (string) ... Get this from previous step
             
 + Response 200 (application/json)
 

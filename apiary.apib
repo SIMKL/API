@@ -888,18 +888,19 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
 
 + Response 200 (application/json)
 
-    + Body
+      + Body
         {
           "shows": [
             {
+            
               "last_watched_at": "2016-09-12T13:00:30.000Z",
+              "user_rating": null,
+              "status": "dropped",
+              "last_watched": null,
+              "next_to_watch": "S01E01",
               "show": {
                 "title": "The Last Ship",
                 "year": 2014,
-                "user_rating": null,
-                "status": "dropped",
-                "last_watched": null,
-                "next_to_watch": "S01E01",
                 "ids": {
                   "simkl": 42040,
                   "imdb": "tt2402207",
@@ -911,13 +912,13 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
           "anime": [
             {
               "last_watched_at": "2014-11-06T22:05:52.000Z",
+              "user_rating": 10,
+              "status": "completed",
+              "last_watched": "E148",
+              "next_to_watch": null,
               "show": {
                 "title": "Hunter x Hunter",
                 "year": 2011,
-                "user_rating": 10,
-                "status": "completed",
-                "last_watched": "E148",
-                "next_to_watch": null,
                 "ids": {
                   "simkl": 40398,
                   "imdb": "tt2098220",
@@ -928,13 +929,13 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
             },
             {
               "last_watched_at": "2016-10-19T08:34:23.000Z",
+              "user_rating": null,
+              "status": "plantowatch",
+              "last_watched": null,
+              "next_to_watch": "E01",
               "show": {
                 "title": "Ajin 2",
                 "year": 2016,
-                "user_rating": null,
-                "status": "plantowatch",
-                "last_watched": null,
-                "next_to_watch": "E01",
                 "ids": {
                   "simkl": 581835,
                   "mal": "33253",
@@ -946,11 +947,11 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
           "movies": [
             {
               "last_watched_at": "2014-08-09T07:25:55.000Z",
+              "user_rating": null,
+              "status": "completed",
               "movie": {
                 "title": "Captain America: The First Avenger",
                 "year": 2011,
-                "user_rating": null,
-                "status": "completed",
                 "ids": {
                   "simkl": 55328,
                   "imdb": "tt0458339",
@@ -960,11 +961,11 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
             },
             {
               "last_watched_at": "2014-08-16T18:45:20.000Z",
+              "user_rating": null,
+              "status": "completed",
               "movie": {
                 "title": "Maleficent",
                 "year": 2014,
-                "user_rating": null,
-                "status": "completed",
                 "ids": {
                   "simkl": 195258,
                   "imdb": "tt1587310",
@@ -974,7 +975,6 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
             }
           ]
         }
-
 
 + Request (application/json)
 <h6>Get Anime list and watched episodes:</h6> `https://api.simkl.com/sync/all-items/anime/?extended=full`

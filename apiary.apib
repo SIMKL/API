@@ -874,11 +874,47 @@ is a list of all your movies and episodes that you watched.
 <h3>Collection</h3> 
 is a list of movies and episodes that you have on your hard drive, CDs or elsewhere.
 
-## Get Last Activities [/sync/activities/]
+## Get Last Activities [/sync/activities]
 ### Get latest user's actions time [POST]
 <h4>&#128274; Token Required</h4>
 
 This method will help you to determine the time of any changes in user's lists,comments etc... so you do not have to download full user's history every time 
+
++ Request (application/json)
+`https://api.simkl.com/sync/activities` 
+    + Header
+        authorization: Bearer [token]
+        simkl-api-key: [client_id]
+
++ Response 200 (application/json)
+
+      + Body
+        {
+            "all": "2014-11-20T07:01:32.000Z",
+            "tv_shows": {
+                "all": "2014-11-20T06:51:30.000Z",
+                "plantowatch": "2014-11-20T06:51:30.000Z",
+                "watching": "2014-11-20T06:51:30.000Z",
+                "completed": "2014-11-20T06:51:30.000Z",
+                "notinteresting": "2014-11-20T06:51:30.000Z"
+            },
+            "anime": {
+                "all": "2014-11-20T06:55:30.000Z",
+                "watched_at": "2014-11-20T06:51:30.000Z",
+                "plantowatch": "2014-11-20T06:55:30.000Z",
+                "watching": "2014-11-20T06:51:30.000Z",
+                "completed": "2014-11-20T06:51:30.000Z",
+                "notinteresting": "2014-11-20T06:51:30.000Z"
+            },
+            "movies": {
+                "all": "2014-11-20T07:01:32.000Z",
+                "watchlists_updated": "2014-11-19T21:42:41.000Z",
+                "plantowatch": "2014-11-20T06:51:30.000Z",
+                "completed": "2014-11-20T06:51:30.000Z",
+                "notinteresting": "2014-11-20T07:01:32.000Z"
+            }
+        }
+
 
 ## Get All Items [/sync/all-items/{type}{?extended}]
 ### Get all items in the user's watchlist [POST]

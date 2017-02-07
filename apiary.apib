@@ -1298,20 +1298,20 @@ list|`dropped`|Found in users's Not Interesting list
 
     + Body
     
-            {
+            [{
                 "netflix": 70262639,
                 "type": "movie"
             },{
                 "netflix": 70080650
             },{
                 "hulu":764084
-            }
+            }]
             
 + Response 200 (application/json)
 
     + Body
     
-            {
+            [{
                 "netflix": 70262639,
                 "list": "watching",
                 "result": true
@@ -1323,7 +1323,7 @@ list|`dropped`|Found in users's Not Interesting list
             {
                 "hulu":764084,
                 "result": "not_found"
-            }
+            }]
 
 
 ## Add to Collection [/sync/collection]

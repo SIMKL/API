@@ -921,7 +921,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
         }
 
 
-## Get All Items [/sync/all-items/{type}{?extended}]
+## Get All Items [/sync/all-items/{type}/{status}{?extended}]
 ### Get all items in the user's watchlist [POST]
 <h4>&#128274; Token Required &#10024; Full Info</h4>
 Returns all items that user has in his watchlist (watching, plan to watch, dropped), shows, anime, movies. 
@@ -932,6 +932,22 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
         authorization: Bearer [token]
         simkl-api-key: [client_id]
 
++ Parameters
+    + type (optional, string, `anime`) ... 
+        + Values
+            + `shows`
+            + `movies`
+            + `anime`
+    + status (optional, string) ... 
+        + Values
+            + `watching`
+            + `plantowatch`
+            + `completed`
+            + `dropped`
+    + extended (optional, string, `full`) ... `full` returns more info including watched episodes.
+        + Values
+            + `full`
+            
 + Response 200 (application/json)
 
       + Body
@@ -1028,16 +1044,6 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
     + Header
             authorization: Bearer [token]
             simkl-api-key: [client_id]
-            
-+ Parameters
-    + type (optional, string, `anime`) ... 
-        + Values
-            + `shows`
-            + `movies`
-            + `anime`
-    + extended (optional, string, `full`) ... `full` returns more info including watched episodes.
-        + Values
-            + `full`
             
 + Response 200 (application/json)
 

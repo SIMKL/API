@@ -957,7 +957,7 @@ Returns all items that user has in his watchlist (watching, plan to watch, notin
             
               "last_watched_at": "2016-09-12T13:00:30.000Z",
               "user_rating": null,
-              "status": "dropped",
+              "status": "notinteresting",
               "last_watched": null,
               "next_to_watch": "S01E01",
               "show": {
@@ -1256,6 +1256,82 @@ Key|Type|Value
 
 + Response 200 (application/json)
 
+## Add Item to list[/sync/history]
+### Add items to the specific list [POST]
+<h4>&#128274; Token Required</h4>
+Add items to a user's simkl lists. You can pass shows and movies. 
+
+If `ids` field has more than 1 resources then we will search better.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/quick-start/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/quick-start/standard-media-objects))
+
+<h4>MEDIA OBJECTS POST DATA</h4>
+Key|Type|Value
+---|----|-----
+item*|object|[tv show or movie object](/#introduction/about-simkl-api/standard-media-objects).
+`to`|string|possible values "plantowatch","completed","watching","notinteresting"
+`to`|array| custom lists **IN DEV**
+
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "title": "Terminator 3: Rise of the Machines",
+                        "to": "completed",
+                        "year": "2003",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "to": "plantowatch",
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "to" : "watching",
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    },
+                    {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "to": "notinteresting",
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        }
+                    }
+                ]
+            }   
+
++ Response 200 (application/json)
+
 
 ## Check if watched [/sync/watched]
 ### Get specific user's watched items [POST]
@@ -1272,7 +1348,7 @@ result|`false`|Found a match but could not find in user's watchlist
 result|`not_found`|Could not find a match in Simkl database with such Title\Year or ID
 list|`completed`|User watched the movie or seen all episodes
 list|`plantowatch`|Found in users's Plan to Watch list
-list|`dropped`|Found in users's Not Interesting list
+list|`notinteresting`|Found in users's Not Interesting list
 watched|`YYYY-MM-DDTHH:MM:SS.000Z`|Datetime in UTC format when the last episode or movie was watched
 
 

@@ -1164,7 +1164,7 @@ Add items to a user's watched history. You can pass shows,seasons,episodes and m
 
 if `watched_at` UTC datetime is passed then all will be marked as watched in the past. 
 
-If `ids` field has more than 1 resources then we will search better.
+Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
 
 <h4>JSON POST DATA</h4>
 Key|Type|Value
@@ -1262,9 +1262,9 @@ Key|Type|Value
 ## Add Item to List [/sync/add-to-list]
 ### Add items to the specific list [POST]
 <h4>&#128274; Token Required</h4>
-Add items to a user's Simkl lists for example you can add a Show directly to Plan to Watch or move existing show from Watching to Not Interesting. You can pass shows and movies. 
+Add items to a user's Simkl lists. For example you can add a Show directly to Plan to Watch or move existing show from Watching to Not Interesting. You can pass shows and movies. 
 
-If `ids` field has more than 1 resources then we will search better.
+Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
 
 <h4>JSON POST DATA</h4>
 Key|Type|Value

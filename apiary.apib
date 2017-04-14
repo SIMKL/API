@@ -1333,6 +1333,25 @@ item*|object|[tv show or movie object](/#introduction/about-simkl-api/standard-m
 
 + Response 200 (application/json)
 
+    + Body
+
+            {
+                "added": {
+                    "movies": 2,
+                    "shows": 2
+                },
+                "not_found": {
+                    "movies": [
+                        {
+                            "ids": {
+                              "imdb": "tt0000222"
+                            }
+                        }
+                    ],
+                    "shows": []
+                }
+            }
+
 
 ## Check if watched [/sync/watched]
 ### Get specific user's watched items [POST]

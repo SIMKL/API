@@ -1279,6 +1279,7 @@ Key|Type|Value
 item*|object|[tv show or movie object](/#introduction/about-simkl-api/standard-media-objects).
 `to`|string|possible values "plantowatch","completed","watching","notinteresting"
 `to`|array| custom lists **IN DEV**
+`watched_at`|datetime|UTC datetime when the item was watched, available only for "completed" status
 
 
 + Request (application/json)
@@ -1295,6 +1296,7 @@ item*|object|[tv show or movie object](/#introduction/about-simkl-api/standard-m
                         "title": "Terminator 3: Rise of the Machines",
                         "to": "completed",
                         "year": "2003",
+                        "watched_at": "2014-10-10T22:10:00",
                         "ids": {
                             "imdb": "tt0181852",
                             "tmdb": 296,

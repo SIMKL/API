@@ -1,5 +1,7 @@
 # Simkl TV Tracker API Repository
 
-[Simkl API Documentation on Apiary] (http://api.simkl.com) 
+[![Gitter](https://badges.gitter.im/Simkl/API.svg)](https://gitter.im/Simkl/API?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-by [Simkl] (https://simkl.com) 
+[Simkl API Documentation on Apiary](http://api.simkl.com)
+
+by [Simkl](https://simkl.com)

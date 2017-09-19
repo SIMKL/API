@@ -720,10 +720,7 @@ The more parameters you'll pass, the more accurate redirect will be.
 ## ID Lookup [/search/id{?imdb,client_id}]
 ### Get items by ID[GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
-You can lookup items by their ID's using this endpoint. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects).
-
-Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect), parameters `season`, `episode` are disabled here.
-Item types `movie`,`tv`,`anime`
+You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB, AniDB, Hulu, Netflix, MAL, Crunchyroll ID. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects).
 
 + Parameters
 
@@ -738,11 +735,16 @@ Item types `movie`,`tv`,`anime`
             + `http://www.imdb.com/title/tt1972591/`
     + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
     + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + type  (optional, string) ... [IN DEV] Only used when sending tmdb. 
+        + Values
+            + `tv`
+            + `anime`
+            + `movie`
     + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 
 
-+ Request https://api.simkl.com/search/id?imdb=tt1972591&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
++ Request 
 
     **Search by ID**, IMDB example:
     

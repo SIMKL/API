@@ -129,27 +129,27 @@ All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30
 accordingly in your app for the user's local timezone.
 
 ## Images
-Use `https://simkl.in` domain for images. 
+Use `https://simkl.in` domain for images.
+
 Prefixes are `/posters/`, `/fanart/`, `/episodes/`,`/comments/`. 
 
-We have different types of images, choose the one that best suits your needs
-prefix|suffix|size|extension
----|---|---|---
-`posters`|`_w`|600x338|`.jpg` or `.webp`
-`posters`|`_m`|340x *|`.jpg` or `.webp`
-`posters`|`_ca`|190x279(285)|`.jpg` or `.webp`
-`posters`|`_c`|170x250(256)|`.jpg` or `.webp`
-`posters`|`_cm`|84x124|`.jpg` or `.webp`
-`posters`|`_s`|40x57|`.jpg` or `.webp`
-`fanart`|`_medium`|1920x1080|`.jpg` or `.webp`
-`fanart`|`_mobile`|960x540|`.jpg` or `.webp`
-`fanart`|`_w`|600x338|`.jpg` or `.webp`
-`fanart`|`_d` (darker, small KB)|* x * (original size)|`.jpg`
+We have different types of images, choose the one that best suits your needs.
 
 Url structure: <b>{domain}{prefix}{image_url}{suffix}{extension}</b>
 
-Full poster URL example: `https://simkl.in/fanart/61/614400688dce5fdcb_m.jpg`<br>
-Full fanart URL example: `https://simkl.in/fanart/61/614400688dce5fdcb_m.jpg`
+prefix|suffix|Size|extension|Example
+---|---|---|---|---
+`posters`|`_w`|600x338|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_w.jpg)
+`posters`|`_m`|340x *|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_m.jpg)
+`posters`|`_ca`|190x279(285)|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_ca.jpg)
+`posters`|`_c`|170x250(256)|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_c.jpg)
+`posters`|`_cm`|84x124|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_cm.jpg)
+`posters`|`_s`|40x57|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_s.jpg)
+||||
+`fanart`|`_medium`|1920x1080|`.jpg` or `.webp`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_medium.jpg)
+`fanart`|`_mobile`|960x540|`.jpg` or `.webp`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_mobile.jpg)
+`fanart`|`_w`|600x338|`.jpg` or `.webp`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_w.jpg)
+`fanart`|`_d` (darker, small KB)|* x * (original size)|`.jpg`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_d.jpg)
 
 ### Caching images
 It is required that you cache images in your app or server by `image_url` forever. The images with the same URL never change. Do not redownload the same image multiple times.

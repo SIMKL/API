@@ -129,8 +129,17 @@ All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30
 accordingly in your app for the user's local timezone.
 
 ## Images
-Use `https://simkl.in` domain for all posters, fanarts, screens. We have different types of images, choose which one suits your needs better
+Use `https://simkl.in` domain for images. 
+Prefixes are `/posters/`, `/fanart/`, `/episodes/`,`/comments/`. 
 
+We have different types of images, choose which one suits your needs better
+*type*|*suffix*|*size*|*extension*
+---|---|---|---
+posters|_m<br>_c<br>_ca<br>_s<br>_w<br>_cm|340x *<br>170x250(256)<br>190x279(285)<br>40x57<br>600x338<br>84x124|jpg,webp
+fanarts|_medium<br>_mobile<br>_w<br>_d (shadowed)|1920x1080<br>960x540<br>600x338<br>* x * (original)|jpg,webp<br>jpg,webp<br>jpg,webp<br>jpg
+
+Url structure: <b>{domain}{prefix}{image_url}{suffix}{extension}</b><br>
+Example: `https://simkl.in/fanart/61/614400688dce5fdcb_m.jpg`
 
 ## Standard Media Objects
 

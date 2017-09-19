@@ -128,6 +128,9 @@ By default methods are not returnig additional data for movies, anime, show etc.
 All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30:11.000Z. Adjust 
 accordingly in your app for the user's local timezone.
 
+## Images
+Domain for posters and fanarts `https://simkl.in`
+
 ## Standard Media Objects
 
 All methods will accept or return standard media objects for `movie`, `show`, `episode` items. 
@@ -579,6 +582,7 @@ The more parameters you'll pass, the more accurate redirect will be.
     + episode (optional, integer, `4`) ... if set, movies will be ignored.
     + hulu (optional, integer, `752375`) ... hulu_id. All other parameters can be empty if this one specified.
     + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
     + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
     + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. Only Movies. All other parameters can be empty if this one specified.
     + imdb (optional, string, `tt1520211`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
@@ -703,6 +707,80 @@ The more parameters you'll pass, the more accurate redirect will be.
 
 # Group Search
 
+## ID Lookup [/search/id]
+### Get items by ID[POST]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+You can lookup items by their ID's using this endpoint. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects).
+
+Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect), parameters `season`, `episode` are disabled here.
+Item types `movie`,`tv`,`anime`
+
++ Request https://api.simkl.com/search/id?imdb=tt1972591&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    
++ Response 200 (application/json)
+        
+    + Body
+
+            [{
+                "type": "movie",
+                "title": "King Arthur: Legend of the Sword",
+                "year": 2017,
+                "ids": {
+                    "simkl": 388306,
+                    "slug": "king-arthur-legend-of-the-sword"
+                }
+            }]
+            
+## Text [/search/text]
+### Get items based on text query[POST]
+<h4>📄 Pagination &#128275; Token Not Required &#10024; Full Info</h4>
+Search items by title, sorted by relevance. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects) + additional fields if `extended` parameter passed.
+
+Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect), parameters `season`, `episode` are disabled here. 
+
+Page limit is 20, max items per page is 50.
+
+Url types `movie`,`tv`,`anime`
+
++ Request https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    
++ Response 200 (application/json)
+        
+    + Body
+
+    [{
+        "title": "John Wick: Chapter 2",
+        "year": 2017,
+        "poster": "50\/501682403c298b56c",
+        "url": "\/movies\/471618\/john-wick-chapter-2",
+        "rank": 2326,
+        "ids": {
+            "simkl_id": 471618,
+            "slug": "john-wick-chapter-2"
+        }
+    }, {
+        "title": "John Wick",
+        "year": 2014,
+        "poster": "28\/2893788382afb90ce",
+        "url": "\/movies\/342994\/john-wick",
+        "rank": 3998,
+        "ids": {
+            "simkl_id": 342994,
+            "slug": "john-wick"
+        }
+    }, {
+        "title": "John Wick: Chapter 3",
+        "year": 2019,
+        "poster": "57\/5747702654de3d19d",
+        "url": "\/movies\/687232\/john-wick-chapter-3",
+        "rank": null,
+        "ids": {
+            "simkl_id": 687232,
+            "slug": "john-wick-chapter-3"
+        }
+    }]
+
+            
 ## File [/search/file]
 ### Find show, anime or movie by file[POST]
 <h4>&#128275; Token Not Required</h4>
@@ -1431,7 +1509,8 @@ watched|`YYYY-MM-DDTHH:MM:SS.000Z`|Datetime in UTC format when the last episode 
     + season (optional, integer, `1`) ...  TV Show Season
     + episode (optional, integer, `2`) ...  TV Show Episode number
     + hulu (optional, integer, `752375`) ... [IN_DEV] hulu_id. All other parameters can be empty if this one specified.
-    + netflix (optional, integer, `70210890`) ... Netflix movieid`, this parameter is in beta and may not always work.
+    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not always work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
     + tvdb (optional, integer, `153021`) ... [IN_DEV] TVDB ID. All other parameters can be empty if this one specified.
     + tmdb (optional, integer, `76757`) ... [IN_DEV] The Movie Database (TMDb) ID. Only Movies. All other parameters can be empty if this one specified.
     + imdb (optional, string, `tt3659388`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.

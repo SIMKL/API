@@ -133,7 +133,7 @@ Use `https://simkl.in` domain for images.
 Prefixes are `/posters/`, `/fanart/`, `/episodes/`,`/comments/`. 
 
 We have different types of images, choose which one suits your needs better
-*type*|*suffix*|*size*|*extension*
+type|suffix|size|extension
 ---|---|---|---
 posters|_m<br>_c<br>_ca<br>_s<br>_w<br>_cm|340x *<br>170x250(256)<br>190x279(285)<br>40x57<br>600x338<br>84x124|jpg,webp
 fanarts|_medium<br>_mobile<br>_w<br>_d (shadowed)|1920x1080<br>960x540<br>600x338<br>* x * (original)|jpg,webp<br>jpg,webp<br>jpg,webp<br>jpg
@@ -717,15 +717,40 @@ The more parameters you'll pass, the more accurate redirect will be.
 
 # Group Search
 
-## ID Lookup [/search/id]
-### Get items by ID[POST]
+## ID Lookup [/search/id{?imdb,client_id}]
+### Get items by ID[GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 You can lookup items by their ID's using this endpoint. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects).
 
 Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect), parameters `season`, `episode` are disabled here.
 Item types `movie`,`tv`,`anime`
 
++ Parameters
+
+    + hulu (optional, integer, `752375`) ... hulu_id. All other parameters can be empty if this one specified.
+    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
+    + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. Only Movies. All other parameters can be empty if this one specified.
+    + imdb (optional, string, `tt1972591`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
+        + Values
+            + `tt1972591`
+            + `http://www.imdb.com/title/tt1972591/`
+    + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
+    + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
+
+
 + Request https://api.simkl.com/search/id?imdb=tt1972591&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    **Search by ID**, IMDB example:
+    
+    https://api.simkl.com/search/id?imdb=tt1972591&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
     
 + Response 200 (application/json)
         

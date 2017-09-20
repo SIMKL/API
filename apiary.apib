@@ -798,8 +798,8 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
                 }
             }]
             
-## Text [/search/{type}?q={text}]
-### Get items based on text query[POST]
+## Text [/search/{type}{?q,client_id}]
+### Get items based on text query[GET]
 <h4>📄 Pagination &#128275; Token Not Required &#10024; Full Info</h4>
 Search items by title, sorted by relevance. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects) + additional fields if `extended` parameter passed.
 
@@ -812,9 +812,18 @@ Page limit is 20, max items per page is 50.
             + `tv`
             + `anime`
             + `movie`
-    + text (required, string, `arrow`) ... 
+    + q (required, string, `john wick`) ...
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
-+ Request https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
++ Request 
+    **Search for text**, movie title, with full info, john wick example:
+    
+    https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    
+    PS: Please use your `client_id`.
+
+ + Body
     
 + Response 200 (application/json)
 

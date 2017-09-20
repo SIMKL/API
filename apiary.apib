@@ -1185,7 +1185,7 @@ The `status` field can have these values `ended`,`tba`,`airing`
 
 # Group Anime
 
-## Summary [/anime/id]
+## Summary [/anime/{id}{?client_id}]
 ### Get detail info about the Anime [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 Returns a signle detail info of the anime. Same as `/tv/summary` endpoint + added `anime_type` field, possible values are `tv`,`special`,`ova`, `movie`.
@@ -1193,9 +1193,17 @@ Returns a signle detail info of the anime. Same as `/tv/summary` endpoint + adde
 + Parameters
 
     + id (required, string, `40398`) ... Simkl ID or IMDB ID. 
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
-    https://api.simkl.com/anime/
+   
+    **Short info**, SIMKL ID example:
+    
+   https://api.simkl.com/anime/40398?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
     
 + Response 200 (application/json)
         
@@ -1212,7 +1220,13 @@ Returns a signle detail info of the anime. Same as `/tv/summary` endpoint + adde
         }
 
 + Request
-    https://api.simkl.com/anime/?extended=full
+    **Full info**, SIMKL ID example:
+    
+   https://api.simkl.com/anime/40398?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
     
 + Response 200 (application/json)
         
@@ -1273,7 +1287,7 @@ Returns a signle detail info of the anime. Same as `/tv/summary` endpoint + adde
         
 # Group Movies
 
-## Summary [/movies/{id}]
+## Summary [/movies/{id}{?client_id}]
 ### Get detail info about the movie [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 Returns a signle detail info about the movie.
@@ -1282,8 +1296,17 @@ Returns a signle detail info about the movie.
 + Parameters
 
     + id (required, string, `tt1201607`) ... Simkl ID or IMDB ID.
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request https://api.simkl.com/movies/tt1201607
+
+    **Short info**, IMDB example:
+    
+   https://api.simkl.com/movies/tt1201607?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
     
 + Response 200 (application/json)
         
@@ -1301,7 +1324,14 @@ Returns a signle detail info about the movie.
         }
         
 + Request
-    https://api.simkl.com/movies/?extended=full
+
+    **Full info**, IMDB example:
+    
+   https://api.simkl.com/movies/tt1201607?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
     
 + Response 200 (application/json)
         

@@ -994,6 +994,62 @@ Here are some examples of the things you can build with the Random Search API:
                 "url": "https://simkl.com/movies/179868/terminator-genisys"
             }
 
+# Group Movies
+
+## Summary [/movies/summary/id]
+### Get detail info about the movie [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns a signle detail info of the movie
+
+
++ Parameters
+
+    + id (required, string, `tt1201607`) ... simkl_id or imdb_id. All other parameters can be empty if this one specified.
+
++ Request
+
++ Response 201 (application/json)
+        
+    + Body
+
+            {
+                "type": "episode",
+                "show": {
+                    "title": "The Office (US)",
+                    "year": 2005,
+                    "ids": {
+                        "simkl": 2753,
+                        "imdb": "tt0386676",
+                        "zap2it": "SH00726133",
+                        "netflix": "70136120",
+                        "tvdb": "73244"
+                    }
+                },
+                "episode": {
+                    "title": "Fun Run (1)",
+                    "season": 4,
+                    "episode": 1,
+                    "multipart": false,
+                    "ids": {
+                        "simkl": 343712
+                    }
+                }
+            }
+
+# Group TV
+
+## Summary [/tv/summary/id]
+### Get detail info about the TV Show [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns a signle detail info of the tv show 
+
+# Group Anime
+
+## Summary [/anime/summary/id]
+### Get detail info about the Anime [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns a signle detail info of the anime. Same as `/tv/summary` endpoint + added `anime_type` field, possible values are `tv`,`special`,`ova`, `movie`  
+
 
 # Group Sync
 

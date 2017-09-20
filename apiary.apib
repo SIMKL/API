@@ -128,6 +128,22 @@ By default methods are not returnig additional data for movies, anime, show etc.
 All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30:11.000Z. Adjust 
 accordingly in your app for the user's local timezone.
 
+## Pagination
+Some of our endpoints are paginated. Endpoints which have 📄 Pagination will load 1 page of 10 items by default. If you want to change this, append query string `?page={page}&limit={limit}` to the URL
+
+Parameter|Type|Default|Value
+---|---|---|---
+`page`|integer|1|Number of page
+`limit`|integer|10|Results per page
+
+additionally, all paginated endpoints will return these HTTP headers as well
+Header|Value
+-|-
+X-Pagination-Page|Current page
+X-Pagination-Limit|Items per page
+X-Pagination-Page-Count|Total number of pages
+X-Pagination-Item-Count|Total number of items
+
 ## Images
 Use `https://simkl.in` domain for images.
 
@@ -737,6 +753,7 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
 
 + Parameters
 
+    + simkl (optional, integer, `2090`) ... Simkl `id`. 
     + hulu (optional, integer, `752375`) ... hulu_id. All other parameters can be empty if this one specified.
     + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
     + mal (optional, integer, `4246`) ... MyAnimeList `id`.
@@ -781,16 +798,21 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
                 }
             }]
             
-## Text [/search/text]
+## Text [/search/{type}?q={text}]
 ### Get items based on text query[POST]
 <h4>📄 Pagination &#128275; Token Not Required &#10024; Full Info</h4>
 Search items by title, sorted by relevance. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects) + additional fields if `extended` parameter passed.
 
-Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect), parameters `season`, `episode` are disabled here. 
-
 Page limit is 20, max items per page is 50.
 
-Url types `movie`,`tv`,`anime`
++ Parameters
+
+    + type (required, string, `movie`) ... Search type.
+        + Values
+            + `tv`
+            + `anime`
+            + `movie`
+    + text (required, string, `arrow`) ... 
 
 + Request https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
     
@@ -798,37 +820,37 @@ Url types `movie`,`tv`,`anime`
         
     + Body
 
-    [{
-        "title": "John Wick: Chapter 2",
-        "year": 2017,
-        "poster": "50\/501682403c298b56c",
-        "url": "\/movies\/471618\/john-wick-chapter-2",
-        "rank": 2326,
-        "ids": {
-            "simkl_id": 471618,
-            "slug": "john-wick-chapter-2"
-        }
-    }, {
-        "title": "John Wick",
-        "year": 2014,
-        "poster": "28\/2893788382afb90ce",
-        "url": "\/movies\/342994\/john-wick",
-        "rank": 3998,
-        "ids": {
-            "simkl_id": 342994,
-            "slug": "john-wick"
-        }
-    }, {
-        "title": "John Wick: Chapter 3",
-        "year": 2019,
-        "poster": "57\/5747702654de3d19d",
-        "url": "\/movies\/687232\/john-wick-chapter-3",
-        "rank": null,
-        "ids": {
-            "simkl_id": 687232,
-            "slug": "john-wick-chapter-3"
-        }
-    }]
+        [{
+            "title": "John Wick: Chapter 2",
+            "year": 2017,
+            "poster": "50\/501682403c298b56c",
+            "url": "\/movies\/471618\/john-wick-chapter-2",
+            "rank": 2326,
+            "ids": {
+                "simkl_id": 471618,
+                "slug": "john-wick-chapter-2"
+            }
+        }, {
+            "title": "John Wick",
+            "year": 2014,
+            "poster": "28\/2893788382afb90ce",
+            "url": "\/movies\/342994\/john-wick",
+            "rank": 3998,
+            "ids": {
+                "simkl_id": 342994,
+                "slug": "john-wick"
+            }
+        }, {
+            "title": "John Wick: Chapter 3",
+            "year": 2019,
+            "poster": "57\/5747702654de3d19d",
+            "url": "\/movies\/687232\/john-wick-chapter-3",
+            "rank": null,
+            "ids": {
+                "simkl_id": 687232,
+                "slug": "john-wick-chapter-3"
+            }
+        }]
 
             
 ## File [/search/file]

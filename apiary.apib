@@ -817,6 +817,14 @@ Page limit is 20, max items per page is 50.
 + Request https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
     
 + Response 200 (application/json)
+
+    + Headers
+    
+            Content-Type:application/json
+            X-Pagination-Page:1
+            X-Pagination-Limit:10
+            X-Pagination-Page-Count:20
+            X-Pagination-Item-Count:50
         
     + Body
 

@@ -861,7 +861,7 @@ This is an example with a file that has 2 episodes at the same time, and we're t
         + part: `1` (optional, number) - Some filenames consist of 2 or more parts. If you want to get info about second part for example you can pass `2` to this parameter
         + hash (optional, string) - [IN_DEV]
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
         
     + Body
 
@@ -895,7 +895,7 @@ This is an example with a full file location including folders.
     + Attributes
         + file: `/series/The Office/Season 4/The Office [401] Fun Run.avi` (required, string) - You can use folders in the file request as well
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
         
     + Body
 
@@ -996,7 +996,7 @@ Here are some examples of the things you can build with the Random Search API:
 
 # Group Movies
 
-## Summary [/movies/summary/id]
+## Summary [/movies/{id}]
 ### Get detail info about the movie [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 Returns a signle detail info of the movie
@@ -1004,52 +1004,304 @@ Returns a signle detail info of the movie
 
 + Parameters
 
-    + id (required, string, `tt1201607`) ... simkl_id or imdb_id. All other parameters can be empty if this one specified.
+    + id (required, string, `tt1201607`) ... simkl_id or imdb_id.
 
 + Request
-
-+ Response 201 (application/json)
+    https://api.simkl.com/movies/
+    
++ Response 200 (application/json)
         
     + Body
 
-            {
-                "type": "episode",
-                "show": {
-                    "title": "The Office (US)",
-                    "year": 2005,
-                    "ids": {
-                        "simkl": 2753,
-                        "imdb": "tt0386676",
-                        "zap2it": "SH00726133",
-                        "netflix": "70136120",
-                        "tvdb": "73244"
-                    }
-                },
-                "episode": {
-                    "title": "Fun Run (1)",
-                    "season": 4,
-                    "episode": 1,
-                    "multipart": false,
-                    "ids": {
-                        "simkl": 343712
-                    }
-                }
+        {
+            
+            "title": "Harry Potter and the Deathly Hallows: Part 2",
+            "year": 2011,
+            "type": "movie",
+            "ids": {
+                "simkl": 67144,
+                "slug": "harry-potter-and-the-deathly-hallows-part-2"
             }
+        }
+        
++ Request
+    https://api.simkl.com/movies/?extended=full
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Harry Potter and the Deathly Hallows: Part 2",
+            "year": 2011,
+            "type": "movie",
+            "ids": {
+                "simkl": 67144,
+                "slug": "harry-potter-and-the-deathly-hallows-part-2",
+                "tmdb": "12445",
+                "imdb": "tt1201607",
+                "offen": "http:\/\/www.harrypotter.com"
+            },
+            "rank": 641,
+            "poster": "96\/967506e32f7921d4",
+            "background": "96\/967624d7a281067c",
+            "released": "2011-07-15",
+            "runtime": 130,
+            "director": "David Yates",
+            "certification": "PG",
+            "budget": 125000000,
+            "revenue": 1342000000,
+            "overview": "Harry, Ron and Hermione continue their quest to vanquish the evil Voldemort once and for all. Just as things begin to look hopeless for the young wizards, Harry discovers a trio of magical objects that endow him with powers to rival Voldemort's formidable skills.",
+            "genres": ["Adventure", "Family", "Fantasy"],
+            "country": "US",
+            "ratings": {
+                "simkl": {
+                    "rating": 8.1,
+                    "votes": 427
+                },
+                "imdb": {
+                    "rating": 8.1,
+                    "votes": 607002
+                }
+            },
+            "trailers": [{
+                "name": "Official Trailer 1",
+                "youtube": "mObK5XD8udk",
+                "size": 1080
+            }, {
+                "name": "Official Trailer 2",
+                "youtube": "5NYt1qirBWg",
+                "size": 1080
+            }, {
+                "name": "The Story of Snape",
+                "youtube": "2nPyasEm3g0",
+                "size": 720
+            }],
+            "release_dates": [{
+                "iso_3166_1": "BR",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-15"
+                }]
+            }, {
+                "iso_3166_1": "CZ",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-14"
+                }]
+            }, {
+                "iso_3166_1": "DE",
+                "results": [{
+                    "type": 5,
+                    "release_date": "2013-08-30"
+                }]
+            }, {
+                "iso_3166_1": "DK",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-13"
+                }]
+            }, {
+                "iso_3166_1": "EG",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-13"
+                }]
+            }, {
+                "iso_3166_1": "FI",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-13"
+                }]
+            }, {
+                "iso_3166_1": "FR",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-12"
+                }]
+            }, {
+                "iso_3166_1": "GB",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-07"
+                }]
+            }, {
+                "iso_3166_1": "US",
+                "results": [{
+                    "type": 5,
+                    "release_date": "2011-11-11"
+                }, {
+                    "type": 3,
+                    "release_date": "2011-07-15"
+                }]
+            }]
+        }
 
 # Group TV
 
-## Summary [/tv/summary/id]
+## Summary [/tv/id]
 ### Get detail info about the TV Show [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 Returns a signle detail info of the tv show 
 
++ Parameters
+
+    + id (required, string, `tt0944947`) ... simkl_id or imdb_id.
+
++ Request
+    https://api.simkl.com/tv/
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Game of Thrones",
+            "year": 2011,
+            "type": "show",
+            "ids": {
+                "simkl": 17465,
+                "slug": "game-of-thrones"
+            }
+        }
+
++ Request
+    https://api.simkl.com/tv/?extended=full
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Game of Thrones",
+            "year": 2011,
+            "type": "show",
+            "ids": {
+                "simkl": 17465,
+                "slug": "game-of-thrones",
+                "tvdb": "121361",
+                "imdb": "tt0944947",
+                "zap2it": "EP01389809"
+            },
+            "rank": 6,
+            "poster": "57\/5742576cd8f59fcb0",
+            "background": "65\/651708e80d87bb93",
+            "first_aired": "2011-04-18T01:00:00.000Z",
+            "airs": {
+                "day": "Sunday",
+                "time": "09:00 PM",
+                "timezone": "America\/New_York"
+            },
+            "runtime": 55,
+            "certification": "TV-MA",
+            "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.",
+            "genres": ["Drama", "Fantasy", "Adventure"],
+            "country": "US",
+            "total_episodes": 67,
+            "status": "airing",
+            "network": "HBO",
+            "ratings": {
+                "simkl": {
+                    "rating": 9.1,
+                    "votes": 1270
+                },
+                "imdb": {
+                    "rating": 9.5,
+                    "votes": 1234933
+                }
+            },
+            "trailers": null
+        }
+            
+
 # Group Anime
 
-## Summary [/anime/summary/id]
+## Summary [/anime/id]
 ### Get detail info about the Anime [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 Returns a signle detail info of the anime. Same as `/tv/summary` endpoint + added `anime_type` field, possible values are `tv`,`special`,`ova`, `movie`  
 
++ Parameters
+
+    + id (required, string, `40398`) ... simkl_id or imdb_id. 
+
++ Request
+    https://api.simkl.com/anime/
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Hunter x Hunter",
+            "year": 2011,
+            "type": "anime",
+            "ids": {
+                "simkl": 40398,
+                "slug": "hunter-x-hunter"
+            }
+        }
+
++ Request
+    https://api.simkl.com/anime/?extended=full
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Hunter x Hunter",
+            "year": 2011,
+            "type": "anime",
+            "ids": {
+                "simkl": 40398,
+                "slug": "hunter-x-hunter",
+                "anidb": "8550",
+                "ann": "13262",
+                "mal": "11061",
+                "anfo": "4947",
+                "wikien": "Hunter_x_hunter",
+                "allcin": "340525",
+                "imdb": "tt2098220",
+                "offjp": "https:\/\/twitter.com\/hunter_anime",
+                "crunchyroll": "hunter-x-hunter"
+            },
+            "rank": 7,
+            "poster": "83\/83975f751784587",
+            "background": "83\/839789583130112",
+            "first_aired": "2011-10-02T02:00:00.000Z",
+            "airs": {
+                "day": "Sunday",
+                "time": "11:00 AM",
+                "timezone": "Asia\/Tokyo"
+            },
+            "runtime": 25,
+            "certification": null,
+            "overview": "A remake of the original series with different staff and cast.<br><br>Gon is a youth who lives on Kujira Isle. His dream is to become a Hunter like his father, to search out lost treasures, artefacts, and mythical creatures.<br><br>Determined to become a professional Hunter willing to stake his life in challenging the unknown, he sets off on a journey and meets fellow Hunter wannabes Killua, Kurapika, and Leorio.",
+            "genres": ["Action", "Adventure", "Comedy"],
+            "country": "JP",
+            "total_episodes": 148,
+            "status": "ended",
+            "network": "NTV",
+            "anime_type": "tv",
+            "ratings": {
+                "simkl": {
+                    "rating": 8.9,
+                    "votes": 248
+                },
+                "imdb": {
+                    "rating": 7.6,
+                    "votes": 1077
+                },
+                "mal": {
+                    "rating": 9.1,
+                    "votes": 324100,
+                    "rank": 7
+                }
+            },
+            "trailers": null
+        }
+        
 
 # Group Sync
 

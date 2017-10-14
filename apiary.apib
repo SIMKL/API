@@ -762,17 +762,16 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
     + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
     + mal (optional, integer, `4246`) ... MyAnimeList `id`.
     + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
-    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. Only Movies. All other parameters can be empty if this one specified.
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. All other parameters can be empty if this one specified. `type` parameter is required if you want to search for TV Shows
     + imdb (optional, string, `tt1972591`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
         + Values
             + `tt1972591`
             + `http://www.imdb.com/title/tt1972591/`
     + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
     + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
-    + type  (optional, string) ... [IN DEV] Only used when sending tmdb. 
+    + type  (optional, string) ... Only used when sending tmdb. 
         + Values
             + `tv`
-            + `anime`
             + `movie`
     + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 

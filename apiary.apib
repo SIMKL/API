@@ -1935,6 +1935,9 @@ Key|Type|Value
 ### Add new ratings [POST]
 <h4>&#128274; Token Required</h4>
 Rate for the movies or tv shows. You cannot rate for the seasons or episodes right now.
+If the show or movie is rated before it was in user's list, show will be automatically added to "Watching" list and the movie will be added to "I've seen this" list.
+
+Keep in mind, when removing the show or movie user's ratings will be removed as well for that item.
 
 <h4>JSON POST DATA</h4>
 Key|Type|Value
@@ -1946,6 +1949,11 @@ Key|Type|Value
 Key|Type|Value
 ---|----|-----
 `item*`|object|movie, show objects 
+
++ Parameters
+    + rating (required, integer, `Between 1..10`) ... 
+        + Values
+            + `10`
 
 + Request (application/json)
     + Header

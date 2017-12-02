@@ -1955,6 +1955,7 @@ Key|Type|Value
     + rating (required, integer, `Between 1..10`) ... 
         + Values
             + `10`
+    + rated_at (optional, string) ... UTC datetime in the past
 
 + Request (application/json)
     + Header
@@ -1969,6 +1970,7 @@ Key|Type|Value
                     {
                         "title": "Terminator 3: Rise of the Machines",
                         "rating": 8,
+                        "rated_at": "2014-09-01T09:10:11.000Z",
                         "year": "2003",
                         "ids": {
                             "imdb": "tt0181852",

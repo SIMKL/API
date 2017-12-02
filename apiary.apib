@@ -1952,10 +1952,10 @@ Key|Type|Value
 `item*`|object|movie, show objects 
 
 + Parameters
-    + rating (required, integer, `Between 1..10`) ... 
+    + rating (required, integer, `10`) ... 
         + Values
-            + `10`
-    + rated_at (optional, string) ... UTC datetime in the past
+            + `1..10`
+    + rated_at (optional, string, `2014-09-01T09:10:11.000Z`) ... UTC datetime
 
 + Request (application/json)
     + Header

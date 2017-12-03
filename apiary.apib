@@ -627,7 +627,11 @@ The more parameters you'll pass, the more accurate redirect will be.
     + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
     + mal (optional, integer, `4246`) ... MyAnimeList `id`.
     + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
-    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. Only Movies. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+        + Values
+            + `show`
+            + `movie`
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. To search TV Shows specify `type` parameter. All other parameters can be empty if this one specified.
     + imdb (optional, string, `tt1520211`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
         + Values
             + `tt1520211`
@@ -641,7 +645,7 @@ The more parameters you'll pass, the more accurate redirect will be.
     
     **Redirect to Simkl**, episode page example:
     
-    https://api.simkl.com/redirect?to=Simkl&title=The%20walking%20dead&year=2010&season=1&episode=4&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/redirect?to=Simkl&title=The%20walking%20dead&year=2010&season=1&episode=4&type=show&tmdb=1402&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
 
     PS: Please use your `client_id`.
     
@@ -762,6 +766,10 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
     + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
     + mal (optional, integer, `4246`) ... MyAnimeList `id`.
     + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+        + Values
+            + `show`
+            + `movie`
     + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. All other parameters can be empty if this one specified. `type` parameter is required if you want to search for TV Shows
     + imdb (optional, string, `tt1972591`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
         + Values
@@ -840,32 +848,32 @@ Page limit is 20, max items per page is 50.
         
     + Body
 
-[  
-   {  
-      "title":"John Wick: Chapter 2",
-      "year":2017,
-      "ids":{  
-         "simkl_id":471618,
-         "slug":"john-wick-chapter-2"
-      }
-   },
-   {  
-      "title":"John Wick",
-      "year":2014,
-      "ids":{  
-         "simkl_id":342994,
-         "slug":"john-wick"
-      }
-   },
-   {  
-      "title":"John Wick: Chapter 3",
-      "year":2019,
-      "ids":{  
-         "simkl_id":687232,
-         "slug":"john-wick-chapter-3"
-      }
-   }
-]
+        [  
+           {  
+              "title":"John Wick: Chapter 2",
+              "year":2017,
+              "ids":{  
+                 "simkl_id":471618,
+                 "slug":"john-wick-chapter-2"
+              }
+           },
+           {  
+              "title":"John Wick",
+              "year":2014,
+              "ids":{  
+                 "simkl_id":342994,
+                 "slug":"john-wick"
+              }
+           },
+           {  
+              "title":"John Wick: Chapter 3",
+              "year":2019,
+              "ids":{  
+                 "simkl_id":687232,
+                 "slug":"john-wick-chapter-3"
+              }
+           }
+        ]
 
 
 

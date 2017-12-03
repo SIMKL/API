@@ -2244,7 +2244,11 @@ watched|`YYYY-MM-DDTHH:MM:SS.000Z`|Datetime in UTC format when the last episode 
     + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not always work.
     + mal (optional, integer, `4246`) ... MyAnimeList `id`.
     + tvdb (optional, integer, `153021`) ... [IN_DEV] TVDB ID. All other parameters can be empty if this one specified.
-    + tmdb (optional, integer, `76757`) ... [IN_DEV] The Movie Database (TMDb) ID. Only Movies. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+        + Values
+            + `show`
+            + `movie`
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. If you are searching for a TV Show, specify `type` param as well. All other parameters can be empty if this one specified.
     + imdb (optional, string, `tt3659388`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
         + Values
             + `tt3659388`

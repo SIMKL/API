@@ -1469,6 +1469,8 @@ When syncing it's best to check user's last activity first. Then you'll be able 
 
 This method will decrease sync time or minimize wait time to zero if nothing changed so you do not need to download user's full history every time.
 
+<b>NOTE:</b> when user rates the movie, tv show or anime and it is not in his list, it will be automatically moved to `Completed`, `Watching` depending on it's type(movie or serie)
+
 If you have any ideas how to make sync even better for you, please [let us know](mailto:support@simkl.com).
 
 
@@ -1485,6 +1487,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
             "all": "2016-10-29T09:03:45.000Z",
             "tv_shows": {
                 "all": "2016-10-29T09:03:45.000Z",
+                "rated_at": "2016-10-29T09:03:45.000Z",
                 "plantowatch": "2016-10-29T09:03:45.000Z",
                 "watching": "2016-10-29T09:03:45.000Z",
                 "completed": "2016-10-29T09:03:45.000Z",
@@ -1492,7 +1495,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
             },
             "anime": {
                 "all": "2016-10-29T09:03:45.000Z",
-                "watched_at": "2016-10-29T09:03:45.000Z",
+                "rated_at": "2016-10-29T09:03:45.000Z",
                 "plantowatch": "2016-10-29T09:03:45.000Z",
                 "watching": "2016-10-29T09:03:45.000Z",
                 "completed": "2016-10-29T09:03:45.000Z",
@@ -1500,7 +1503,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
             },
             "movies": {
                 "all": "2016-10-29T09:03:45.000Z",
-                "watchlists_updated": "2016-10-29T09:03:45.000Z",
+                "rated_at": "2016-10-29T09:03:45.000Z",
                 "plantowatch": "2016-10-29T09:03:45.000Z",
                 "completed": "2016-10-29T09:03:45.000Z",
                 "notinteresting": "2016-10-29T09:03:45.000Z"

@@ -1933,6 +1933,97 @@ Key|Type|Value
 + Response 200 (application/json)
     + Body
     
+
+## Get Ratings [/sync/ratings/{type}/{rating}]
+### Get all user's ratings [POST]
+<h4>&#128274; Token Required &#10024; Full Info</h4>
+Returns all rated items in user's lists filtered by `type`. You can also filter items by rating score. Send a comma separated string if you need multiple ratings item.
+
++ Request (application/json)
+    + Header
+        authorization: Bearer [token]
+        simkl-api-key: [client_id]
+
++ Parameters
+    + type (optional, string, `anime`) ... 
+        + Values
+            + `shows`
+            + `movies`
+            + `anime`
+    + rating (optional, integer, `8`) ... 
+        + Values
+            + `1`
+            + `2`
+            + `3`
+            + `4`
+            + `5`
+            + `6`
+            + `7`
+            + `8`
+            + `9`
+            + `10`
+            
++ Response 200 (application/json)
+
+      + Body
+        {
+          "shows": [
+            {
+            
+              "last_watched_at": "2016-09-12T13:00:30.000Z",
+              "rating": 5,
+              "status": "notinteresting",
+              "last_watched": null,
+              "next_to_watch": "S01E01",
+              "show": {
+                "title": "The Last Ship",
+                "year": 2014,
+                "ids": {
+                  "simkl": 42040,
+                  "imdb": "tt2402207",
+                  "tvdb": "269533"
+                }
+              }
+            }
+          ],
+          "anime": [
+            {
+              "last_watched_at": "2014-11-06T22:05:52.000Z",
+              "rating": 10,
+              "status": "completed",
+              "last_watched": "E148",
+              "next_to_watch": null,
+              "show": {
+                "title": "Hunter x Hunter",
+                "year": 2011,
+                "ids": {
+                  "simkl": 40398,
+                  "imdb": "tt2098220",
+                  "mal": "11061",
+                  "anidb": "8550"
+                }
+              }
+            }
+          ],
+          "movies": [
+            {
+              "last_watched_at": "2014-08-16T18:45:20.000Z",
+              "rating": 6,
+              "status": "completed",
+              "movie": {
+                "title": "Maleficent",
+                "year": 2014,
+                "ids": {
+                  "simkl": 195258,
+                  "imdb": "tt1587310",
+                  "tmdb": "102651"
+                }
+              }
+            }
+          ]
+        }
+
+
 ## Add Ratings [/sync/ratings]
 ### Add new ratings [POST]
 <h4>&#128274; Token Required</h4>

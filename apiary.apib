@@ -1525,7 +1525,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
         }
 
 
-## Get All Items [/sync/all-items/{type}/{status}{?extended}]
+## Get All Items [/sync/all-items/{type}/{status}{?extended}{?date_from}]
 ### Get all items in the user's watchlist [POST]
 <h4>&#128274; Token Required &#10024; Full Info</h4>
 Returns all items that user has in his watchlist (watching, plan to watch, notinteresting, completed), shows, anime, movies. 
@@ -1551,6 +1551,9 @@ Returns all items that user has in his watchlist (watching, plan to watch, notin
     + extended (optional, string, `full`) ... `full` returns more info including watched episodes.
         + Values
             + `full`
+    + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
+        + Values
+            + `2016-09-12T13:00:30.000Z`
             
 + Response 200 (application/json)
 
@@ -1948,7 +1951,7 @@ Key|Type|Value
     + Body
     
 
-## Get Ratings [/sync/ratings/{type}/{rating}]
+## Get Ratings [/sync/ratings/{type}/{rating}{?date_from}]
 ### Get all user's ratings [POST]
 <h4>&#128274; Token Required &#10024; Full Info</h4>
 Returns all rated items in user's lists filtered by `type`. You can also filter items by rating score. Send a comma separated string if you need multiple ratings item.
@@ -1976,6 +1979,9 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
             + `8`
             + `9`
             + `10`
+    + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
+        + Values
+            + `2016-09-12T13:00:30.000Z`
             
 + Response 200 (application/json)
 

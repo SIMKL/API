@@ -1477,7 +1477,7 @@ Name|Description
 `all`| latest update time within the category, use it as first check
 `rated_at`| if updated check the <i>Get Ratings</i> endpoint with <i>date_from</i> parameter to get latest rating updates.<br><br> Update ratings and statuses(automove won't update corresponding list update time) in your app
 `plantowatch`<br>`watching`<br>`completed`<br>`notinteresting`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
-`removed_rating`<br>`removed`| Check the <i>Get Ratings</i> or <i>Get All Items</i> endpoints without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
+`removed_rating`<br>`removed_from_list`| Check the <i>Get Ratings</i> or <i>Get All Items</i> endpoints without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
 
 If you have any ideas how to make sync even better for you, please [let us know](mailto:support@simkl.com).
 
@@ -1501,7 +1501,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
                 "completed": "2016-10-29T09:03:45.000Z",
                 "notinteresting": "2016-10-29T09:03:45.000Z",
                 "removed_rating": "2016-10-29T09:03:45.000Z",
-                "removed": "2016-10-29T09:03:45.000Z",
+                "removed_from_list": "2016-10-29T09:03:45.000Z"
             },
             "anime": {
                 "all": "2016-10-29T09:03:45.000Z",
@@ -1511,7 +1511,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
                 "completed": "2016-10-29T09:03:45.000Z",
                 "notinteresting": "2016-10-29T09:03:45.000Z",
                 "removed_rating": "2016-10-29T09:03:45.000Z",
-                "removed": "2016-10-29T09:03:45.000Z",
+                "removed_from_list": "2016-10-29T09:03:45.000Z",
             },
             "movies": {
                 "all": "2016-10-29T09:03:45.000Z",
@@ -1520,7 +1520,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
                 "completed": "2016-10-29T09:03:45.000Z",
                 "notinteresting": "2016-10-29T09:03:45.000Z",
                 "removed_rating": "2016-10-29T09:03:45.000Z",
-                "removed": "2016-10-29T09:03:45.000Z",
+                "removed_from_list": "2016-10-29T09:03:45.000Z"
             }
         }
 

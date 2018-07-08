@@ -1084,7 +1084,7 @@ Here are some examples of the things you can build with the Random Search API:
 
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             
 + Response 200 (application/json)
 
@@ -1485,7 +1485,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
 + Request (application/json)
 `https://api.simkl.com/sync/activities` 
     + Header
-        authorization: Bearer [token]
+        Authorization: Bearer [token]
         simkl-api-key: [client_id]
 
 + Response 200 (application/json)
@@ -1530,7 +1530,7 @@ Returns all items that user has in his watchlist (watching, plan to watch, notin
 <h6>Get list of all the shows, anime and movies in a format of <a href="https://simkl.com/51/tv/">https://simkl.com/51/tv/</a></h6>
 `https://api.simkl.com/sync/all-items/` 
     + Header
-        authorization: Bearer [token]
+        Authorization: Bearer [token]
         simkl-api-key: [client_id]
 
 + Parameters
@@ -1646,7 +1646,7 @@ Returns all items that user has in his watchlist (watching, plan to watch, notin
 <h6>Get Anime list and watched episodes:</h6> `https://api.simkl.com/sync/all-items/anime/?extended=full`
 
     + Header
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
             
 + Response 200 (application/json)
@@ -1786,7 +1786,7 @@ Key|Type|Value
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -1882,7 +1882,7 @@ Key|Type|Value
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -1955,7 +1955,7 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
 
 + Request (application/json)
     + Header
-        authorization: Bearer [token]
+        Authorization: Bearer [token]
         simkl-api-key: [client_id]
 
 + Parameters
@@ -2079,7 +2079,7 @@ Key|Type|Value
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -2142,7 +2142,7 @@ Key|Type|Value
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -2209,7 +2209,7 @@ item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-me
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -2370,7 +2370,7 @@ watched|`YYYY-MM-DDTHH:MM:SS.000Z`|Datetime in UTC format when the last episode 
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -2426,7 +2426,7 @@ Key|Type|Value
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -2528,7 +2528,7 @@ Key|Type|Value
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
 
     + Body
@@ -2673,7 +2673,7 @@ You can sync user's settings with your apps/site settings
 + Request (application/json)
     + Header
             
-            authorization: Bearer [token]
+            Authorization: Bearer [token]
             simkl-api-key: [client_id]
             
 + Response 200 (application/json)

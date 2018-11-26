@@ -1188,6 +1188,74 @@ The `status` field can have these values `ended`,`tba`,`airing`
             },
             "trailers": null
         }
+        
+## Premieres [/tv/premieres/{param}{?client_id}]
+### Get latest premieres [GET]
+<h4>&#128275; Token Not Required</h4>
+Returns an array of ```media objects``` ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
++ Parameters
+
+    + param (required, string) ... 
+        + Values
+            + `new`
+            + `soon`
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/tv/premieres/new?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "Dirty John",
+            "year": 2018,
+            "url": "\/tv\/877196\/dirty-john",
+            "poster": "73\/73773541253a438ce",
+            "ids": {
+                "simkl_id": 877196,
+                "slug": "dirty-john"
+            },
+            "rank": null,
+            "ratings": {
+                "simkl": {
+                    "simkl_rate": 8,
+                    "simkl_votes": 1
+                },
+                "imdb": {
+                    "rating": 7.2,
+                    "votes": 33
+                }
+            }
+        }, {
+            "title": "Holiday Gingerbread Showdown",
+            "year": 2018,
+            "url": "\/tv\/962792\/holiday-gingerbread-showdown",
+            "poster": "74\/74691884f61c810cd",
+            "ids": {
+                "simkl_id": 962792,
+                "slug": "holiday-gingerbread-showdown"
+            },
+            "rank": null,
+            "ratings": {
+                "simkl": {
+                    "simkl_rate": 0,
+                    "simkl_votes": 0
+                },
+                "imdb": {
+                    "rating": 0,
+                    "votes": 0
+                }
+            }
+        }]
+
             
 
 # Group Anime
@@ -1291,6 +1359,77 @@ Returns a single detail info of the anime. Same as `/tv/summary` endpoint + adde
             },
             "trailers": null
         }
+        
+        
+## Premieres [/anime/premieres/{param}{?client_id}]
+### Get latest premieres [GET]
+<h4>&#128275; Token Not Required</h4>
+Returns array of ```media objects``` ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
++ Parameters
+
+    + param (required, string) ... 
+        + Values
+            + `new`
+            + `soon`
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/anime/premieres/new?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "Kaijuu Girls (Kuro): Ultra Kaijuu Gijinka Keikaku",
+            "year": 2018,
+            "url": "\/anime\/786725\/kaijuu-girls-kuro-ultra-kaijuu-gijinka-keikaku",
+            "poster": "70\/708168593fa555f00",
+            "ids": {
+                "simkl_id": 786725,
+                "slug": "kaijuu-girls-kuro-ultra-kaijuu-gijinka-keikaku"
+            },
+            "rank": null,
+            "ratings": {
+                "simkl": {
+                    "simkl_rate": 12,
+                    "simkl_votes": 1
+                },
+                "mal": {
+                    "rating": 12,
+                    "votes": 0
+                }
+            }
+         }, {
+                "title": "Koi to Uso",
+                "year": 2018,
+                "url": "\/anime\/801411\/koi-to-uso",
+                "poster": "67\/671515560e5acee15",
+                "ids": {
+                    "simkl_id": 801411,
+                    "slug": "koi-to-uso"
+                },
+                "rank": 4126,
+                "ratings": {
+                    "simkl": {
+                        "simkl_rate": 5,
+                        "simkl_votes": 1
+                    },
+                    "mal": {
+                        "rating": 6.67,
+                        "votes": 65
+                    }
+                }
+            }
+        ]
+
+    
         
 # Group Movies
 

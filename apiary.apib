@@ -1286,6 +1286,83 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
                 }
             }
         }]
+        
+        
+## Best [/tv/best/{filter}{?type}{?client_id}]
+### Get best of all TV Shows [GET]
+<h4>&#128275; Token Not Required</h4>
+Returns an array of customized ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+
++ Parameters
+
+    + filter (required, string) ... <b>watched</b> and <b>voted</b> adds additional key in response with the same name 
+        + Values
+            + `year`
+            + `month`
+            + `all`
+            + `voted`
+            + `watched`
+    + type (optional, string, `series`) ... secondary filter
+         + Values
+            + `series`
+            + `documentary`
+            + `entertainment`
+            + `animation`
+    + client_id (required, string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/anime/best/watched?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "Chilling Adventures of Sabrina",
+            "year": 2018,
+            "poster": "72\/7241248bcd26cf4ed",
+            "url": "\/tv\/751254\/chilling-adventures-of-sabrina",
+            "watched": 1656,
+            "ids": {
+                "simkl_id": 751254,
+                "slug": "chilling-adventures-of-sabrina"
+            },
+            "ratings": {
+                "simkl": {
+                    "rating": 7.4,
+                    "votes": 72
+                },
+                "imdb": {
+                    "rating": 7.9,
+                    "votes": 25391
+                }
+            }
+        }, {
+            "title": "Marvel's Daredevil",
+            "year": 2015,
+            "poster": "27\/2769324e0ed6160e0",
+            "url": "\/tv\/51884\/marvels-daredevil",
+            "watched": 1653,
+            "ids": {
+                "simkl_id": 51884,
+                "slug": "marvels-daredevil"
+            },
+            "ratings": {
+                "simkl": {
+                    "rating": 8.3,
+                    "votes": 815
+                },
+                "imdb": {
+                    "rating": 8.7,
+                    "votes": 311910
+                }
+            }
+        }]
 
             
 
@@ -1430,11 +1507,11 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
             "rank": null,
             "ratings": {
                 "simkl": {
-                    "rating": 12,
+                    "rating": 10,
                     "votes": 1
                 },
                 "mal": {
-                    "rating": 12,
+                    "rating": 0,
                     "votes": 0
                 }
             }
@@ -1461,6 +1538,82 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
                 }
             }
         ]
+
+## Best [/anime/best/{filter}{?type}{?client_id}]
+### Get best of all Anime [GET]
+<h4>&#128275; Token Not Required</h4>
+Returns an array of customized ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+
++ Parameters
+
+    + filter (required, string) ... <b>watched</b> and <b>voted</b> adds additional key in response with the same name 
+        + Values
+            + `year`
+            + `month`
+            + `all`
+            + `voted`
+            + `watched`
+    + type (optional, string, `all`) ... secondary filter
+         + Values
+            + `all`
+            + `tv`
+            + `movies`
+            + `ovas`
+    + client_id (required, string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/anime/best/watched?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "One Piece",
+            "year": 1999,
+            "poster": "72\/7248108487b1ea37",
+            "url": "\/anime\/38636\/one-piece",
+            "watched": 765,
+            "ids": {
+                "simkl_id": 38636,
+                "slug": "one-piece"
+            },
+            "ratings": {
+                "simkl": {
+                    "rating": 8.7,
+                    "votes": 774
+                },
+                "mal": {
+                    "rating": 8.5,
+                    "votes": 453616
+                }
+            }
+        }, {
+            "title": "Boruto: Naruto Next Generations",
+            "year": 2017,
+            "poster": "68\/6816448e6eb41797e",
+            "url": "\/anime\/643731\/boruto-naruto-next-generations",
+            "watched": 577,
+            "ids": {
+                "simkl_id": 643731,
+                "slug": "boruto-naruto-next-generations"
+            },
+            "ratings": {
+                "simkl": {
+                    "rating": 7.7,
+                    "votes": 183
+                },
+                "mal": {
+                    "rating": 6.9,
+                    "votes": 94697
+                }
+            }
+        }]
 
     
         

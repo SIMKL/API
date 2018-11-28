@@ -1221,6 +1221,62 @@ The `status` field can have these values `ended`,`tba`,`airing`
             },
             "trailers": null
         }
+
+## Episodes [/tv/episodes/{id}{?client_id}]
+### Get TV Show episodes [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns an array of all episodes of the TV Show
+
++ Parameters
+
+    + id (required, integer) ... simkl id of the serie
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/tv/episodes/2090?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "Days Gone Bye",
+            "description": "Rick searches for his family after emerging from a coma into a world terrorized by the walking dead. Morgan and Duane, whom he meets along the way, help teach Rick the new rules for survival.",
+            "season": 1,
+            "episode": 1,
+            "type": "episode",
+            "img": "33\/33039065126ec2470",
+            "date": "1970-01-01T00:33:30-05",
+            "ids": {
+                "simkl_id": 310766
+            }
+        }, {
+            "title": "Guts",
+            "description": "Rick unknowingly causes a group of survivors to be trapped by walkers. The group dynamic devolves from accusations to violence, as Rick must confront an enemy far more dangerous than the undead.",
+            "season": 1,
+            "episode": 2,
+            "type": "episode",
+            "img": "33\/3303806cc83f0ab83",
+            "date": "1970-01-01T00:33:30-05",
+            "ids": {
+                "simkl_id": 310768
+            }
+        }, {
+            "title": "Behind The Dead (100 Episodes Special)",
+            "description": "Andrew Lincoln, Norman Reedus, and the rest of the cast and crew reflect on the history and celebrate reaching the 100th episode of The Walking Dead.",
+            "type": "special",
+            "img": "62\/6243336c0ad8db221",
+            "date": "1970-01-01T00:33:37-05",
+            "ids": {
+                "simkl_id": 2527432
+            }
+        }] 
+     
         
 ## Premieres [/tv/premieres/{param}{?client_id}]
 ### Get latest premieres [GET]
@@ -1471,6 +1527,60 @@ Returns a single detail info of the anime. Same as `/tv/summary` endpoint + adde
             },
             "trailers": null
         }
+        
+        
+## Episodes [/anime/episodes/{id}{?client_id}]
+### Get Anime episodes [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns an array of all episodes of the Anime
+
++ Parameters
+
+    + id (required, integer) ... simkl id of the anime
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/anime/episodes/39687?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "To You, 2000 Years in the Future: The Fall of Zhiganshina (1)",
+            "description": null,
+            "episode": 1,
+            "type": "episode",
+            "img": "26\/26148581d640c58b8",
+            "date": "2013-04-07T00:00:00+09",
+            "ids": {
+                "simkl_id": 958466
+            }
+        }, {
+            "title": "That Day: The Fall of Zhiganshina (2)",
+            "description": null,
+            "episode": 2,
+            "type": "episode",
+            "img": "26\/2614860d56b63e7b6",
+            "date": "2013-04-14T00:00:00+09",
+            "ids": {
+                "simkl_id": 958465
+            }
+        }, {
+            "title": "Picture Drama 3",
+            "description": null,
+            "type": "special",
+            "img": "68\/689124d248604d0d",
+            "date": "2013-09-18T00:00:00+09",
+            "ids": {
+                "simkl_id": 979612
+            }
+        }] 
         
         
 ## Premieres [/anime/premieres/{param}{?client_id}]

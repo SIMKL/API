@@ -2200,7 +2200,7 @@ Returns all items that user has in his watchlist (watching, plan to watch, notin
             }
             
             
-## Add Items to History [/sync/history]
+## Add Items to the history [/sync/history]
 ### Add items to watched/watching history [POST]
 <h4>&#128274; Token Required</h4>
 Add items to the user's watched history. You can pass shows, seasons, episodes and movies. If no episodes for the show is passed then it will be marked as completed. If seasons will be specified then only episodes in those seasons will be marked.
@@ -2291,6 +2291,7 @@ Key|Type|Value
                     {
                         "watched_at": "2014-09-01 09:10:11",
                         "ids": {
+                            "simkl": 343633б
                             "hulu": 681868,
                             "crunchyroll": 656647
                         }
@@ -2623,7 +2624,7 @@ Key|Type|Value
 
 
 
-## Add Item to List [/sync/add-to-list]
+## Add Item to the List [/sync/add-to-list]
 ### Add items to specific list [POST]
 <h4>&#128274; Token Required</h4>
 Add items to a user's Simkl lists. For example you can add a Show directly to Plan to Watch or move existing show from Watching to Not Interesting. You can pass shows and movies. 

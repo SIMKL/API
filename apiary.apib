@@ -1277,7 +1277,73 @@ Returns an array of all episodes of the TV Show
                 "simkl_id": 2527432
             }
         }] 
-     
+    
+## Genres [/tv/genres/{?client_id}]
+### Get items filtered by genre, years etc... [GET]
+<h4>📄 Pagination &#128275; Token Not Required</h4>
+Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+
++ Parameters
+
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/tv/genres/drama/2016?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "Dirty John",
+            "year": 2018,
+            "date":"2018-11-09T00:00:00-05",
+            "url": "\/tv\/877196\/dirty-john",
+            "poster": "73\/73773541253a438ce",
+            "ids": {
+                "simkl_id": 877196,
+                "slug": "dirty-john"
+            },
+            "rank": null,
+            "ratings": {
+                "simkl": {
+                    "rating": 8,
+                    "votes": 1
+                },
+                "imdb": {
+                    "rating": 7.2,
+                    "votes": 33
+                }
+            }
+        }, {
+            "title": "Holiday Gingerbread Showdown",
+            "year": 2018,
+            "date":"2018-11-07T00:00:00-05",
+            "url": "\/tv\/962792\/holiday-gingerbread-showdown",
+            "poster": "74\/74691884f61c810cd",
+            "ids": {
+                "simkl_id": 962792,
+                "slug": "holiday-gingerbread-showdown"
+            },
+            "rank": null,
+            "ratings": {
+                "simkl": {
+                    "rating": 0,
+                    "votes": 0
+                },
+                "imdb": {
+                    "rating": 0,
+                    "votes": 0
+                }
+            }
+        }]
+        
+             
         
 ## Premieres [/tv/premieres/{param}{?client_id}]
 ### Get latest premieres [GET]

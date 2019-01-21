@@ -1278,10 +1278,12 @@ Returns an array of all episodes of the TV Show
             }
         }] 
     
-## Genres [/tv/genres/{?client_id}]
+## Genres [/tv/genres{?client_id}]
 ### Get items filtered by genre, years etc... [GET]
 <h4>📄 Pagination &#128275; Token Not Required</h4>
 Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+This endpoint accepts all parameters from https://simkl.com/tv/all/, select necessary filters and copy parameters 
+from the url
 
 + Parameters
 
@@ -1290,6 +1292,7 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
 + Request
 
    https://api.simkl.com/tv/genres/drama/2016?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/tv/genres/all/all-types/all-countries/hbo/all-years/popular-today?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
 
     PS: Please use your `client_id`.
     
@@ -1649,6 +1652,77 @@ Returns an array of all episodes of the Anime
                 "simkl_id": 979612
             }
         }] 
+
+## Genres [/tv/genres{?client_id}]
+### Get items filtered by genre, years etc... [GET]
+<h4>📄 Pagination &#128275; Token Not Required</h4>
+Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+This endpoint accepts all parameters from https://simkl.com/anime/all/, select necessary filters and copy parameters 
+from the url
+
++ Parameters
+
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/anime/genres/drama/2016?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/genres/all/all-types/all-countries/all-years/popular-today?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "Kaijuu Girls (Kuro): Ultra Kaijuu Gijinka Keikaku",
+            "year": 2018,
+            "date": "2018-11-23T00:00:00+09",
+            "url": "\/anime\/786725\/kaijuu-girls-kuro-ultra-kaijuu-gijinka-keikaku",
+            "poster": "70\/708168593fa555f00",
+            "ids": {
+                "simkl_id": 786725,
+                "slug": "kaijuu-girls-kuro-ultra-kaijuu-gijinka-keikaku"
+            },
+            "rank": null,
+            "anime_type": "movie",
+            "ratings": {
+                "simkl": {
+                    "rating": 10,
+                    "votes": 1
+                },
+                "mal": {
+                    "rating": 0,
+                    "votes": 0
+                }
+            }
+         }, {
+                "title": "Koi to Uso",
+                "year": 2018,
+                "date": "2018-11-22T00:00:00+09",
+                "url": "\/anime\/801411\/koi-to-uso",
+                "poster": "67\/671515560e5acee15",
+                "ids": {
+                    "simkl_id": 801411,
+                    "slug": "koi-to-uso"
+                },
+                "rank": 4126,
+                "anime_type": "tv",
+                "ratings": {
+                    "simkl": {
+                        "rating": 5,
+                        "votes": 1
+                    },
+                    "mal": {
+                        "rating": 6.67,
+                        "votes": 65
+                    }
+                }
+            }
+        ]
         
         
 ## Premieres [/anime/premieres/{param}{?client_id}]

@@ -1278,20 +1278,29 @@ Returns an array of all episodes of the TV Show
             }
         }] 
     
-## Genres [/tv/genres{?client_id}]
+## Genres [/tv/genres/{genre}/{type}/{country}/{network}/{year}/{sort}{?client_id}]
 ### Get items filtered by genre, years etc... [GET]
 <h4>📄 Pagination &#128275; Token Not Required</h4>
 Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
-This endpoint accepts all parameters from https://simkl.com/tv/all/, select necessary filters and copy parameters 
+This endpoint accepts all parameters from the https://simkl.com/tv/all/, select the necessary filters and copy parameters 
 from the url
 
 + Parameters
 
+    + genre = all (optional, string, `drama`) 
+    + type = tv-shows (optional, string, `documentaries`) ... Type of the serie.
+    + country = us (optional, string, `gb`) ... where the serie was released
+    + network = all-networks (optional, string, `netflix`) ... filter by network or production studio
+    + year = 2010s (optional, string, `this-week`)
+    + sort = rank (optional, string, `popular-this-month`) 
     + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
+   Simple query<br>
    https://api.simkl.com/tv/genres/drama/2016?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   
+   Query with all parameters<br>
    https://api.simkl.com/tv/genres/all/all-types/all-countries/hbo/all-years/popular-today?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
 
     PS: Please use your `client_id`.

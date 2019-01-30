@@ -1357,7 +1357,7 @@ from the url
         
              
         
-## Premieres [/tv/premieres/{param}{?client_id}]
+## Premieres [/tv/premieres/{param}{?type}{?client_id}]
 ### Get latest premieres [GET]
 <h4>📄 Pagination &#128275; Token Not Required</h4>
 Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
@@ -1368,6 +1368,11 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
         + Values
             + `new`
             + `soon`
+    + type (optional, string) ... show only results with this type
+        + Values
+            + `entertainment`
+            + `documentaries`
+            + `animation-filter`
     + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
@@ -1662,7 +1667,7 @@ Returns an array of all episodes of the Anime
             }
         }] 
 
-## Genres [/anime/genres/{genre}/{type}/{network}/{year}/{sort}{?client_id}{?client_id}]
+## Genres [/anime/genres/{genre}/{type}/{network}/{year}/{sort}{?client_id}]
 ### Get items filtered by genre, years etc... [GET]
 <h4>📄 Pagination &#128275; Token Not Required</h4>
 Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
@@ -1742,7 +1747,7 @@ from the url
         ]
         
         
-## Premieres [/anime/premieres/{param}{?client_id}]
+## Premieres [/anime/premieres/{param}{?type}{?client_id}]
 ### Get latest premieres [GET]
 <h4>📄 Pagination &#128275; Token Not Required</h4>
 Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects)). Added `anime_type` field, possible values are `tv`,`special`,`ova`,`movie`.
@@ -1753,6 +1758,11 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
         + Values
             + `new`
             + `soon`
+    + type (optional, string) ... show only results with this type
+        + Values
+            + `series`
+            + `movies`
+            + `ovas`        
     + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request

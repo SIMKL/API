@@ -2450,10 +2450,10 @@ Key|Type|Value
                         "seasons": [
                             {
                                 "watched_at": "2011-09-01 14:44:00",
-                                "number": 2
+                                "number": 1
                             },
                             {
-                                "number": 1,
+                                "number": 2,
                                 "episodes": [
                                     {
                                         "number": 1
@@ -2477,6 +2477,40 @@ Key|Type|Value
                     }
                 ]
             }   
+
+
++ Request (application/json)
+    + Header
+            
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        },
+                        "episodes": [
+                            {
+                                "number": 1
+                            },
+                            {
+                                "number": 2
+                            }
+                        ]
+                    }
+                ]
+            }   
+
 
 + Response 200 (application/json)
     + Body

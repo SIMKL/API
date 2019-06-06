@@ -757,6 +757,60 @@ The more parameters you'll pass, the more accurate redirect will be.
 
     + Body
 
+## Mark as watched from your website [/redirect/{?to,title,year,season,episode,client_id}]
+Simple href link to mark something as watched from your website or app.
+### Mark as watched [GET]
+<h4>&#128274; Token Required</h4>
+You can use the same parameters as in Redirect with `to=watched`.
+
+On first use, the user will be shown the Allow dialog to allow your app mark as watched in his profile and then redirected to the episode or movie with "**Marked as watched** notification".
+
++ Parameters
+
+    + to =`watched`
+    + title (optional, string, `The Walking Dead`) ... TV show, anime, or movie title.
+    + year (optional, integer, `2010`) ... release year.
+    + season = `1` (optional, integer, `1`) ... if set, movies will be ignored. Anime do not have seasons.
+    + episode (optional, integer, `4`) ... if set, movies will be ignored.
+    + hulu (optional, integer, `752375`) ... hulu_id. All other parameters can be empty if this one specified.
+    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
+    + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+        + Values
+            + `show`
+            + `movie`
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. To search TV Shows specify `type` parameter. All other parameters can be empty if this one specified.
+    + imdb (optional, string, `tt1520211`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
+        + Values
+            + `tt1520211`
+            + `http://www.imdb.com/title/tt1520211/`
+    + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
+    + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
+
++ Request
+    
+    **Mark** The Walking Dead season 1 episode 4 **as watched** example:
+    
+    https://api.simkl.com/redirect?to=watched&title=The%20walking%20dead&year=2010&season=1&episode=4&type=show&tmdb=1402&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 302
+
+    User will be redirected to the episode page plus ?marked=watched&client_id=***.
+    
+    In this example user will be redirected to [Simkl: The Walking Dead S01E4](https://simkl.com/tv/2090/the-walking-dead/season-1/episode-4/?marked=watched&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316)
+
+    + Headers
+    
+            location: //simkl.com/tv/2090/the-walking-dead/season-1/episode-4/?marked=watched&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    + Body
 # Group Search
 
 ## ID Lookup [/search/id{?imdb,client_id}]

@@ -385,7 +385,7 @@ Key|Type|Value
 client_id|string|Get this in your app settings
 
 + Parameters
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from your app settings
+    + client_id (string, `***`) ... Get this from your app settings
     + redirect (string,optional,`http://yourdomain.com/welcome`) ... URL where you want to redirect user when he approved you application
             
 + Response 200 (application/json)
@@ -408,7 +408,7 @@ client_id|string|Get this in your app settings
 Application can poll this url to get `USER_CODE` status or `ACCESS_TOKEN`. Returned interval in step 1 response specifies the minimum amount of time(seconds), that your app should wait between polling requests.
 
 + Parameters
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from your app settings
+    + client_id (string, `***`) ... Get this from your app settings
     + USER_CODE (string) ... Get this from previous step
             
 + Response 200 (application/json)
@@ -570,7 +570,7 @@ Returns rating (between 0 and 10), rank (movie, tv, anime have their own rank), 
 Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect).
             
 + Request
-`https://api.simkl.com/ratings?simkl=10280&fields=rank,droprate,simkl,ext,has_trailer&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`
+`https://api.simkl.com/ratings?simkl=10280&fields=rank,droprate,simkl,ext,has_trailer&client_id=***`
 
     + Header
 
@@ -651,7 +651,7 @@ The more parameters you'll pass, the more accurate redirect will be.
     
     **Redirect to Simkl**, episode page example:
     
-    https://api.simkl.com/redirect?to=Simkl&title=The%20walking%20dead&year=2010&season=1&episode=4&type=show&tmdb=1402&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/redirect?to=Simkl&title=The%20walking%20dead&year=2010&season=1&episode=4&type=show&tmdb=1402&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -673,7 +673,7 @@ The more parameters you'll pass, the more accurate redirect will be.
     
     **Redirect to Simkl**, based on Hulu ID example:
     
-    https://api.simkl.com/redirect?to=Simkl&hulu=740489&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/redirect?to=Simkl&hulu=740489&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -695,7 +695,7 @@ The more parameters you'll pass, the more accurate redirect will be.
     
     **Redirect to Simkl**, based on IMDB link example:
     
-    https://api.simkl.com/redirect?to=Simkl&imdb=http://www.imdb.com/title/tt1520211/&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/redirect?to=Simkl&imdb=http://www.imdb.com/title/tt1520211/&client_id=***
 
     PS: Please use your `client_id`. You can specify IMDB ID `tt1520211` or full IMDB URL.
     
@@ -717,7 +717,7 @@ The more parameters you'll pass, the more accurate redirect will be.
     
     **Redirect to trailer** page example:
     
-    https://api.simkl.com/redirect?to=trailer&title=Guardians%20of%20the%20Galaxy&year=2014&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/redirect?to=trailer&title=Guardians%20of%20the%20Galaxy&year=2014&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -844,7 +844,7 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
         + Values
             + `show`
             + `movie`
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 
 
@@ -852,7 +852,7 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
 
     **Search by ID**, IMDB example:
     
-    https://api.simkl.com/search/id?imdb=tt1972591&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/search/id?imdb=tt1972591&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -887,13 +887,13 @@ Page limit is 20, max items per page is 50.
             + `anime`
             + `movie`
     + q (required, string, `john wick`) ...
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 
 + Request 
     **Search for text**, movie title, john wick example:
     
-    https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&client_id=***
     
     PS: Please use your `client_id`.
 
@@ -947,7 +947,7 @@ Page limit is 20, max items per page is 50.
 + Request 
     **Search for text with full info**, movie title, john wick example:
     
-    https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=***
     
     PS: Please use your `client_id`.
 
@@ -1148,14 +1148,14 @@ Here are some examples of the things you can build with the Random Search API:
     + rating_to (optional, integer, `10`)
     + year_from (optional, integer, `2004`) ...  First released movie starts from 1920.
     + year_to (optional, integer, `2010`)
-    + client_id (required, integer, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... If using [POST] with OAuth, it can be set in headers. If using without OAuth it's required. 
+    + client_id (required, integer, `***`) ... If using [POST] with OAuth, it can be set in headers. If using without OAuth it's required. 
    
             
 + Request
     
     **Netflix** random example:
     
-    https://api.simkl.com/search/random/netflix/?rating_from=5&rating_to=10&year_from=2008&year_to=2015&genre=science-fiction&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/search/random/netflix/?rating_from=5&rating_to=10&year_from=2008&year_to=2015&genre=science-fiction&client_id=***
 
     PS: Please use your `client_id`
     
@@ -1172,7 +1172,7 @@ Here are some examples of the things you can build with the Random Search API:
     
     **Simkl** random example:
 
-    https://api.simkl.com/search/random/?rating_from=5&rating_to=10&year_from=2008&year_to=2015&genre=science-fiction&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    https://api.simkl.com/search/random/?rating_from=5&rating_to=10&year_from=2008&year_to=2015&genre=science-fiction&client_id=***
 
     + Header
             
@@ -1200,13 +1200,13 @@ The `status` field can have these values `ended`,`tba`,`airing`
 + Parameters
 
     + id (required, string, `tt0944947`) ... Simkl ID or IMDB ID.
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
     **Short info**, IMDB example:
     
-   https://api.simkl.com/tv/tt0944947?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/tv/tt0944947?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1230,7 +1230,7 @@ The `status` field can have these values `ended`,`tba`,`airing`
 
     **Full info**, IMDB example:
     
-   https://api.simkl.com/tv/tt0944947?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/tv/tt0944947?extended=full&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1289,11 +1289,11 @@ Returns an array of all episodes of the TV Show
 + Parameters
 
     + id (required, integer) ... simkl id of the serie
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
-   https://api.simkl.com/tv/episodes/2090?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/tv/episodes/2090?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1356,15 +1356,15 @@ Genres API duplicates the urls of the Genres on the website so create a filter o
     + network = all-networks (optional, string, `netflix`) ... filter by network or production studio
     + year = 2010s (optional, string, `this-week`)
     + sort = rank (optional, string, `popular-this-month`) 
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
    Simple query<br>
-   https://api.simkl.com/tv/genres/drama/2016?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/tv/genres/drama/2016?client_id=***
    
    Query with all parameters<br>
-   https://api.simkl.com/tv/genres/all/all-types/all-countries/hbo/all-years/popular-today?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/tv/genres/all/all-types/all-countries/hbo/all-years/popular-today?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1437,11 +1437,11 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
             + `entertainment`
             + `documentaries`
             + `animation-filter`
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
-   https://api.simkl.com/tv/premieres/new?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/tv/premieres/new?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1516,11 +1516,11 @@ Returns an array of customized ([Standard Media Object](#introduction/about-simk
             + `documentary`
             + `entertainment`
             + `animation`
-    + client_id (required, string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (required, string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
-   https://api.simkl.com/anime/best/watched?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/best/watched?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1584,13 +1584,13 @@ Returns a single detail info of the anime. Same as `/tv/summary` endpoint + adde
 + Parameters
 
     + id (required, string, `40398`) ... Simkl ID or IMDB ID. 
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
    
     **Short info**, SIMKL ID example:
     
-   https://api.simkl.com/anime/40398?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/40398?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1613,7 +1613,7 @@ Returns a single detail info of the anime. Same as `/tv/summary` endpoint + adde
 + Request
     **Full info**, SIMKL ID example:
     
-   https://api.simkl.com/anime/40398?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/40398?extended=full&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1686,11 +1686,11 @@ Returns an array of all episodes of the Anime
 + Parameters
 
     + id (required, integer) ... simkl id of the anime
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
-   https://api.simkl.com/anime/episodes/39687?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/episodes/39687?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1750,15 +1750,15 @@ Genres API duplicates the urls of the Genres on the website so create a filter o
     + network = all-networks (optional, string, `tvtokyo`) ... filter by network or production studio
     + year = 2010s (optional, string, `this-week`)
     + sort = rank (optional, string, `popular-this-month`) 
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
    Simple query<br>
-   https://api.simkl.com/anime/genres/drama/2016?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/genres/drama/2016?client_id=***
    
    Query with all parameters<br>
-   https://api.simkl.com/anime/genres/all/all-types/all-countries/tvtokyo/all-years/popular-today?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/genres/all/all-types/all-countries/tvtokyo/all-years/popular-today?client_id=***
 
    PS: Please use your `client_id`.
     
@@ -1833,11 +1833,11 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
             + `series`
             + `movies`
             + `ovas`        
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
-   https://api.simkl.com/anime/premieres/new?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/premieres/new?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1914,11 +1914,11 @@ Returns an array of customized ([Standard Media Object](#introduction/about-simk
             + `tv`
             + `movies`
             + `ovas`
-    + client_id (required, string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (required, string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
-   https://api.simkl.com/anime/best/watched?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/anime/best/watched?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1983,13 +1983,13 @@ Returns a single detail info about the movie.
 + Parameters
 
     + id (required, string, `tt1201607`) ... Simkl ID or IMDB ID.
-    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
 
     **Short info**, IMDB example:
     
-   https://api.simkl.com/movies/tt1201607?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/movies/tt1201607?client_id=***
 
     PS: Please use your `client_id`.
     
@@ -2014,7 +2014,7 @@ Returns a single detail info about the movie.
 
     **Full info**, IMDB example:
     
-   https://api.simkl.com/movies/tt1201607?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+   https://api.simkl.com/movies/tt1201607?extended=full&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -3341,7 +3341,7 @@ Will reply with user's id, Show\Movie URL, Show\Movie title, large poster, and l
     + user_id = (required, integer, `51`) ... Simkl user id which has public privacy settings.
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
-+ Request https://api.simkl.com/users/recently-watched-background/51?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
++ Request https://api.simkl.com/users/recently-watched-background/51?client_id=***
             
 + Response 200 (application/json)
 
@@ -3368,7 +3368,7 @@ Will simply redirect to the image for your app to download or display.
             + `fanart`
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
-+ Request https://api.simkl.com/users/recently-watched-background/51?image=fanart&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
++ Request https://api.simkl.com/users/recently-watched-background/51?image=fanart&client_id=***
             
 + Response 302 
 

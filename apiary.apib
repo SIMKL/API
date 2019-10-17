@@ -1580,7 +1580,7 @@ Returns an array of customized ([Standard Media Object](#introduction/about-simk
 ## Summary [/anime/{id}{?client_id}]
 ### Get detail info about the Anime [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
-Returns a single detail info of the anime. Same as `/tv/summary` endpoint + added `anime_type`,`en_title` fields, possible values are `tv`,`special`,`ova`, `movie`.
+Returns a single detail info of the anime. Same as `/tv/summary` endpoint + added `anime_type`,`en_title` fields, possible values are `tv`,`special`,`ova`, `movie`,`music video`,`ona`.
 
 + Parameters
 
@@ -1861,7 +1861,7 @@ Genres API duplicates the urls of the Genres on the website so create a filter o
 ## Premieres [/anime/premieres/{param}{?type}{?client_id}]
 ### Get latest premieres [GET]
 <h4>📄 Pagination &#128275; Token Not Required</h4>
-Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects)). Added `anime_type` field, possible values are `tv`,`special`,`ova`,`movie`.
+Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects)). Added `anime_type` field, possible values are `tv`,`special`,`ova`,`movie`,`music video`,`ona`.
 
 + Parameters
 
@@ -1956,6 +1956,8 @@ Returns an array of customized ([Standard Media Object](#introduction/about-simk
             + `tv`
             + `movies`
             + `ovas`
+            + `music`
+            + `onas`
     + client_id (required, string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request

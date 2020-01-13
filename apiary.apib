@@ -2815,22 +2815,19 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
 ## Add Ratings [/sync/ratings]
 ### Add new ratings [POST]
 <h4>&#128274; Token Required</h4>
-Rate the movies or tv shows. You cannot rate the seasons or episodes right now.
+Rate the movies or tv shows/anime. You cannot rate the seasons or episodes right now.
 
-If the show or movie is rated before it was in user's list, show will be automatically added to "Watching" list and the movie will be added to "I've seen this" list.
+If the show/anime or movie is rated before it was in user's list, show will be automatically added to "Watching" list and the movie will be added to "I've seen this" list.
 
-Keep in mind, when removing the show or movie user's ratings will be removed as well for that item.
+Keep in mind, when removing the show/anime or movie user's ratings will be removed as well for that item.
 
 <h4>JSON POST DATA</h4>
 Key|Type|Value
 ---|----|-----
 `movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
-`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)). Anime are `show` too
 
-<h4>MEDIA OBJECTS POST DATA</h4>
-Key|Type|Value
----|----|-----
-`item*`|object|movie, show objects 
+
 
 + Parameters
     + rating (required, integer, `10`) ... 

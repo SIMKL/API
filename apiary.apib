@@ -2272,9 +2272,15 @@ Returns all items that user has in his watchlist (watching, plan to watch, notin
             + `hold`
             + `completed`
             + `notinteresting`
-    + extended (optional, string, `full`) ... `full` returns more info including watched episodes.
+    + extended (optional, string, `full`) ... `full` returns more info including watched episodes
         + Values
             + `full`
+    + episode_watched_at (optional, string, `yes`) ... adds `watched_at` field for all episodes(works with `extended` variable)
+        + Values
+            + `yes`
+    + next_watch_info (optional, string, `yes`) ... more info about nextToWatch episodes
+        + Values
+            + `yes`
     + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
         + Values
             + `2016-09-12T13:00:30.000Z`

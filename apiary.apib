@@ -2252,6 +2252,9 @@ If you have any ideas how to make sync even better for you, please [let us know]
 ### Get all items in the user's watchlist [POST]
 <h4>&#128274; Token Required &#10024; Full Info optional</h4>
 Returns all items that user has in his watchlist (watching, plan to watch, notinteresting, completed), shows, anime, movies. 
+
+You can add `?episode_watched_at=yes`(watched_at time for all episodes) or `?next_watch_info=yes`(more info about next to watch episodes) variables
+
 + Request (application/json)
 <h6>Get list of all the shows, anime and movies in a format of <a href="https://simkl.com/51/tv/">https://simkl.com/51/tv/</a></h6>
 `https://api.simkl.com/sync/all-items/` 
@@ -2275,12 +2278,6 @@ Returns all items that user has in his watchlist (watching, plan to watch, notin
     + extended (optional, string, `full`) ... `full` returns more info including watched episodes
         + Values
             + `full`
-    + episode_watched_at (optional, string, `yes`) ... adds `watched_at` field for all episodes(works with `extended` variable)
-        + Values
-            + `yes`
-    + next_watch_info (optional, string, `yes`) ... more info about nextToWatch episodes
-        + Values
-            + `yes`
     + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
         + Values
             + `2016-09-12T13:00:30.000Z`

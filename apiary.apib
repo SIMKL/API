@@ -2253,10 +2253,12 @@ If you have any ideas how to make sync even better for you, please [let us know]
 <h4>&#128274; Token Required &#10024; Full Info optional</h4>
 Returns all items that user has in his watchlist (watching, plan to watch, notinteresting, completed), shows, anime, movies. 
 
-You can add to the URL:
-- `extended=full` : adds a list of episodes user have watched.
-- `episode_watched_at=yes` : adds a time when user watched the episode as `watched_at` time for all episodes.
-- `next_watch_info=yes` : adds more info about next to watch episodes.
+<h4>You can add to the URL:</h4>
+Variable|Description
+---|----
+`extended=full`| adds a list of episodes user have watched
+`episode_watched_at=yes`| adds a time when user watched the episode as `watched_at` time for all episodes
+`next_watch_info=yes`| adds more info about next to watch episodes
 
 **IMPORTANT:** Please keep in mind that adding more data to the request (using extended and episode_watched_at) makes the reply exponentially larger, + a few megabytes in most cases, so please use it only when needed and always with the use of `date_from` so that the server reply was very small and fast.
 

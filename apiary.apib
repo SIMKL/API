@@ -2249,11 +2249,11 @@ If you have any ideas how to make sync even better for you, please [let us know]
 
 
 ## Get All Items [/sync/all-items/{type}/{status}{?extended}{?date_from}]
-### Get all items in the user's watchlist [POST]
+### Get all items in the user's watchlist [GET]
 <h4>&#128274; Token Required &#10024; Full Info optional</h4>
 Returns all items that user has in his watchlist (watching, plan to watch, notinteresting, completed), shows, anime, movies. 
 
-You can add `?episode_watched_at=yes`(watched_at time for all episodes) or `?next_watch_info=yes`(more info about next to watch episodes) variables
+You can add `episode_watched_at=yes`(watched_at time for all episodes) or `next_watch_info=yes`(more info about next to watch episodes) variables
 
 + Request (application/json)
 <h6>Get list of all the shows, anime and movies in a format of <a href="https://simkl.com/51/tv/">https://simkl.com/51/tv/</a></h6>

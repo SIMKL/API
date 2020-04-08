@@ -3489,6 +3489,97 @@ You can sync user's settings with your apps/site settings
                 }
             }
 
+## Get stats [/users/stats/{user_id}]
+<h4>&#128274; Token Optional</h4>
+
+Get all info about user's watched movies, tv shows, anime and episodes
+Some users profiles are private so you need to pass token to see their stats
+
++ Request (application/json)
+    + Header
+            
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
++ Response 201 (application/json)
+        
+    + Body
+
+        {
+            "total_min": 432199,
+            "movies": {
+                "total_mins": 71489,
+                "plantowatch": {
+                    "mins": 5836,
+                    "count": 96
+                },
+                "notinteresting": {
+                    "mins": 12146,
+                    "count": 115
+                },
+                "completed": {
+                    "mins": 71489,
+                    "count": 613
+                }   
+            },
+            "tv": {
+                "total_mins": 68960,
+                "watching": {
+                    "watched_episodes_count": 343,
+                    "count": 6,
+                    "total_episodes_count": 357,
+                    "left_to_watch_mins": 560
+                },
+                "hold": {
+                    "watched_episodes_count": 312,
+                    "count": 1
+                },
+                "plantowatch": {
+                    "watched_episodes_count": 62,
+                    "count": 7
+                },
+                "notinteresting": {
+                    "watched_episodes_count": 268,
+                    "count": 52
+                },
+                "completed": {
+                    "watched_episodes_count": 801,
+                    "count": 19
+                }   
+            },
+            "anime": {
+                "total_mins": 291750,
+                "watching": {
+                    "watched_episodes_count": 97,
+                    "count": 4,
+                    "total_episodes_count": 96,
+                    "left_to_watch_mins": 175
+                },
+                "hold": {
+                    "watched_episodes_count": 803,
+                    "count": 12
+                },
+                "plantowatch": {
+                    "watched_episodes_count": 331,
+                    "count": 87
+                },
+                "notinteresting": {
+                    "watched_episodes_count": 1151,
+                    "count": 890
+                },
+                "completed": {
+                    "watched_episodes_count": 9619,
+                    "count": 604
+                }
+            },  
+            "watched_last_week": {
+                "total_mins": 7705,
+                "movies_mins": 625,
+                "tv_mins": 6720,
+                "anime_mins": 360
+            }
+        }
+    
 # Group Need some help?
 
 <a href="http://uptime.statuscake.com/?TestID=JBfz26Wtd2" title="Website Uptime Monitoring"><img src="https://app.statuscake.com/button/index.php?Track=rVMgFtK0BZ&Days=1&Design=1" /></a>

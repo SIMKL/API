@@ -125,7 +125,7 @@ By default methods are not returnig additional data for movies, anime, show etc.
 ## Dates
 [In Development] Currently dates are returned as (GMT - 05:00 New York time zone)
 
-All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30:11.000Z. Adjust 
+All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30:11Z. Adjust 
 accordingly in your app for the user's local timezone.
 
 ## Pagination
@@ -556,7 +556,7 @@ item*|object|[episode or movie object](/#introduction/about-simkl-api/standard-m
     + Body
         
             {
-                "expires_at": "2015-05-10T20:11:25.000Z"
+                "expires_at": "2015-05-10T20:11:25Z"
             }
             
 
@@ -1255,7 +1255,7 @@ The `status` field can have these values `ended`,`tba`,`airing`
             "rank": 6,
             "poster": "57\/5742576cd8f59fcb0",
             "fanart": "65\/651708e80d87bb93",
-            "first_aired": "2011-04-18T01:00:00.000Z",
+            "first_aired": "2011-04-18T01:00:00Z",
             "airs": {
                 "day": "Sunday",
                 "time": "09:00 PM",
@@ -1645,7 +1645,7 @@ Returns a single detail info of the anime. Same as `/tv/summary` endpoint + adde
             "rank": 7,
             "poster": "83\/83975f751784587",
             "fanart": "83\/839789583130112",
-            "first_aired": "2011-10-02T02:00:00.000Z",
+            "first_aired": "2011-10-02T02:00:00Z",
             "airs": {
                 "day": "Sunday",
                 "time": "11:00 AM",
@@ -1749,7 +1749,7 @@ Returns an array of all episodes of the Anime
             "type": "episode",
             "aired": true,
             "img": "26\/26148581d640c58b8",
-            "date": "2013-04-07T00:00:00+09",
+            "date": "2013-04-07T00:00:00+0900",
             "ids": {
                 "simkl_id": 958466
             }
@@ -1760,7 +1760,7 @@ Returns an array of all episodes of the Anime
             "type": "episode",
             "aired": true,
             "img": "26\/2614860d56b63e7b6",
-            "date": "2013-04-14T00:00:00+09",
+            "date": "2013-04-14T00:00:00+0900",
             "ids": {
                 "simkl_id": 958465
             }
@@ -1770,7 +1770,7 @@ Returns an array of all episodes of the Anime
             "type": "special",
             "aired": true,
             "img": "68\/689124d248604d0d",
-            "date": "2013-09-18T00:00:00+09",
+            "date": "2013-09-18T00:00:00+0900",
             "ids": {
                 "simkl_id": 979612
             }
@@ -1813,7 +1813,7 @@ Genres API duplicates the urls of the Genres on the website so create a filter o
         [{
             "title": "Kaijuu Girls (Kuro): Ultra Kaijuu Gijinka Keikaku",
             "year": 2018,
-            "date": "2018-11-23T00:00:00+09",
+            "date": "2018-11-23T00:00:00+0900",
             "url": "\/anime\/786725\/kaijuu-girls-kuro-ultra-kaijuu-gijinka-keikaku",
             "poster": "70\/708168593fa555f00",
             "ids": {
@@ -1835,7 +1835,7 @@ Genres API duplicates the urls of the Genres on the website so create a filter o
          }, {
                 "title": "Koi to Uso",
                 "year": 2018,
-                "date": "2018-11-22T00:00:00+09",
+                "date": "2018-11-22T00:00:00+0900",
                 "url": "\/anime\/801411\/koi-to-uso",
                 "poster": "67\/671515560e5acee15",
                 "ids": {
@@ -1892,7 +1892,7 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
         [{
             "title": "Kaijuu Girls (Kuro): Ultra Kaijuu Gijinka Keikaku",
             "year": 2018,
-            "date": "2018-11-23T00:00:00+09",
+            "date": "2018-11-23T00:00:00+0900",
             "url": "\/anime\/786725\/kaijuu-girls-kuro-ultra-kaijuu-gijinka-keikaku",
             "poster": "70\/708168593fa555f00",
             "ids": {
@@ -1914,7 +1914,7 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
          }, {
                 "title": "Koi to Uso",
                 "year": 2018,
-                "date": "2018-11-22T00:00:00+09",
+                "date": "2018-11-22T00:00:00+0900",
                 "url": "\/anime\/801411\/koi-to-uso",
                 "poster": "67\/671515560e5acee15",
                 "ids": {
@@ -2218,34 +2218,34 @@ If you have any ideas how to make sync even better for you, please [let us know]
 
       + Body
         {
-            "all": "2016-10-29T09:03:45.000Z",
+            "all": "2016-10-29T09:03:45Z",
             "tv_shows": {
-                "all": "2016-10-29T09:03:45.000Z",
-                "rated_at": "2016-10-29T09:03:45.000Z",
-                "plantowatch": "2016-10-29T09:03:45.000Z",
-                "watching": "2016-10-29T09:03:45.000Z",
-                "completed": "2016-10-29T09:03:45.000Z",
-                "hold": "2016-10-29T09:03:45.000Z",
-                "notinteresting": "2016-10-29T09:03:45.000Z",
-                "removed_from_list": "2016-10-29T09:03:45.000Z"
+                "all": "2016-10-29T09:03:45Z",
+                "rated_at": "2016-10-29T09:03:45Z",
+                "plantowatch": "2016-10-29T09:03:45Z",
+                "watching": "2016-10-29T09:03:45Z",
+                "completed": "2016-10-29T09:03:45Z",
+                "hold": "2016-10-29T09:03:45Z",
+                "notinteresting": "2016-10-29T09:03:45Z",
+                "removed_from_list": "2016-10-29T09:03:45Z"
             },
             "anime": {
-                "all": "2016-10-29T09:03:45.000Z",
-                "rated_at": "2016-10-29T09:03:45.000Z",
-                "plantowatch": "2016-10-29T09:03:45.000Z",
-                "watching": "2016-10-29T09:03:45.000Z",
-                "completed": "2016-10-29T09:03:45.000Z",
+                "all": "2016-10-29T09:03:45Z",
+                "rated_at": "2016-10-29T09:03:45Z",
+                "plantowatch": "2016-10-29T09:03:45Z",
+                "watching": "2016-10-29T09:03:45Z",
+                "completed": "2016-10-29T09:03:45Z",
                 "hold": null,
-                "notinteresting": "2016-10-29T09:03:45.000Z",
-                "removed_from_list": "2016-10-29T09:03:45.000Z",
+                "notinteresting": "2016-10-29T09:03:45Z",
+                "removed_from_list": "2016-10-29T09:03:45Z",
             },
             "movies": {
-                "all": "2016-10-29T09:03:45.000Z",
-                "rated_at": "2016-10-29T09:03:45.000Z",
-                "plantowatch": "2016-10-29T09:03:45.000Z",
-                "completed": "2016-10-29T09:03:45.000Z",
-                "notinteresting": "2016-10-29T09:03:45.000Z",
-                "removed_from_list": "2016-10-29T09:03:45.000Z"
+                "all": "2016-10-29T09:03:45Z",
+                "rated_at": "2016-10-29T09:03:45Z",
+                "plantowatch": "2016-10-29T09:03:45Z",
+                "completed": "2016-10-29T09:03:45Z",
+                "notinteresting": "2016-10-29T09:03:45Z",
+                "removed_from_list": "2016-10-29T09:03:45Z"
             }
         }
 
@@ -2290,9 +2290,9 @@ Variable|Description
     + episode_watched_at (optional, string, `yes`) ... `yes` returns the date when user watched the episode
         + Values
             + `yes`
-    + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
+    + date_from (optional, string, `2016-09-12T13:00:30Z`) ... returns the items updated from the passed value
         + Values
-            + `2016-09-12T13:00:30.000Z`
+            + `2016-09-12T13:00:30Z`
             
 + Response 200 (application/json)
 
@@ -2325,7 +2325,7 @@ Variable|Description
           ],
           "anime": [
             {
-              "last_watched_at": "2014-11-06T22:05:52.000Z",
+              "last_watched_at": "2014-11-06T22:05:52Z",
               "user_rating": 10,
               "status": "completed",
               "last_watched": "E148",
@@ -2346,7 +2346,7 @@ Variable|Description
               }
             },
             {
-              "last_watched_at": "2016-10-19T08:34:23.000Z",
+              "last_watched_at": "2016-10-19T08:34:23Z",
               "user_rating": null,
               "status": "plantowatch",
               "last_watched": null,
@@ -2364,7 +2364,7 @@ Variable|Description
           ],
           "movies": [
             {
-              "last_watched_at": "2014-08-09T07:25:55.000Z",
+              "last_watched_at": "2014-08-09T07:25:55Z",
               "user_rating": null,
               "status": "completed",
               "movie": {
@@ -2379,7 +2379,7 @@ Variable|Description
               }
             },
             {
-              "last_watched_at": "2014-08-16T18:45:20.000Z",
+              "last_watched_at": "2014-08-16T18:45:20Z",
               "user_rating": null,
               "status": "completed",
               "movie": {
@@ -2410,7 +2410,7 @@ Variable|Description
             {
                 "movies": [
                     {
-                        "last_watched_at": "2014-08-09T07:25:55.000Z",
+                        "last_watched_at": "2014-08-09T07:25:55Z",
                         "rate": null,
                         "status": "completed",
                         "movie": {
@@ -2426,7 +2426,7 @@ Variable|Description
                 ],
                 "anime": [
                     {
-                        "last_watched_at": "2015-01-06T13:43:26.000Z",
+                        "last_watched_at": "2015-01-06T13:43:26Z",
                         "rate": null,
                         "status": "watching",
                         "last_watched": "S01E01",
@@ -2452,7 +2452,7 @@ Variable|Description
             {
                 "anime": [
                     {
-                        "last_watched_at": "2015-01-06T13:43:26.000Z",
+                        "last_watched_at": "2015-01-06T13:43:26Z",
                         "rate": 9,
                         "status": "watching",
                         "last_watched": "S01E01",
@@ -2764,9 +2764,9 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
             + `8`
             + `9`
             + `10`
-    + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
+    + date_from (optional, string, `2016-09-12T13:00:30Z`) ... returns the items updated from the passed value
         + Values
-            + `2016-09-12T13:00:30.000Z`
+            + `2016-09-12T13:00:30Z`
             
 + Response 200 (application/json)
 
@@ -2775,7 +2775,7 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
           "shows": [
             {
             
-              "last_watched_at": "2016-09-12T13:00:30.000Z",
+              "last_watched_at": "2016-09-12T13:00:30Z",
               "rating": 5,
               "status": "notinteresting",
               "last_watched": null,
@@ -2793,7 +2793,7 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
           ],
           "anime": [
             {
-              "last_watched_at": "2014-11-06T22:05:52.000Z",
+              "last_watched_at": "2014-11-06T22:05:52Z",
               "rating": 10,
               "status": "completed",
               "last_watched": "E148",
@@ -2812,7 +2812,7 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
           ],
           "movies": [
             {
-              "last_watched_at": "2014-08-16T18:45:20.000Z",
+              "last_watched_at": "2014-08-16T18:45:20Z",
               "rating": 6,
               "status": "completed",
               "movie": {
@@ -2859,7 +2859,7 @@ Key|Type|Value
             + `8`
             + `9`
             + `10`
-    + rated_at (optional, string, `2014-09-01T09:10:11.000Z`) ... UTC datetime
+    + rated_at (optional, string, `2014-09-01T09:10:11Z`) ... UTC datetime
 
 + Request (application/json)
     + Header
@@ -2874,7 +2874,7 @@ Key|Type|Value
                     {
                         "title": "Terminator 3: Rise of the Machines",
                         "rating": 8,
-                        "rated_at": "2014-09-01T09:10:11.000Z",
+                        "rated_at": "2014-09-01T09:10:11Z",
                         "year": "2003",
                         "ids": {
                             "imdb": "tt0181852",
@@ -3123,7 +3123,7 @@ result|`not_found`|Could not find a match in Simkl database with such Title\Year
 list|`completed`|User watched the movie or seen all episodes
 list|`plantowatch`|Found in users's Plan to Watch list
 list|`notinteresting`|Found in users's Not Interesting list
-watched|`YYYY-MM-DDTHH:MM:SS.000Z`|Datetime in UTC format when the last episode or movie was watched
+watched|`YYYY-MM-DDTHH:MM:SSZ`|Datetime in UTC format when the last episode or movie was watched
 
 
 + Parameters
@@ -3178,7 +3178,7 @@ watched|`YYYY-MM-DDTHH:MM:SS.000Z`|Datetime in UTC format when the last episode 
                 "netflix": 70262639,
                 "list": "watching",
                 "result": true,
-                "watched": "2017-02-04T16:10:51.000Z"
+                "watched": "2017-02-04T16:10:51Z"
             },
             {
                 "netflix": 70080650,
@@ -3220,7 +3220,7 @@ Key|Type|Value
             {
                 "movies": [
                     {
-                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "collected_at": "2014-09-01T09:10:11Z",
                         "title": "Terminator 3: Rise of the Machines",
                         "year": "2003",
                         "ids": {
@@ -3250,7 +3250,7 @@ Key|Type|Value
                     {
                         "title": "The Walking Dead",
                         "year": 2010,
-                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "collected_at": "2014-09-01T09:10:11Z",
                         "ids": {
                             "simkl": 2090,
                             "tvdb": 153021,
@@ -3322,7 +3322,7 @@ Key|Type|Value
             {
                 "movies": [
                     {
-                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "collected_at": "2014-09-01T09:10:11Z",
                         "title": "Terminator 3: Rise of the Machines",
                         "year": "2003",
                         "ids": {
@@ -3352,7 +3352,7 @@ Key|Type|Value
                     {
                         "title": "The Walking Dead",
                         "year": 2010,
-                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "collected_at": "2014-09-01T09:10:11Z",
                         "ids": {
                             "simkl": 2090,
                             "tvdb": 153021,
@@ -3470,7 +3470,7 @@ You can sync user's settings with your apps/site settings
                 "user": 
                 {
                     "name": "Andrew Masyk",
-                    "joined_at": "2007-11-04T22:04:46.000Z",
+                    "joined_at": "2007-11-04T22:04:46Z",
                     "gender": "male",
                     "avatar": "https:\/\/graph.facebook.com\/736253775\/picture?width=100&height=100",
                     "bio": "I'm a founder and developer at simkl.com - a socially powered TV show and movie tracking service",

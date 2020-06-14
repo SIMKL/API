@@ -844,8 +844,9 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
         + Values
             + `show`
             + `movie`
+    + title (optional, string, `The Walking Dead`) ... TV show, anime, or movie title. If this title has more then 1 item then null will be returned, add more fields to narrow down the search to 1 item(such as type,year etc.)
+    + year (optional, integer, `2010`) ... release year.
     + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
-
 
 
 + Request 

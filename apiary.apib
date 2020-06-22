@@ -153,6 +153,7 @@ JSON DATA|Prefix URL
 poster|`/posters/`
 fanart|`/fanart/`
 episode|`/episodes/`
+avatars|`/avatars/`
 [IN DEV]|`/comments/`
 
 Url structure: <b>{domain}{prefix}{image_url}{suffix}{extension}</b>
@@ -174,6 +175,12 @@ prefix|suffix|Size|extension|Example
 `episodes`|`_w`|600x338|`.jpg` or `.webp`|[Example](https://simkl.net/episodes/26/265319260301d2ee2_w.jpg)
 `episodes`|`_c`|210x118|`.jpg` or `.webp`|[Example](https://simkl.net/episodes/26/265319260301d2ee2_c.jpg)
 `episodes`|`_m`|112x63|`.jpg` or `.webp`|[Example](https://simkl.net/episodes/26/265319260301d2ee2_m.jpg)
+||||
+`avatars`|`_24`|24x24|`.jpg`|[Example](https://simkl.net/avatars/1/1_24.jpg)
+`avatars`|`_100`|100x100|`.jpg`|[Example](https://simkl.net/avatars/1/1_100.jpg)
+`avatars`|``|200x200|`.jpg`|[Example](https://simkl.net/avatars/1/1.jpg)
+`avatars`|`_256`|256x256|`.jpg`|[Example](https://simkl.net/avatars/1/256.jpg)
+`avatars`|`_512`|512x512|`.jpg`|[Example](https://simkl.net/avatars/1/512.jpg)
 
 ### Caching images
 It is required that you cache images in your app or server by `image_url` forever. The images with the same URL never change. Do not redownload the same image multiple times.

@@ -614,7 +614,7 @@ Here are some examples of the things you can build with the Redirect API:
 <h4>&#128274; client_id Required</h4>
 Use this if you want to make a redirect to Simkl or (fast post) to Twitter using show's title or id. It will return "location" header.
 
-The more parameters you'll pass, the more accurate redirect will be.
+The more parameters you'll pass, the more accurate redirect will be. Type `show` combine `tv` and `anime` types.
 
 + Parameters
 
@@ -631,10 +631,12 @@ The more parameters you'll pass, the more accurate redirect will be.
     + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
     + mal (optional, integer, `4246`) ... MyAnimeList `id`.
     + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
-    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+    + type (optional, integer, `show`) ... Required for better search by tmdb title field.
         + Values
             + `show`
             + `movie`
+            + `tv`
+            + `anime`
     + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. To search TV Shows specify `type` parameter. All other parameters can be empty if this one specified.
     + imdb (optional, string, `tt1520211`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
         + Values

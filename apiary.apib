@@ -2209,7 +2209,6 @@ Name|Description
 `rated_at`| if updated check the <i>Get Ratings</i> endpoint with <i>date_from</i> parameter to get latest rating updates/deletes.<br><br> Update ratings and statuses(automove won't update corresponding list update time) in your app
 `plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`notinteresting`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
 `removed_from_list`| Check the <i>Get All Items</i> endpoint without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
-<a name="activity-date-from" />
 Steps for how to use it: 
 
 1. Save all datatime values from this endpoint to your local/cloud storage of the APP
@@ -2217,7 +2216,7 @@ Steps for how to use it:
 3. Check every N times this endpoint for any updates. 
 4. On update/date change, get saved to your local/cloud storage datetime values and use it as `date_from` field value in */sync/get-all-items* endpoint.
 5. Save new datetime values to your local/cloud storage
-    
+<a name="activity-date-from" />    
 
 If you have any ideas how to make sync even better for you, please [let us know](mailto:support@simkl.com).
 

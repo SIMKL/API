@@ -2210,6 +2210,17 @@ Name|Description
 `plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`notinteresting`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
 `removed_from_list`| Check the <i>Get All Items</i> endpoint without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
 
+Steps for how to use it: 
+
+1. Save all datatime values from this endpoint to your local/cloud storage of the APP
+2. Fetch all data from */sync/get-all-items* endpoint without `date_from` field
+3. Check every N times this endpoint for any updates. 
+4. On update/date change, get saved to your local/cloud storage datetime values and use it as `date_from` field value in */sync/get-all-items* endpoint.
+5. Save new datetime values to your local/cloud storage
+
+    
+    
+
 If you have any ideas how to make sync even better for you, please [let us know](mailto:support@simkl.com).
 
 
@@ -2271,6 +2282,8 @@ Variable|Description
 `next_watch_info=yes`| adds more info about next to watch episodes
 
 **IMPORTANT:** Please keep in mind that adding more data to the request (using extended and episode_watched_at) makes the reply exponentially larger, + a few megabytes in most cases, so please use it only when needed and always with the use of `date_from` so that the server reply was very small and fast.
+
+More details on how to use `date_from` field see <a href="https://simkl.docs.apiary.io/#reference/sync/last-activities/get-all-items-in-the-user's-watchlist">here</a>
 
 + Request (application/json)
 <h6>Get list of all the shows, anime and movies in a format of <a href="https://simkl.com/51/tv/">https://simkl.com/51/tv/</a></h6>

@@ -2210,7 +2210,7 @@ Name|Description
 `plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`notinteresting`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
 `removed_from_list`| Check the <i>Get All Items</i> endpoint without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
 
-Steps for how to use it: 
+Steps for **how to use it** with `date_from` field: 
 
 1. Save all datatime values from this endpoint to your local/cloud storage of the APP
 2. Fetch all data from */sync/get-all-items* endpoint without `date_from` field

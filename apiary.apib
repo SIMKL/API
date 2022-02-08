@@ -2272,6 +2272,8 @@ If you have any ideas how to make sync even better for you, please [let us know]
 <h4>&#128274; Token Required &#10024; Full Info optional</h4>
 Returns all items that user has in his watchlist (watching, plan to watch, notinteresting, completed), shows, anime, movies. 
 
+Anime block has `anime_type` field, possible values are `tv`,`special`,`ova`, `movie`,`music video`,`ona`.
+
 <h4>You can add to the URL:</h4>
 Variable|Description
 ---|----
@@ -2282,6 +2284,7 @@ Variable|Description
 **IMPORTANT:** Please keep in mind that adding more data to the request (using extended and episode_watched_at) makes the reply exponentially larger, + a few megabytes in most cases, so please use it only when needed and always with the use of `date_from` so that the server reply was very small and fast.
 
 More details on how to use `date_from` field see <a href="#reference/sync/last-activities">here</a>
+
 
 + Request (application/json)
 <h6>Get list of all the shows, anime and movies in a format of <a href="https://simkl.com/51/tv/">https://simkl.com/51/tv/</a></h6>

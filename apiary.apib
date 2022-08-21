@@ -2207,7 +2207,7 @@ Name|Description
 `all`| latest update time within the category, use it as first check
 `settings`| any update in https://simkl.com/settings/ will trigger update time. For example when user changes his name or time zone.
 `rated_at`| if updated check the <i>Get Ratings</i> endpoint with <i>date_from</i> parameter to get latest rating updates/deletes.<br><br> Update ratings and statuses(automove won't update corresponding list update time) in your app
-`plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`notinteresting`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
+`plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`dropped`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
 `removed_from_list`| Check the <i>Get All Items</i> endpoint without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
 
 Steps for **how to use it** with `date_from` field: 
@@ -2243,7 +2243,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
                 "watching": "2016-10-29T09:03:45Z",
                 "completed": "2016-10-29T09:03:45Z",
                 "hold": "2016-10-29T09:03:45Z",
-                "notinteresting": "2016-10-29T09:03:45Z",
+                "dropped": "2016-10-29T09:03:45Z",
                 "removed_from_list": "2016-10-29T09:03:45Z"
             },
             "anime": {
@@ -2253,7 +2253,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
                 "watching": "2016-10-29T09:03:45Z",
                 "completed": "2016-10-29T09:03:45Z",
                 "hold": null,
-                "notinteresting": "2016-10-29T09:03:45Z",
+                "dropped": "2016-10-29T09:03:45Z",
                 "removed_from_list": "2016-10-29T09:03:45Z",
             },
             "movies": {
@@ -2261,7 +2261,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
                 "rated_at": "2016-10-29T09:03:45Z",
                 "plantowatch": "2016-10-29T09:03:45Z",
                 "completed": "2016-10-29T09:03:45Z",
-                "notinteresting": "2016-10-29T09:03:45Z",
+                "dropped": "2016-10-29T09:03:45Z",
                 "removed_from_list": "2016-10-29T09:03:45Z"
             }
         }
@@ -2270,7 +2270,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
 ## Get All Items [/sync/all-items/{type}/{status}{?date_from}]
 ### Get all items in the user's watchlist [GET]
 <h4>&#128274; Token Required &#10024; Full Info optional</h4>
-Returns all items that user has in his watchlist (watching, plan to watch, notinteresting, completed), shows, anime, movies. 
+Returns all items that user has in his watchlist (watching, plan to watch, dropped, completed), shows, anime, movies. 
 
 Anime block has `anime_type` field, possible values are `tv`,`special`,`ova`,`movie`,`music video`,`ona`.
 
@@ -2305,7 +2305,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/last-a
             + `plantowatch`
             + `hold`
             + `completed`
-            + `notinteresting`
+            + `dropped`
     + extended (optional, string, `full`) ... `full` returns more info including a list of watched episodes
         + Values
             + `full`
@@ -2802,7 +2802,7 @@ Returns all rated items in user's lists filtered by `type`. You can also filter 
             
               "last_watched_at": "2016-09-12T13:00:30Z",
               "rating": 5,
-              "status": "notinteresting",
+              "status": "dropped",
               "last_watched": null,
               "next_to_watch": "S01E01",
               "show": {
@@ -3011,7 +3011,7 @@ Key|Type|Value
 Key|Type|Value
 ---|----|-----
 item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-media-objects).
-`to`|string|possible values "plantowatch","completed","watching","hold","notinteresting"
+`to`|string|possible values "plantowatch","completed","watching","hold","dropped"
 `to`|array| custom lists **IN DEV**
 `watched_at`|datetime|UTC datetime when the item was watched, available only for "completed" status
 
@@ -3147,7 +3147,7 @@ result|`false`|Found a match but could not find in user's watchlist
 result|`not_found`|Could not find a match in Simkl database with such Title\Year or ID
 list|`completed`|User watched the movie or seen all episodes
 list|`plantowatch`|Found in users's Plan to Watch list
-list|`notinteresting`|Found in users's Not Interesting list
+list|`dropped`|Found in users's Not Interesting list
 watched|`YYYY-MM-DDTHH:MM:SSZ`|Datetime in UTC format when the last episode or movie was watched
 
 
@@ -3539,7 +3539,7 @@ Some users profiles are private so you need to pass token to see their stats
                     "mins": 5836,
                     "count": 96
                 },
-                "notinteresting": {
+                "dropped": {
                     "mins": 12146,
                     "count": 115
                 },
@@ -3564,7 +3564,7 @@ Some users profiles are private so you need to pass token to see their stats
                     "watched_episodes_count": 62,
                     "count": 7
                 },
-                "notinteresting": {
+                "dropped": {
                     "watched_episodes_count": 268,
                     "count": 52
                 },
@@ -3589,7 +3589,7 @@ Some users profiles are private so you need to pass token to see their stats
                     "watched_episodes_count": 331,
                     "count": 87
                 },
-                "notinteresting": {
+                "dropped": {
                     "watched_episodes_count": 1151,
                     "count": 890
                 },

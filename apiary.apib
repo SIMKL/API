@@ -1121,7 +1121,7 @@ This is an example with a full file location including folders.
             }
 
 
-## Random [/search/random{?service,type,genre,rating_from,rating_to,year_from,year_to,limit,client_id}]
+## Random [/search/random{?service,type,genre,rating_from,rating_to,rank_limi,year_from,year_to,limit,client_id}]
 ### Find random show, anime or movie [POST]
 <h4>&#128275; Token Optional</h4>
 Use it if you want to find random item based on your filters. If Token is passed, wacthed items will be excluded.
@@ -1150,6 +1150,7 @@ Here are some examples of the things you can build with the Random Search API:
     + genre = (optional, string, `comedy`) ... TV Shows, Anime and Movies have their own genres. <br><br><b>Movies</b>: <br>action, adventure, animation, comedy, crime, documentary, drama, erotica, family, fantasy, foreign, history, horror, music, mystery, romance, science-fiction, thriller, tv-movie, war, western<br><b>TV:</b><br>action, adventure, animation, awards-show, children, comedy, crime, documentary, drama, erotica, family, fantasy, food, game-show, history, home-and-garden, horror, indie, korean-drama, martial-arts, mini-series, musical, mystery, news, podcast, reality, romance, science-fiction, soap, special-interest, sport, suspense, talk-show, thriller, travel, war, western<br><b>Anime:</b><br>action, adventure, cars, comedy, dementia, demons, drama, ecchi, fantasy, game, harem, historical, horror, josei, kids, magic, martial-arts, mecha, military, music, mystery, parody, police, psychological, romance, samurai, school, sci-fi, seinen, shoujo, shoujo-ai, shounen, shounen-ai, slice-of-life, space, sports, super-power, supernatural, thriller, vampire, yaoi, yuri 
     + rating_from = `1` (optional, integer, `5`) ... max value is 10. Random search for TV Shows and Movies will be performed using IMDB ratings. Anime are based on MAL ratings.
     + rating_to (optional, integer, `10`)
+    + rank_limit (optional, integer, `2000`) ... maximum rank allowed
     + year_from (optional, integer, `2004`) ...  First released movie starts from 1920.
     + year_to (optional, integer, `2010`)
     + limit (optional, integer, `10`) ... if >0 specified it returns 2 dimensional array with multiple results 

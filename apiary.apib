@@ -1502,6 +1502,74 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
         }]
         
         
+        
+## Airing [/tv/airing?{date}{?sort}{?client_id}]
+### Get Airing TV Shows [GET]
+<h4>&#128275; Token Not Required</h4>
+Returns airing TV Shows ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+
++ Parameters
+
+    + date (optional, string, `today`) ... only data within this date
+        + Values
+            + `today`
+            + `tomorrow`
+            + `22-08-2022`
+    + sort (optional, string, `time`) ... sort the results by the specified option
+         + Values
+            + `time`
+            + `rank`
+            + `popularity`
+    + client_id (required, string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/tv/airing?client_id=***
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "High School Musical: The Musical: The Series",
+            "year": 2022,
+            "date": "2022-09-14T02:00:00-05:00",
+            "poster": "89\/8992886023a82f72e",
+            "rank": 5869,
+            "url": "\/tv\/1044024\/high-school-musical-the-musical-the-series",
+            "ids": {
+                "simkl_id": 1044024,
+                "slug": "high-school-musical-the-musical-the-series"
+            },
+            "episode": {
+                "season": 3,
+                "episode": 8,
+                "url": "\/tv\/1044024\/high-school-musical-the-musical-the-series\/season-3\/episode-8"
+            }
+        }, {
+            "title": "She-Hulk: Attorney at Law",
+            "year": 2022,
+            "date": "2022-09-14T03:00:00-05:00",
+            "poster": "95\/95314368aad7d4e2e",
+            "rank": null,
+            "url": "\/tv\/1155406\/she-hulk-attorney-at-law",
+            "ids": {
+                "simkl_id": 1155406,
+                "slug": "she-hulk-attorney-at-law"
+            },
+            "episode": {
+                "season": 1,
+                "episode": 5,
+                "url": "\/tv\/1155406\/she-hulk-attorney-at-law\/season-1\/episode-5"
+            }
+        }]
+
+        
+        
 ## Best [/tv/best/{filter}{?type}{?client_id}]
 ### Get best of all TV Shows [GET]
 <h4>&#128275; Token Not Required</h4>
@@ -1578,7 +1646,7 @@ Returns an array of customized ([Standard Media Object](#introduction/about-simk
             }
         }]
 
-            
+
 
 # Group Anime
 
@@ -1940,6 +2008,75 @@ Returns an array of ([Standard Media Object](#introduction/about-simkl-api/stand
                 }
             }
         ]
+
+
+
+## Airing [/anime/airing?{date}{?sort}{?client_id}]
+### Get Airing Anime [GET]
+<h4>&#128275; Token Not Required</h4>
+Returns ongoing Anime ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+
++ Parameters
+
+    + date (optional, string, `today`) ... only data within this date
+        + Values
+            + `today`
+            + `tomorrow`
+            + `22-08-2022`
+    + sort (optional, string, `time`) ... sort the results by the specified option
+         + Values
+            + `time`
+            + `rank`
+            + `popularity`
+    + client_id (required, string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   https://api.simkl.com/anime/airing?client_id=***
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        [{
+            "title": "Nights with a Cat",
+            "year": 2022,
+            "date": "2022-09-14T12:00:00-05:00",
+            "poster": "12\/125209937fa1674c4b",
+            "rank": null,
+            "url": "\/anime\/1897462\/yoru-wa-neko-to-issho",
+            "ids": {
+                "simkl_id": 1897462,
+                "slug": "yoru-wa-neko-to-issho"
+            },
+            "episode": {
+                "episode": 14,
+                "url": "\/anime\/1897462\/yoru-wa-neko-to-issho\/episode-14"
+            },
+            "anime_type": "tv"
+        }, {
+            "title": "Throne of Seal",
+            "year": 2022,
+            "date": null,
+            "poster": "12\/12540566cc860eeeb0",
+            "rank": 4469,
+            "url": "\/anime\/1902682\/shen-yin-wangzuo",
+            "ids": {
+                "simkl_id": 1902682,
+                "slug": "shen-yin-wangzuo"
+            },
+            "episode": {
+                "episode": 23,
+                "url": "\/anime\/1902682\/shen-yin-wangzuo\/episode-23"
+            },
+            "anime_type": "ona"
+        }]
+
+
 
 ## Best [/anime/best/{filter}{?type}{?client_id}]
 ### Get best of all Anime [GET]

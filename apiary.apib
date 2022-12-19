@@ -880,6 +880,7 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
 ### Get items based on text query[GET]
 <h4>📄 Pagination &#128275; Token Not Required &#10024; Full Info</h4>
 Search items by title, sorted by relevance (what people search most). This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects) + additional fields if `extended` parameter passed.
+For `movies` and `anime movies` type, tmdb id points to movies section on TMDB site, otherwise to the TV section 
 
 Page limit is 20, max items per page is 50.
 
@@ -922,7 +923,8 @@ Page limit is 20, max items per page is 50.
               "poster": "54\/5465988836c0aaa33",
               "ids":{  
                  "simkl_id":471618,
-                 "slug":"john-wick-chapter-2"
+                 "slug":"john-wick-chapter-2",
+                 "tmdb":"324552"
               }
            },
            {  
@@ -931,7 +933,8 @@ Page limit is 20, max items per page is 50.
               "poster": "28\/2893788382afb90ce",
               "ids":{  
                  "simkl_id":342994,
-                 "slug":"john-wick"
+                 "slug":"john-wick",
+                 "tmdb":"245891"
               }
            },
            {  
@@ -977,7 +980,8 @@ Page limit is 20, max items per page is 50.
             "rank": 2326,
             "ids": {
                 "simkl_id": 471618,
-                "slug": "john-wick-chapter-2"
+                "slug": "john-wick-chapter-2",
+                "tmdb":"324552"
             },
             "ratings": {
                 "simkl": {
@@ -997,7 +1001,8 @@ Page limit is 20, max items per page is 50.
             "rank": 3998,
             "ids": {
                 "simkl_id": 342994,
-                "slug": "john-wick"
+                "slug": "john-wick",
+                "tmdb":"245891"
             },
             "ratings": {
                 "simkl": {

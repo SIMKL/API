@@ -1351,6 +1351,106 @@ Returns an array of all episodes of the TV Show
                 "simkl_id": 2527432
             }
         }] 
+        
+        
+## Trending [/tv/trending/{interval}{?client_id}]
+### Get trending anime series [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
+You can use any filters from the [Best](https://simkl.com/tv/best-anime/) site section. 
+
+Select any filter\slider and copy it from the URL to this API endpoint.
+
++ Parameters
+
+    + interval (optional, string, `week, month`) ... Filter within the time period
+        + Values
+            + `week`
+            + `month`
+            + `year`
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+    https://api.simkl.com/tv/trending/?extended=overview,metadata,tmdb,genres,trailer&client_id=***
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+    [{
+        "title": "Bluey",
+        "url": "\/tv\/922016\/bluey",
+        "poster": "73\/731473004195ba690",
+        "fanart": "76\/7674468ee5d6bd79b",
+        "ids": {
+                "simkl_id": 922016,
+                "slug": "bluey",
+                "tmdb": "82728"
+        },
+        "release_date": "10\/01\/2018",
+        "rank": 1,
+        "drop_rate": "7.1%",
+        "watched": 320,
+        "plan_to_watch": 57,
+        "ratings": {
+                "simkl": {
+                        "rating": 6.65,
+                        "votes": 23
+                },
+                "imdb": {
+                        "rating": 9.6,
+                        "votes": 10966
+                }
+        },
+        "country": "au",
+        "runtime": "7m",
+        "status": "ongoing",
+        "total_episodes": 155,
+        "network": "ABC Kids",
+        "metadata": "2018 -  \u2022 ABC Kids \u2022 155 episodes",
+        "overview": "Bluey is an inexhaustible six year-old Blue Heeler dog, who loves to play and turns everyday family life into extraordinary adventures, developing her imagination as well as her mental, physical and emotional resilience.",
+        "genres": ["Animation", "Children", "Comedy", "Family"],
+        "trailer": "3pKDcQTY98E"
+    }, {
+        "title": "The Chosen",
+        "url": "\/tv\/995148\/the-chosen",
+        "poster": "96\/96387344b88c0a170",
+        "fanart": "90\/902468623a9ca1a0e",
+        "ids": {
+                "simkl_id": 995148,
+                "slug": "the-chosen",
+                "tmdb": "85077"
+        },
+        "release_date": "09\/21\/2017",
+        "rank": 16,
+        "drop_rate": "16.1%",
+        "watched": 192,
+        "plan_to_watch": 104,
+        "ratings": {
+                "simkl": {
+                        "rating": 7.26,
+                        "votes": 23
+                },
+                "imdb": {
+                        "rating": 9.3,
+                        "votes": 30133
+                }
+        },
+        "country": "us",
+        "runtime": "55m",
+        "status": "ongoing",
+        "total_episodes": 25,
+        "network": "Angel.com",
+        "metadata": "2017 -  \u2022 Angel.com \u2022 25 episodes",
+        "overview": "A charismatic fisherman drowning in debt. A troubled woman wrestling with real demons. A young tax collector ostracized by society. A religious leader questioning his faith tradition.",
+        "genres": ["Drama", "Family", "History"],
+        "trailer": "K1-FoFj8Jbo"
+    }]
+
     
 ## Genres [/tv/genres/{genre}/{type}/{country}/{network}/{year}/{sort}{?client_id}]
 ### Get items filtered by genre, years etc... [GET]

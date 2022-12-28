@@ -1858,7 +1858,7 @@ Returns an array of all episodes of the Anime
      
      
         
-## Trending [/anime/trending/{period}{?client_id}]
+## Trending [/anime/trending/{interval}{?client_id}]
 ### Get trending anime series [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
 You can use any filters from the [Best](https://simkl.com/anime/best-anime/) site section. 
@@ -1876,7 +1876,7 @@ Select any filter\slider and copy it from the URL to this API endpoint.
 
 + Request
 
-    https://api.simkl.com/movies/trending/?extended=overview,theater,metadata,tmdb,genres&client_id=***
+    https://api.simkl.com/anime/trending/?extended=overview,metadata,tmdb,genres,trailer&client_id=***
 
     PS: Please use your `client_id`.
     
@@ -1887,71 +1887,75 @@ Select any filter\slider and copy it from the URL to this API endpoint.
     + Body
 
     [{
-        "title": "Top Gun: Maverick",
-        "url": "\/movie\/526230\/top-gun-maverick",
-        "poster": "12\/12688617391bf69f62",
-        "fanart": "10\/10868538b672650006",
+        "title": "Bleach: Sennen Kessen Hen",
+        "url": "\/anime\/1300367\/bleach-sennen-kessen-hen",
+        "poster": "97\/973878056c6c7a33d",
+        "fanart": "13\/1331024111faa4e05d",
         "ids": {
-                "simkl_id": 526230,
-                "slug": "top-gun-maverick",
-                "tmdb": "361743"
+                "simkl_id": 1300367,
+                "slug": "bleach-sennen-kessen-hen",
+                "tmdb": "100645"
         },
-        "release_date": "05\/04\/2022",
-        "rank": 170,
-        "drop_rate": "1.4%",
-        "watched": 2750,
-        "plan_to_watch": 1058,
+        "release_date": "10\/10\/2022",
+        "rank": 1,
+        "drop_rate": "0.9%",
+        "watched": 1247,
+        "plan_to_watch": 1052,
         "ratings": {
                 "simkl": {
-                        "rating": 8.23,
-                        "votes": 582
+                        "rating": 9.08,
+                        "votes": 161
                 },
-                "imdb": {
-                        "rating": 8.4,
-                        "votes": 462046
+                "mal": {
+                        "rating": 9.2,
+                        "votes": 111479
                 }
         },
-        "country": "us",
-        "runtime": "2h 11m",
+        "country": "jp",
+        "runtime": "25m",
         "status": "ended",
-        "dvd_date": "08\/25\/2022",
-        "metadata": "May 4, 2022 \u2022 Budget $170M \u2022 Box office $700,000",
-        "overview": "After more than thirty years of service as one of the Navy\u2019s top aviators, and dodging the advancement in rank that would ground him, Pete \u201cMaverick\u201d Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission the likes of which no living pilot has ever seen.",
-        "genres": ["Action", "Drama"],
-        "theater": "05\/04\/2022"
+        "anime_type": "tv",
+        "total_episodes": 13,
+        "network": "TV Tokyo",
+        "metadata": "2022 - 2022 \u2022 TV Tokyo \u2022 13 episodes",
+        "overview": "* Based on an adventure supernatural shounen manga by Kubo Taito.<br><br>The peace is suddenly broken when warning sirens blare through the Soul Society. Residents there are disappearing without a trace, and nobody knows who`s behind it. Meanwhile, a dark shadow is also extending itself toward Ichigo and his friends in Karakura Town...",
+        "genres": ["Action", "Adventure", "Comedy", "Fantasy", "Magic", "Shounen", "Super Power", "Supernatural"],
+        "trailer": "1sygUhb8Q2Y"
     }, {
-        "title": "Everything Everywhere All at Once",
-        "url": "\/movie\/897504\/everything-everywhere-all-at-once",
-        "poster": "12\/123389099421e4eec0",
-        "fanart": "12\/125011974ea60ac610",
+        "title": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
+        "url": "\/anime\/1462529\/kaguya-sama-wa-kokurasetai-ultra-romantic",
+        "poster": "11\/118961816276f04351",
+        "fanart": "12\/126537094d86545d2c",
         "ids": {
-                "simkl_id": 897504,
-                "slug": "everything-everywhere-all-at-once",
-                "tmdb": "545611"
+                "simkl_id": 1462529,
+                "slug": "kaguya-sama-wa-kokurasetai-ultra-romantic",
+                "tmdb": null
         },
-        "release_date": "03\/11\/2022",
-        "rank": 542,
-        "drop_rate": "1%",
-        "watched": 1607,
-        "plan_to_watch": 684,
+        "release_date": "04\/08\/2022",
+        "rank": 4,
+        "drop_rate": "0.7%",
+        "watched": 2222,
+        "plan_to_watch": 768,
         "ratings": {
                 "simkl": {
-                        "rating": 8.21,
-                        "votes": 518
+                        "rating": 9.07,
+                        "votes": 466
                 },
-                "imdb": {
-                        "rating": 8.1,
-                        "votes": 260182
+                "mal": {
+                        "rating": 9.1,
+                        "votes": 382462
                 }
         },
-        "country": "us",
-        "runtime": "2h 20m",
+        "country": "",
+        "runtime": "25m",
         "status": "ended",
-        "dvd_date": "05\/19\/2022",
-        "metadata": "March 11, 2022 \u2022 Budget $25M \u2022 Box office $103M",
-        "overview": "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save what's important to her by connecting with the lives she could have led in other universes.",
-        "genres": ["Action", "Adventure", "Family", "Science Fiction"],
-        "theater": "03\/11\/2022"
+        "anime_type": "tv",
+        "total_episodes": 13,
+        "network": null,
+        "metadata": "2022 - 2022 \u2022 13 episodes",
+        "overview": "* Based on a romantic comedy seinen manga by Akasaka Aka.<br><br>Can Miyuki and Kaguya help Yuu escape the aggro of all his female classmates, let alone win the favor of the girl he`s crushing on? Then, it`s Miyuki who is teaching Chika a new skill for a change. Kaguya faces the temptations and pitfalls of her new smartphone and social media. Ai takes on yet another secret identity. And the student council`s parents cross paths at school conferences where they must decide what colleges their children will apply to.<br><br>When you make plans, the gods laugh.<br><br>Note: The first episode premiered at screenings in Los Angeles and New York on April 2, ahead of the regular TV broadcast on April 9.",
+        "genres": ["Comedy", "Psychological", "Romance", "School", "Seinen"],
+        "trailer": "vFN5K-iAyV0"
     }]
     
 
@@ -2421,6 +2425,105 @@ Returns a single detail info about the movie.
                 }]
             }]
         }
+        
+
+## Trending [/movies/trending/{interval}{?client_id}]
+### Get trending movies [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
+You can use any filters from the [Best](https://simkl.com/movies/best-movies/) site section. 
+
+Select any filter\slider and copy it from the URL to this API endpoint.
+
++ Parameters
+
+    + interval (optional, string, `week, month`) ... Filter within the time period
+        + Values
+            + `week`
+            + `month`
+            + `year`
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+    https://api.simkl.com/movies/trending/?extended=overview,theater,metadata,tmdb,genres&client_id=***
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+    [{
+        "title": "Top Gun: Maverick",
+        "url": "\/movie\/526230\/top-gun-maverick",
+        "poster": "12\/12688617391bf69f62",
+        "fanart": "10\/10868538b672650006",
+        "ids": {
+                "simkl_id": 526230,
+                "slug": "top-gun-maverick",
+                "tmdb": "361743"
+        },
+        "release_date": "05\/04\/2022",
+        "rank": 170,
+        "drop_rate": "1.4%",
+        "watched": 2750,
+        "plan_to_watch": 1058,
+        "ratings": {
+                "simkl": {
+                        "rating": 8.23,
+                        "votes": 582
+                },
+                "imdb": {
+                        "rating": 8.4,
+                        "votes": 462046
+                }
+        },
+        "country": "us",
+        "runtime": "2h 11m",
+        "status": "ended",
+        "dvd_date": "08\/25\/2022",
+        "metadata": "May 4, 2022 \u2022 Budget $170M \u2022 Box office $700,000",
+        "overview": "After more than thirty years of service as one of the Navy\u2019s top aviators, and dodging the advancement in rank that would ground him, Pete \u201cMaverick\u201d Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission the likes of which no living pilot has ever seen.",
+        "trailer":"giXco2jaZ_4",
+        "genres": ["Action", "Drama"],
+        "theater": "05\/04\/2022"
+    }, {
+        "title": "Everything Everywhere All at Once",
+        "url": "\/movie\/897504\/everything-everywhere-all-at-once",
+        "poster": "12\/123389099421e4eec0",
+        "fanart": "12\/125011974ea60ac610",
+        "ids": {
+                "simkl_id": 897504,
+                "slug": "everything-everywhere-all-at-once",
+                "tmdb": "545611"
+        },
+        "release_date": "03\/11\/2022",
+        "rank": 542,
+        "drop_rate": "1%",
+        "watched": 1607,
+        "plan_to_watch": 684,
+        "ratings": {
+                "simkl": {
+                        "rating": 8.21,
+                        "votes": 518
+                },
+                "imdb": {
+                        "rating": 8.1,
+                        "votes": 260182
+                }
+        },
+        "country": "us",
+        "runtime": "2h 20m",
+        "status": "ended",
+        "dvd_date": "05\/19\/2022",
+        "metadata": "March 11, 2022 \u2022 Budget $25M \u2022 Box office $103M",
+        "overview": "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save what's important to her by connecting with the lives she could have led in other universes.",
+        "genres": ["Action", "Adventure", "Family", "Science Fiction"],
+        "theater": "03\/11\/2022"
+    }]
+
 
 # Group Sync
 

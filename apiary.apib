@@ -1356,20 +1356,19 @@ Returns an array of all episodes of the TV Show
 ## Trending [/tv/trending/{interval}{?client_id}]
 ### Get trending TV series [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
-You can use any filters from the [Best](https://simkl.com/tv/best-anime/) site section. 
+You can use any filters from the [Best](https://simkl.com/tv/best-anime/most-watched/) site section. 
 
 Select any filter\slider and copy it from the URL to this API endpoint.
 
-This endpoint's default url filters are `?air_box=last_1&langs=en&subtype=-t_documentary,-t_youtube,-t_entertainment`
+This endpoint's default url filters are `?wltime=today&langs=en&subtype=-t_documentary,-t_youtube,-t_entertainment`
 
 + Parameters
 
-    + interval = `today` (optional, string, `week, month`) ... Filter within the time period
+    + interval = `today` (optional, string, `week`) ... Filter within the time period
         + Values
             + `today`
             + `week`
             + `month`
-            + `year`
     + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
@@ -1964,19 +1963,19 @@ Returns an array of all episodes of the Anime
 ## Trending [/anime/trending/{interval}{?client_id}]
 ### Get trending anime series [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
-You can use any filters from the [Best](https://simkl.com/anime/best-anime/) site section. 
+You can use any filters from the [Best](https://simkl.com/anime/best-anime/most-watched/) site section. 
 
 Select any filter\slider and copy it from the URL to this API endpoint.
 
-This endpoint's default url filters are `?air_box=last_7&subtype=a_tv,a_ona`
+This endpoint's default url filters are `?wltime=today`
 
 + Parameters
 
-    + interval = `week` (optional, string, `week, month`) ... Filter within the time period
+    + interval = `today` (optional, string, `week`) ... Filter within the time period
         + Values
+            + `today`
             + `week`
             + `month`
-            + `year`
     + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request
@@ -2535,19 +2534,19 @@ Returns a single detail info about the movie.
 ## Trending [/movies/trending/{interval}{?client_id}]
 ### Get trending movies [GET]
 <h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
-You can use any filters from the [Best](https://simkl.com/movies/best-movies/) site section. 
+You can use any filters from the [Best](https://simkl.com/movies/best-movies/most-watched/) site section. 
 
 Select any filter\slider and copy it from the URL to this API endpoint.
 
-This endpoint's default url filters are `?budget=1-500&release_box=last_12&sort=budget,desc&langs=en`
+This endpoint's default url filters are `?budget=1-500&release=1995-2025&langs=en&wltime=today`
 
 + Parameters
 
-    + interval = `month` (optional, string, `week, month`) ... Filter within the time period
+    + interval = `today` (optional, string, `week`) ... Filter within the time period
         + Values
+            + `today`
             + `week`
             + `month`
-            + `year`
     + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Request

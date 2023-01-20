@@ -440,6 +440,25 @@ Application can poll this url to get `USER_CODE` status or `ACCESS_TOKEN`. Retur
             }
 
 
+# Group Calendar
+Simkl provides separate JSON data calendar files that can be used to display the "Upcoming", "Next", "Schedule" or "Calendar" sections in your app or within show details cards.    
+
+The calendar files are generated every 6 hours and are cached on a CDN for 6 hours. They ignore all query strings, so **do not add** any additional parameters (such as **``?random=***``**).
+
+<h3>How to use calendar data</h3>
+You can use the calendar data to create lists of upcoming episodes, premieres (e.g. S01E01), or movies by combining it with your existing lists or using the user lists obtained from the [Sync](/#reference/sync) endpoints.  
+
+**Example:** When a user opens their watchlist, you can add the calendar data to show that the next episode will air in 3 days, without the need to re-sync the user's list. **Simply get fresh calendar files and cache them for 3-6 hours on the user's device.**
+
+<h2>List of Calendar Data Files</h2>
+https://data.simkl.in/calendar/tv.json
+https://data.simkl.in/calendar/anime.json
+https://data.simkl.in/calendar/movie_release.json
+
+**The calendar files contain episode airing dates (for TV, Anime) and theater release dates (for Movies) for the previous day as well as the next 33 days.**
+
+All calendar items have Simkl rank and ratings, [poster images](/#introduction/about-simkl-api/images) as well as SIMKL, TVDB, TMDB, IMDB, MAL IDs where available.
+
 # Group Checkin
 Mobile apps can do checkin manually. If you are curretlty watching a movie or an episode you can simply do checkin from your phone or tablet and the episode will be automatically marked as watched in 15-40 minutes (based on the episode\movie lenth).
 

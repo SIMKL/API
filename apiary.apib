@@ -676,6 +676,11 @@ https://api.simkl.com/redirect?to=Simkl&imdb=https://www.imdb.com/title/tt152021
             + `http://www.imdb.com/title/tt1520211/`
     + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
     + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + anilist (optional, integer, `21`) ... AniList ID
+    + kitsu (optional, integer, `12`) ... Kitsu ID
+    + livechart (optional, integer, `321`) ... LiveChart ID
+    + anisearch (optional, integer, `2227`) ... aniSearch ID
+    + animeplanet (optional, integer, `one-piece`) ... Anime-Planet ID
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 
@@ -823,6 +828,11 @@ Currently supports marking episodes in TV Shows and Anime. If you would like mar
             + `http://www.imdb.com/title/tt1520211/`
     + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
     + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + anilist (optional, integer, `21`) ... AniList ID
+    + kitsu (optional, integer, `12`) ... Kitsu ID
+    + livechart (optional, integer, `321`) ... LiveChart ID
+    + anisearch (optional, integer, `2227`) ... aniSearch ID
+    + animeplanet (optional, integer, `one-piece`) ... Anime-Planet ID
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 
@@ -872,6 +882,11 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
             + `http://www.imdb.com/title/tt1972591/`
     + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
     + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + anilist (optional, integer, `21`) ... AniList ID
+    + kitsu (optional, integer, `12`) ... Kitsu ID
+    + livechart (optional, integer, `321`) ... LiveChart ID
+    + anisearch (optional, integer, `2227`) ... aniSearch ID
+    + animeplanet (optional, integer, `one-piece`) ... Anime-Planet ID
     + type  (optional, string) ... Only used when sending tmdb. 
         + Values
             + `show`
@@ -1850,7 +1865,12 @@ Returns a single detail info of the anime. Same as `/tv/summary` endpoint + adde
                 "allcin": "340525",
                 "imdb": "tt2098220",
                 "offjp": "https:\/\/twitter.com\/hunter_anime",
-                "crunchyroll": "hunter-x-hunter"
+                "crunchyroll": "hunter-x-hunter",
+                "anilist": "11061",
+                "kitsu": "6448",
+                "livechart": "317",
+                "anisearch": "7223",
+                "animeplanet": "hunter-x-hunter-2011"
             },
             "en_title": null,
             "rank": 7,

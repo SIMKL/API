@@ -873,6 +873,10 @@ HTML example of a button: https://codepen.io/masyk/pen/BaGLmNr
 <h4>&#128275; Token Not Required</h4>
 You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB, AniDB, Hulu, Netflix, MAL, Crunchyroll ID. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects).
 
+`status` field values in response are:
+    `ended`,`tba`,`airing` for anime\tv and
+    `released`,`upcoming` for movies.
+
 + Parameters
 
     + simkl (optional, integer, `2090`) ... Simkl `id`. 
@@ -910,8 +914,6 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
     **Search by ID**, IMDB example:
     
     https://api.simkl.com/search/id?imdb=tt1972591&client_id=***
-    Possible values for  `status` field are `ended`,`tba`,`airing` for anime\tv and 
-    `released`,`upcoming` for movies.
 
     PS: Please use your `client_id`.
     
@@ -930,7 +932,18 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
                 "ids": {
                     "simkl": 388306,
                     "slug": "king-arthur-legend-of-the-sword"
-                }
+                },
+            }, {
+                "type": "tv",
+                "title": "The Walking Dead",
+                "poster": "16\/16913426086fc13",
+                "year": 2010,
+                "status": "ended",
+                "ids": {
+                    "simkl": 2090,
+                    "slug": "the-walking-dead"
+                },
+                "total_episodes": 177
             }]
             
 ## Text [/search/{type}{?q,client_id}]

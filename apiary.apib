@@ -910,6 +910,8 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
     **Search by ID**, IMDB example:
     
     https://api.simkl.com/search/id?imdb=tt1972591&client_id=***
+    Possible values for  `status` field are `ended`,`tba`,`airing` for anime\tv and 
+    `released`,`upcoming` for movies.
 
     PS: Please use your `client_id`.
     
@@ -924,6 +926,7 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
                 "title": "King Arthur: Legend of the Sword",
                 "poster": "28/2893788382afb90ce",
                 "year": 2017,
+                "status": "released",
                 "ids": {
                     "simkl": 388306,
                     "slug": "king-arthur-legend-of-the-sword"

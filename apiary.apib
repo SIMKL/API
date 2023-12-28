@@ -288,7 +288,7 @@ To obtain the `client_id` and `client_secret` please [create an app first](https
 To make calls on behalf of a user you have to obtain an `access_token`. To do this, first use **https://simkl.com/oauth/authorize** method to get `code` and then post it in JSON format to **https://api.simkl.com/oauth/token** url. In response you'll get the `access_token`.
 For more details see Authorize and Token sections below.
 
-  **So step 1 for OAuth - Open the URL that looks like this in your Browser or in a Custom Tab (do not use WebView) on mobile device from your app:**
+  **So STEP  1 for OAuth - Open the URL that looks like this in your Browser or in a Custom Tab (do not use WebView) on mobile device from your app:**
   
 + Request https://simkl.com/oauth/authorize?response_type=code&client_id=c7be48f1559a6d794w1925237c626326c7bsdfsa559a6d794w1925137c626316&redirect_uri=http://yourdomain.com/oauth.html
         
@@ -322,7 +322,7 @@ Once you have an access token you can use it to make calls on behalf of a user.
 
 ## Token [/oauth/token]
 ### Exchange code for access_token [POST]
-The redirect to your application in the step above will include a `code` parameter which you can exchange for an `access_token` using this method. 
+**STEP 2:** The redirect to your application in the step above will include a `code` parameter which you can exchange for an `access_token` using this method. 
 
 Save the `access_token` somewhere safe. From that moment your app can authenticate the user by sending the `Authorization` header.
 

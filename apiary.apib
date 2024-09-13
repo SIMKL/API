@@ -2760,7 +2760,7 @@ Steps for **how to use it** with `date_from` field:
 2. Fetch all data from */sync/get-all-items* endpoint without `date_from` field
 3. After some time, check this endpoint for any changes(compare the dates from this endpoint with you local saved copy, any specific date you need or just the main `"all": "2016-10-29T09:03:45Z"` date). 
 4. On dates change 
-    - use the date saved from your 1 step (ex. "all": "2016-10-29T09:03:45Z") as `date_from` field value in */sync/get-all-items* endpoint
+    - use the date saved from your 1 step (ex. `"all": "2016-10-29T09:03:45Z"`) as `date_from` field value in */sync/get-all-items* endpoint
     - save the new datetime values from this endpoint to your local/cloud storage
     - go to step 3
 

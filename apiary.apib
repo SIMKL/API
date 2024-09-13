@@ -2838,6 +2838,16 @@ The API will return all items (movies, shows, anime) that the user has in their 
 
 After some time, check the `/sync/activities` endpoint for any changes. You can compare the dates from this endpoint with your locally saved copy. You may compare any specific date you need (e.g., `movies.completed`, `tv_shows.watching`) or just the main `all` date (`"all": "2023-10-12T09:03:45Z"`).
 
+To keep your app's data current, periodically check the /sync/activities endpoint for changes. Here are optimal times to perform this check:
+
+- **When the User Opens the App:** Sync immediately to ensure the latest data is displayed.
+- **When the App Becomes Active:** If the app was in the background, check for updates when it becomes active again.
+- **After User Actions:** Sync after the user watches an episode, rates an item, or modifies their watchlist.
+- **At Regular Intervals:** For apps that stay open, consider syncing every few hours to keep data fresh.
+
+By syncing during these key moments, your app stays up-to-date without unnecessary API calls.
+
+
 **Request:**
 
 ```http

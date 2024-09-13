@@ -2751,13 +2751,13 @@ To start a sync first check the last activities of the user and then do an updat
 **How to properly use `date_from` together with the <a href="#reference/sync/last-activities">Last Activities</a> and <a href="#reference/sync/get-all-items">Get All Items</a>
  endpoints**
 
-To efficiently synchronize a user's watch history with your application using the Simkl API, you should leverage the `date_from` parameter in conjunction with the `/sync/activities` endpoint. This allows you to fetch only the data that has changed since your last sync, reducing data transfer and processing time. Below is a step-by-step guide on how to implement this:
+To efficiently synchronize a user's watch history with your application using the Simkl API, you should leverage the `date_from` parameter in conjunction with the <a href="#reference/sync/last-activities">`/sync/activities`</a> endpoint. This allows you to fetch only the data that has changed since your last sync, reducing data transfer and processing time. Below is a step-by-step guide on how to implement this:
 
 ### **1. Initial Sync (First Request)**
 
 **a. Call the <a href="#reference/sync/last-activities">Last Activities</a> Endpoint**
 
-Begin by making a request to the `/sync/activities` endpoint to retrieve the latest activity timestamps for the user. This endpoint provides timestamps for various categories and media types, indicating the last time each was updated.
+Begin by making a request to the <a href="#reference/sync/last-activities">`/sync/activities`</a> endpoint to retrieve the latest activity timestamps for the user. This endpoint provides timestamps for various categories and media types, indicating the last time each was updated.
 
 **Request:**
 
@@ -2834,9 +2834,9 @@ The API will return all items (movies, shows, anime) that the user has in their 
 
 **a. Periodically Check for Updates**
 
-After some time, check the `/sync/activities` endpoint for any changes. You can compare the dates from this endpoint with your locally saved copy. You may compare any specific date you need (e.g., `movies.completed`, `tv_shows.watching`) or just the main `all` date (`"all": "2023-10-12T09:03:45Z"`).
+After some time, check the <a href="#reference/sync/last-activities">`/sync/activities`</a> endpoint for any changes. You can compare the dates from this endpoint with your locally saved copy. You may compare any specific date you need (e.g., `movies.completed`, `tv_shows.watching`) or just the main `all` date (`"all": "2023-10-12T09:03:45Z"`).
 
-To keep your app's data current, periodically check the `/sync/activities` endpoint for changes. Here are optimal times to perform this check:
+To keep your app's data current, periodically check the <a href="#reference/sync/last-activities">`/sync/activities`</a> endpoint for changes. Here are optimal times to perform this check:
 
 - **When the User Opens the App:** Sync immediately to ensure the latest data is displayed.
 - **When the App Becomes Active:** If the app was in the background, check for updates when it becomes active again.
@@ -2893,7 +2893,7 @@ If items were removed, you might need to call `/sync/all-items/` without `date_f
 
 **e. Update Saved Timestamps**
 
-After processing the updates, overwrite your saved timestamps with the new ones from the latest `/sync/activities` response. This ensures your next sync will use the correct `date_from` values.
+After processing the updates, overwrite your saved timestamps with the new ones from the latest <a href="#reference/sync/last-activities">`/sync/activities`</a> response. This ensures your next sync will use the correct `date_from` values.
 
 ---
 
@@ -2901,7 +2901,7 @@ After processing the updates, overwrite your saved timestamps with the new ones 
 
 #### **First Sync:**
 
-1. **Call `/sync/activities` and Save Timestamps**
+1. **Call <a href="#reference/sync/last-activities">`/sync/activities`</a> and Save Timestamps**
 
    ```http
    POST https://api.simkl.com/sync/activities
@@ -2921,7 +2921,7 @@ After processing the updates, overwrite your saved timestamps with the new ones 
 
 #### **Subsequent Syncs:**
 
-###### 1. **Call `/sync/activities`**
+###### 1. **Call <a href="#reference/sync/last-activities">`/sync/activities`</a>**
 
    ```http
    POST https://api.simkl.com/sync/activities
@@ -2947,7 +2947,7 @@ After processing the updates, overwrite your saved timestamps with the new ones 
 
 ###### 5. **Update Saved Timestamps**
 
-   Replace old timestamps with the new ones from the latest `/sync/activities` response.
+   Replace old timestamps with the new ones from the latest <a href="#reference/sync/last-activities">`/sync/activities`</a> response.
 
 ---
 
@@ -3006,12 +3006,12 @@ By following these steps, you ensure that:
 ### Example Workflow Recap [GET]
 
 1. **First Sync:**
-   - Save all timestamps from `/sync/activities`.
+   - Save all timestamps from <a href="#reference/sync/last-activities">`/sync/activities`</a>.
    - Fetch all items without `date_from`.
    - Store data locally.
 
 2. **Further Syncs:**
-   - Call `/sync/activities` to get new timestamps.
+   - Call <a href="#reference/sync/last-activities">`/sync/activities`</a> to get new timestamps.
    - Compare with saved timestamps.
    - For each changed category:
      - Use the relevant saved timestamp as `date_from` in `/sync/all-items/` request.
@@ -3046,10 +3046,10 @@ Name|Description
 Steps for **how to use it** with `date_from` field: 
 
 1. Save all datetime values from this endpoint to your local/cloud storage of the APP
-2. Fetch all data from */sync/get-all-items* endpoint without `date_from` field
+2. Fetch all data from <a href="#reference/sync/get-all-items">*/sync/get-all-items*</a> endpoint without `date_from` field
 3. After some time, check this endpoint for any changes(compare the dates from this endpoint with you local saved copy, any specific date you need or just the main `"all": "2016-10-29T09:03:45Z"` date). 
 4. On dates change 
-    - use the date saved from your 1 step (ex. `"all": "2016-10-29T09:03:45Z"`) as `date_from` field value in */sync/get-all-items* endpoint
+    - use the date saved from your 1 step (ex. `"all": "2016-10-29T09:03:45Z"`) as `date_from` field value in <a href="#reference/sync/get-all-items">*/sync/get-all-items*</a> endpoint
     - save the new datetime values from this endpoint to your local/cloud storage
     - go to step 3
 

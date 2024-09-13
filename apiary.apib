@@ -32,6 +32,7 @@ To successfully start using Simkl API, you need to:
 2. **[Create a new app in your account](https://simkl.com/settings/developer/new/)** to get your API key (`client_id`).
 3. **[Join the Discord Server to chat](https://discord.gg/MJsWNE4)**
 <br><br>Join the [community](https://discord.gg/MJsWNE4) to talk, learn about and discuss the Simkl APIs. Or DM directly on Discord.
+
 ## Requirements
 ### 1. When using the API, a link is required back to https://simkl.com/ or directly to an item related to the API request. If not sure how to implement, let us know at support@simkl.com or DM directly on Discord.
 ### 2. The Simkl API is not authorized for use in conjunction with other competing services of the same nature if your service or app does not provide Simkl login and Sync functionality with Simkl, including but not limited to TV, Movie, Anime, Manga list/tracker services. If you are interested in using this service within your own application or website, please contact us at though our Discord and we will be happy to discuss it further!
@@ -940,28 +941,30 @@ You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB,
         
     + Body
 
-            [{
-                "type": "movie",
-                "title": "King Arthur: Legend of the Sword",
-                "poster": "28/2893788382afb90ce",
-                "year": 2017,
-                "status": "released",
-                "ids": {
-                    "simkl": 388306,
-                    "slug": "king-arthur-legend-of-the-sword"
+            [
+                {
+                    "type": "movie",
+                    "title": "King Arthur: Legend of the Sword",
+                    "poster": "28/2893788382afb90ce",
+                    "year": 2017,
+                    "status": "released",
+                    "ids": {
+                        "simkl": 388306,
+                        "slug": "king-arthur-legend-of-the-sword"
+                    }
+                },{
+                    "type": "tv",
+                    "title": "The Walking Dead",
+                    "poster": "16\/16913426086fc13",
+                    "year": 2010,
+                    "status": "ended",
+                    "ids": {
+                        "simkl": 2090,
+                        "slug": "the-walking-dead"
+                    },
+                    "total_episodes": 177
                 }
-            },{
-                "type": "tv",
-                "title": "The Walking Dead",
-                "poster": "16\/16913426086fc13",
-                "year": 2010,
-                "status": "ended",
-                "ids": {
-                    "simkl": 2090,
-                    "slug": "the-walking-dead"
-                },
-                "total_episodes": 177
-            }]
+            ]
             
 ## Text [/search/{type}{?q,client_id}]
 ### Get items based on text query[GET]
@@ -1469,75 +1472,77 @@ This endpoint's default url filters are `?wltime=today&langs=en&subtype=-t_docum
         
     + Body
 
-    [{
-        "title": "Bluey",
-        "url": "\/tv\/922016\/bluey",
-        "poster": "73\/731473004195ba690",
-        "fanart": "76\/7674468ee5d6bd79b",
-        "ids": {
-                "simkl_id": 922016,
-                "slug": "bluey",
-                "tmdb": "82728"
-        },
-        "release_date": "10\/01\/2018",
-        "rank": 1,
-        "drop_rate": "7.1%",
-        "watched": 320,
-        "plan_to_watch": 57,
-        "ratings": {
-                "simkl": {
-                        "rating": 6.65,
-                        "votes": 23
-                },
-                "imdb": {
-                        "rating": 9.6,
-                        "votes": 10966
-                }
-        },
-        "country": "au",
-        "runtime": "7m",
-        "status": "ongoing",
-        "total_episodes": 155,
-        "network": "ABC Kids",
-        "metadata": "2018 -  \u2022 ABC Kids \u2022 155 episodes",
-        "overview": "Bluey is an inexhaustible six year-old Blue Heeler dog, who loves to play and turns everyday family life into extraordinary adventures, developing her imagination as well as her mental, physical and emotional resilience.",
-        "genres": ["Animation", "Children", "Comedy", "Family"],
-        "trailer": "3pKDcQTY98E"
-    }, {
-        "title": "The Chosen",
-        "url": "\/tv\/995148\/the-chosen",
-        "poster": "96\/96387344b88c0a170",
-        "fanart": "90\/902468623a9ca1a0e",
-        "ids": {
-                "simkl_id": 995148,
-                "slug": "the-chosen",
-                "tmdb": "85077"
-        },
-        "release_date": "09\/21\/2017",
-        "rank": 16,
-        "drop_rate": "16.1%",
-        "watched": 192,
-        "plan_to_watch": 104,
-        "ratings": {
-                "simkl": {
-                        "rating": 7.26,
-                        "votes": 23
-                },
-                "imdb": {
-                        "rating": 9.3,
-                        "votes": 30133
-                }
-        },
-        "country": "us",
-        "runtime": "55m",
-        "status": "ongoing",
-        "total_episodes": 25,
-        "network": "Angel.com",
-        "metadata": "2017 -  \u2022 Angel.com \u2022 25 episodes",
-        "overview": "A charismatic fisherman drowning in debt. A troubled woman wrestling with real demons. A young tax collector ostracized by society. A religious leader questioning his faith tradition.",
-        "genres": ["Drama", "Family", "History"],
-        "trailer": "K1-FoFj8Jbo"
-    }]
+    [
+        {
+            "title": "Bluey",
+            "url": "\/tv\/922016\/bluey",
+            "poster": "73\/731473004195ba690",
+            "fanart": "76\/7674468ee5d6bd79b",
+            "ids": {
+                    "simkl_id": 922016,
+                    "slug": "bluey",
+                    "tmdb": "82728"
+            },
+            "release_date": "10\/01\/2018",
+            "rank": 1,
+            "drop_rate": "7.1%",
+            "watched": 320,
+            "plan_to_watch": 57,
+            "ratings": {
+                    "simkl": {
+                            "rating": 6.65,
+                            "votes": 23
+                    },
+                    "imdb": {
+                            "rating": 9.6,
+                            "votes": 10966
+                    }
+            },
+            "country": "au",
+            "runtime": "7m",
+            "status": "ongoing",
+            "total_episodes": 155,
+            "network": "ABC Kids",
+            "metadata": "2018 -  \u2022 ABC Kids \u2022 155 episodes",
+            "overview": "Bluey is an inexhaustible six year-old Blue Heeler dog, who loves to play and turns everyday family life into extraordinary adventures, developing her imagination as well as her mental, physical and emotional resilience.",
+            "genres": ["Animation", "Children", "Comedy", "Family"],
+            "trailer": "3pKDcQTY98E"
+        }, {
+            "title": "The Chosen",
+            "url": "\/tv\/995148\/the-chosen",
+            "poster": "96\/96387344b88c0a170",
+            "fanart": "90\/902468623a9ca1a0e",
+            "ids": {
+                    "simkl_id": 995148,
+                    "slug": "the-chosen",
+                    "tmdb": "85077"
+            },
+            "release_date": "09\/21\/2017",
+            "rank": 16,
+            "drop_rate": "16.1%",
+            "watched": 192,
+            "plan_to_watch": 104,
+            "ratings": {
+                    "simkl": {
+                            "rating": 7.26,
+                            "votes": 23
+                    },
+                    "imdb": {
+                            "rating": 9.3,
+                            "votes": 30133
+                    }
+            },
+            "country": "us",
+            "runtime": "55m",
+            "status": "ongoing",
+            "total_episodes": 25,
+            "network": "Angel.com",
+            "metadata": "2017 -  \u2022 Angel.com \u2022 25 episodes",
+            "overview": "A charismatic fisherman drowning in debt. A troubled woman wrestling with real demons. A young tax collector ostracized by society. A religious leader questioning his faith tradition.",
+            "genres": ["Drama", "Family", "History"],
+            "trailer": "K1-FoFj8Jbo"
+        }
+    ]
 
     
 ## Genres [/tv/genres/{genre}/{type}/{country}/{network}/{year}/{sort}{?client_id}]
@@ -2081,77 +2086,79 @@ This endpoint's default url filters are `?wltime=today`
         
     + Body
 
-    [{
-        "title": "Bleach: Sennen Kessen Hen",
-        "url": "\/anime\/1300367\/bleach-sennen-kessen-hen",
-        "poster": "97\/973878056c6c7a33d",
-        "fanart": "13\/1331024111faa4e05d",
-        "ids": {
-                "simkl_id": 1300367,
-                "slug": "bleach-sennen-kessen-hen",
-                "tmdb": "100645"
-        },
-        "release_date": "10\/10\/2022",
-        "rank": 1,
-        "drop_rate": "0.9%",
-        "watched": 1247,
-        "plan_to_watch": 1052,
-        "ratings": {
-                "simkl": {
-                        "rating": 9.08,
-                        "votes": 161
-                },
-                "mal": {
-                        "rating": 9.2,
-                        "votes": 111479
-                }
-        },
-        "country": "jp",
-        "runtime": "25m",
-        "status": "ended",
-        "anime_type": "tv",
-        "total_episodes": 13,
-        "network": "TV Tokyo",
-        "metadata": "2022 - 2022 \u2022 TV Tokyo \u2022 13 episodes",
-        "overview": "* Based on an adventure supernatural shounen manga by Kubo Taito.<br><br>The peace is suddenly broken when warning sirens blare through the Soul Society. Residents there are disappearing without a trace, and nobody knows who`s behind it. Meanwhile, a dark shadow is also extending itself toward Ichigo and his friends in Karakura Town...",
-        "genres": ["Action", "Adventure", "Comedy", "Fantasy", "Magic", "Shounen", "Super Power", "Supernatural"],
-        "trailer": "1sygUhb8Q2Y"
-    }, {
-        "title": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
-        "url": "\/anime\/1462529\/kaguya-sama-wa-kokurasetai-ultra-romantic",
-        "poster": "11\/118961816276f04351",
-        "fanart": "12\/126537094d86545d2c",
-        "ids": {
-                "simkl_id": 1462529,
-                "slug": "kaguya-sama-wa-kokurasetai-ultra-romantic",
-                "tmdb": null
-        },
-        "release_date": "04\/08\/2022",
-        "rank": 4,
-        "drop_rate": "0.7%",
-        "watched": 2222,
-        "plan_to_watch": 768,
-        "ratings": {
-                "simkl": {
-                        "rating": 9.07,
-                        "votes": 466
-                },
-                "mal": {
-                        "rating": 9.1,
-                        "votes": 382462
-                }
-        },
-        "country": "",
-        "runtime": "25m",
-        "status": "ended",
-        "anime_type": "tv",
-        "total_episodes": 13,
-        "network": null,
-        "metadata": "2022 - 2022 \u2022 13 episodes",
-        "overview": "* Based on a romantic comedy seinen manga by Akasaka Aka.<br><br>Can Miyuki and Kaguya help Yuu escape the aggro of all his female classmates, let alone win the favor of the girl he`s crushing on? Then, it`s Miyuki who is teaching Chika a new skill for a change. Kaguya faces the temptations and pitfalls of her new smartphone and social media. Ai takes on yet another secret identity. And the student council`s parents cross paths at school conferences where they must decide what colleges their children will apply to.<br><br>When you make plans, the gods laugh.<br><br>Note: The first episode premiered at screenings in Los Angeles and New York on April 2, ahead of the regular TV broadcast on April 9.",
-        "genres": ["Comedy", "Psychological", "Romance", "School", "Seinen"],
-        "trailer": "vFN5K-iAyV0"
-    }]
+    [
+        {
+            "title": "Bleach: Sennen Kessen Hen",
+            "url": "\/anime\/1300367\/bleach-sennen-kessen-hen",
+            "poster": "97\/973878056c6c7a33d",
+            "fanart": "13\/1331024111faa4e05d",
+            "ids": {
+                    "simkl_id": 1300367,
+                    "slug": "bleach-sennen-kessen-hen",
+                    "tmdb": "100645"
+            },
+            "release_date": "10\/10\/2022",
+            "rank": 1,
+            "drop_rate": "0.9%",
+            "watched": 1247,
+            "plan_to_watch": 1052,
+            "ratings": {
+                    "simkl": {
+                            "rating": 9.08,
+                            "votes": 161
+                    },
+                    "mal": {
+                            "rating": 9.2,
+                            "votes": 111479
+                    }
+            },
+            "country": "jp",
+            "runtime": "25m",
+            "status": "ended",
+            "anime_type": "tv",
+            "total_episodes": 13,
+            "network": "TV Tokyo",
+            "metadata": "2022 - 2022 \u2022 TV Tokyo \u2022 13 episodes",
+            "overview": "* Based on an adventure supernatural shounen manga by Kubo Taito.<br><br>The peace is suddenly broken when warning sirens blare through the Soul Society. Residents there are disappearing without a trace, and nobody knows who`s behind it. Meanwhile, a dark shadow is also extending itself toward Ichigo and his friends in Karakura Town...",
+            "genres": ["Action", "Adventure", "Comedy", "Fantasy", "Magic", "Shounen", "Super Power", "Supernatural"],
+            "trailer": "1sygUhb8Q2Y"
+        }, {
+            "title": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
+            "url": "\/anime\/1462529\/kaguya-sama-wa-kokurasetai-ultra-romantic",
+            "poster": "11\/118961816276f04351",
+            "fanart": "12\/126537094d86545d2c",
+            "ids": {
+                    "simkl_id": 1462529,
+                    "slug": "kaguya-sama-wa-kokurasetai-ultra-romantic",
+                    "tmdb": null
+            },
+            "release_date": "04\/08\/2022",
+            "rank": 4,
+            "drop_rate": "0.7%",
+            "watched": 2222,
+            "plan_to_watch": 768,
+            "ratings": {
+                    "simkl": {
+                            "rating": 9.07,
+                            "votes": 466
+                    },
+                    "mal": {
+                            "rating": 9.1,
+                            "votes": 382462
+                    }
+            },
+            "country": "",
+            "runtime": "25m",
+            "status": "ended",
+            "anime_type": "tv",
+            "total_episodes": 13,
+            "network": null,
+            "metadata": "2022 - 2022 \u2022 13 episodes",
+            "overview": "* Based on a romantic comedy seinen manga by Akasaka Aka.<br><br>Can Miyuki and Kaguya help Yuu escape the aggro of all his female classmates, let alone win the favor of the girl he`s crushing on? Then, it`s Miyuki who is teaching Chika a new skill for a change. Kaguya faces the temptations and pitfalls of her new smartphone and social media. Ai takes on yet another secret identity. And the student council`s parents cross paths at school conferences where they must decide what colleges their children will apply to.<br><br>When you make plans, the gods laugh.<br><br>Note: The first episode premiered at screenings in Los Angeles and New York on April 2, ahead of the regular TV broadcast on April 9.",
+            "genres": ["Comedy", "Psychological", "Romance", "School", "Seinen"],
+            "trailer": "vFN5K-iAyV0"
+        }
+    ]
     
 
 ## Genres [/anime/genres/{genre}/{type}/{network}/{year}/{sort}{?client_id}]
@@ -2347,39 +2354,41 @@ Returns ongoing Anime ([Standard Media Object](#introduction/about-simkl-api/sta
         
     + Body
 
-        [{
-            "title": "Nights with a Cat",
-            "year": 2022,
-            "date": "2022-09-14T12:00:00-05:00",
-            "poster": "12\/125209937fa1674c4b",
-            "rank": null,
-            "url": "\/anime\/1897462\/yoru-wa-neko-to-issho",
-            "ids": {
-                "simkl_id": 1897462,
-                "slug": "yoru-wa-neko-to-issho"
-            },
-            "episode": {
-                "episode": 14,
-                "url": "\/anime\/1897462\/yoru-wa-neko-to-issho\/episode-14"
-            },
-            "anime_type": "tv"
-        }, {
-            "title": "Throne of Seal",
-            "year": 2022,
-            "date": null,
-            "poster": "12\/12540566cc860eeeb0",
-            "rank": 4469,
-            "url": "\/anime\/1902682\/shen-yin-wangzuo",
-            "ids": {
-                "simkl_id": 1902682,
-                "slug": "shen-yin-wangzuo"
-            },
-            "episode": {
-                "episode": 23,
-                "url": "\/anime\/1902682\/shen-yin-wangzuo\/episode-23"
-            },
-            "anime_type": "ona"
-        }]
+        [
+            {
+                "title": "Nights with a Cat",
+                "year": 2022,
+                "date": "2022-09-14T12:00:00-05:00",
+                "poster": "12\/125209937fa1674c4b",
+                "rank": null,
+                "url": "\/anime\/1897462\/yoru-wa-neko-to-issho",
+                "ids": {
+                    "simkl_id": 1897462,
+                    "slug": "yoru-wa-neko-to-issho"
+                },
+                "episode": {
+                    "episode": 14,
+                    "url": "\/anime\/1897462\/yoru-wa-neko-to-issho\/episode-14"
+                },
+                "anime_type": "tv"
+            }, {
+                "title": "Throne of Seal",
+                "year": 2022,
+                "date": null,
+                "poster": "12\/12540566cc860eeeb0",
+                "rank": 4469,
+                "url": "\/anime\/1902682\/shen-yin-wangzuo",
+                "ids": {
+                    "simkl_id": 1902682,
+                    "slug": "shen-yin-wangzuo"
+                },
+                "episode": {
+                    "episode": 23,
+                    "url": "\/anime\/1902682\/shen-yin-wangzuo\/episode-23"
+                },
+                "anime_type": "ona"
+            }
+        ]
 
 
 
@@ -3023,8 +3032,8 @@ More details on how to use `date_from` field see <a href="#reference/sync/last-a
 
 
 
-            
-    + Body            
+    + Body
+    
             {
                 "anime": [
                     {
@@ -3090,7 +3099,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/last-a
                 ]
             }
             
-            
+
 ## Add Items to the history [/sync/history]
 ### Add items to watched/watching history [POST]
 <h4>&#128274; Token Required</h4>
@@ -4005,7 +4014,8 @@ Will reply with user's id, Show\Movie URL, Show\Movie title, large poster, and l
                 "poster":"https://simkl.in/posters/30/3082850367420132f_0.jpg",
                 "fanart":"https://simkl.in/fanart/43/4389778c118f40a6f_0.jpg"
             }
-            
+
+
 ### Redirect to last watched image [GET]
 
 Will simply redirect to the image for your app to download or display.

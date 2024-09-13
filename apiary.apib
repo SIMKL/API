@@ -2733,7 +2733,9 @@ This endpoint's default url filters are `?budget=1-500&release=1995-2025&langs=e
     ]
 
 
-        
+
+
+
 # Group Sync
 
 Simkl can be one central place where you store all your watch history. Syncing allows all your devices and apps have your watch history up to date. Use Simkl as your a cloud backup for all your Media history.
@@ -2746,6 +2748,288 @@ is a list of all your movies and episodes that you watched or have in your Plan 
 is a list of movies and episodes that you have on your hard drive, CDs or elsewhere.
 
 To start a sync first check the last activities of the user and then do an update only if the date in one of them have changed scince your last check.
+
+## How to Use Sync [/sync/how-to-use-sync]
+
+**How to Properly Use `date_from` Together with the [Last Activities](#/sync/last-activities) Endpoint**
+
+To efficiently synchronize a user's watch history with your application using the Simkl API, you should leverage the `date_from` parameter in conjunction with the `/sync/activities` endpoint. This allows you to fetch only the data that has changed since your last sync, reducing data transfer and processing time. Below is a step-by-step guide on how to implement this:
+
+### **1. Initial Sync (First Request)**
+
+**a. Call the Last Activities Endpoint**
+
+Begin by making a request to the `/sync/activities` endpoint to retrieve the latest activity timestamps for the user. This endpoint provides timestamps for various categories and media types, indicating the last time each was updated.
+
+**Request:**
+
+```http
+POST https://api.simkl.com/sync/activities
+Headers:
+    Authorization: Bearer [token]
+    simkl-api-key: [client_id]
+```
+
+**Response Example:**
+
+```json
+{
+    "all": "2023-10-12T09:03:45Z",
+    "settings": {
+        "all": "2023-10-10T09:17:15Z"
+    },
+    "tv_shows": {
+        "all": "2023-10-12T09:03:45Z",
+        "rated_at": "2023-10-11T08:00:00Z",
+        "plantowatch": "2023-10-12T09:03:45Z",
+        "watching": "2023-10-10T07:00:00Z",
+        "completed": "2023-10-09T06:00:00Z",
+        "hold": null,
+        "dropped": "2023-10-08T05:00:00Z",
+        "removed_from_list": "2023-10-07T04:00:00Z"
+    },
+    "anime": {
+        "all": "2023-10-12T09:03:45Z",
+        "rated_at": "2023-10-10T08:00:00Z",
+        "plantowatch": "2023-10-11T09:03:45Z",
+        "watching": "2023-10-09T07:00:00Z",
+        "completed": "2023-10-08T06:00:00Z",
+        "hold": null,
+        "dropped": "2023-10-07T05:00:00Z",
+        "removed_from_list": "2023-10-06T04:00:00Z"
+    },
+    "movies": {
+        "all": "2023-10-12T09:03:45Z",
+        "rated_at": "2023-10-11T08:00:00Z",
+        "plantowatch": "2023-10-10T09:03:45Z",
+        "completed": "2023-10-09T07:00:00Z",
+        "dropped": "2023-10-08T06:00:00Z",
+        "removed_from_list": "2023-10-07T05:00:00Z"
+    }
+}
+```
+
+**b. Save the Timestamps**
+
+Store all the datetime values from the response in your application's local or cloud storage. These timestamps will be used to determine changes in the user's data during subsequent syncs.
+
+**c. Fetch All Data Without `date_from`**
+
+Since this is the first sync and you have no prior data, you need to retrieve the entire watchlist.
+
+**Request:**
+
+```http
+GET https://api.simkl.com/sync/all-items/
+Headers:
+    Authorization: Bearer [token]
+    simkl-api-key: [client_id]
+```
+
+**Response:**
+
+The API will return all items (movies, shows, anime) that the user has in their watchlist. Process and store this data in your application as the baseline for future syncs.
+
+---
+
+### **2. Subsequent Syncs (Further Requests)**
+
+**a. Periodically Check for Updates**
+
+After some time, check the `/sync/activities` endpoint for any changes. You can compare the dates from this endpoint with your locally saved copy. You may compare any specific date you need (e.g., `movies.completed`, `tv_shows.watching`) or just the main `all` date (`"all": "2023-10-12T09:03:45Z"`).
+
+**Request:**
+
+```http
+POST https://api.simkl.com/sync/activities
+Headers:
+    Authorization: Bearer [token]
+    simkl-api-key: [client_id]
+```
+
+**b. Compare Timestamps**
+
+Compare the new timestamps received with the ones you previously saved.
+
+- **If a Timestamp Has Changed:** This indicates that data in that category has been updated since your last sync.
+- **If a Timestamp Has Not Changed:** No action is needed for that category.
+
+**Note:** Depending on your application's requirements, you can choose to monitor specific timestamps that are relevant to your data synchronization needs, or you can rely on the main `"all"` timestamp for a broader check.
+
+**c. Use `date_from` Parameter for Updates**
+
+For each category where the timestamp has changed, use the `date_from` parameter in your requests to fetch only the updated data.
+
+**Request Example for Updated Shows:**
+
+```http
+GET https://api.simkl.com/sync/all-items/shows/?date_from=2023-10-10T07:00:00Z
+Headers:
+    Authorization: Bearer [token]
+    simkl-api-key: [client_id]
+```
+
+- **`date_from` Value:** Use the saved timestamp from your last sync for that specific category.
+
+**d. Process Updated Data**
+
+Update your local data store with the items received:
+
+- **Add New Items:** Include any new shows, movies, or episodes added.
+- **Update Existing Items:** Reflect changes in status, ratings, or watched episodes.
+- **Remove Deleted Items:** If the `removed_from_list` timestamp has changed, identify and remove items that are no longer in the user's watchlist.
+
+**Handling Removals:**
+
+If items were removed, you might need to call `/sync/all-items/` without `date_from` to get the full current list and compare it with your local data to determine which items have been removed.
+
+**e. Update Saved Timestamps**
+
+After processing the updates, overwrite your saved timestamps with the new ones from the latest `/sync/activities` response. This ensures your next sync will use the correct `date_from` values.
+
+---
+
+### **3. Detailed Steps with Examples**
+
+**First Sync:**
+
+1. **Call `/sync/activities` and Save Timestamps**
+
+   ```http
+   POST https://api.simkl.com/sync/activities
+   ```
+
+   Save the entire response.
+
+2. **Fetch All Items Without `date_from`**
+
+   ```http
+   GET https://api.simkl.com/sync/all-items/
+   ```
+
+   Process and store the data locally.
+
+**Subsequent Syncs:**
+
+1. **Call `/sync/activities`**
+
+   ```http
+   POST https://api.simkl.com/sync/activities
+   ```
+
+2. **Compare Timestamps**
+
+   Compare each timestamp with the saved ones.
+
+   - **Example:** If `movies.rated_at` has changed from `2023-10-11T08:00:00Z` to `2023-10-12T09:00:00Z`, you need to fetch updated movie ratings.
+
+3. **Fetch Updates with `date_from`**
+
+   For updated categories, make requests like:
+
+   ```http
+   GET https://api.simkl.com/sync/all-items/movies/?date_from=2023-10-11T08:00:00Z
+   ```
+
+4. **Process Updates**
+
+   - **Add or Update Items:** Incorporate new data into your local store.
+   - **Remove Items:** If `removed_from_list` has changed, fetch the full list and remove items not present.
+
+5. **Update Saved Timestamps**
+
+   Replace old timestamps with the new ones from the latest `/sync/activities` response.
+
+---
+
+### **4. Handling Specific Scenarios**
+
+**Ratings Updates:**
+
+- If `rated_at` has changed, use `/sync/ratings` with `date_from` to get the latest ratings.
+
+  **Request:**
+
+  ```http
+  GET https://api.simkl.com/sync/ratings/?date_from=2023-10-11T08:00:00Z
+  Headers:
+      Authorization: Bearer [token]
+      simkl-api-key: [client_id]
+  ```
+
+**Note on Automatic Moves:**
+
+- When a user rates an item not in their list, it may automatically move to `Completed` or `Watching`. However, the `completed_at` timestamp may not update. Always check ratings when `rated_at` changes.
+
+**Use of Extended Parameters:**
+
+- When needing detailed information (e.g., watched episodes), use `extended=full` and `episode_watched_at=yes`:
+
+  ```http
+  GET https://api.simkl.com/sync/all-items/shows/?extended=full&episode_watched_at=yes&date_from=2023-10-10T07:00:00Z
+  Headers:
+      Authorization: Bearer [token]
+      simkl-api-key: [client_id]
+  ```
+
+- **Caution:** These parameters increase response size. Always use them with `date_from` to minimize data transfer.
+
+---
+
+### **5. Tips and Best Practices**
+
+- **Time Zones:** All timestamps are in UTC. Convert them appropriately if your application operates in a different time zone.
+- **Error Handling:** Implement robust error handling for network issues or unexpected responses.
+- **Data Integrity:** Ensure that your local data store accurately reflects the user's data on Simkl after each sync.
+- **Rate Limiting:** Be mindful of API rate limits. Avoid excessive calls by scheduling syncs appropriately.
+
+---
+
+### **6. Summary**
+
+By following these steps, you ensure that:
+
+- Your application stays up-to-date with the user's Simkl watch history.
+- Data transfer is minimized by only fetching changes since the last sync.
+- The user experiences seamless synchronization without unnecessary delays or data usage.
+
+---
+
+**Example Workflow Recap:**
+
+1. **First Sync:**
+
+   - Save all timestamps from `/sync/activities`.
+   - Fetch all items without `date_from`.
+   - Store data locally.
+
+2. **Further Syncs:**
+
+   - Call `/sync/activities` to get new timestamps.
+   - Compare with saved timestamps.
+   - For each changed category:
+     - Use the relevant saved timestamp as `date_from` in `/sync/all-items/` request.
+     - Process and update local data.
+   - Update saved timestamps for the next sync.
+
+By properly using `date_from` with the activity endpoint and comparing the specific dates you need or just the main `"all"` date, you optimize your application's performance and provide a better experience for your users.
+
+### Example Workflow Recap [GET]
+
+1. **First Sync:**
+   - Save all timestamps from `/sync/activities`.
+   - Fetch all items without `date_from`.
+   - Store data locally.
+
+2. **Further Syncs:**
+   - Call `/sync/activities` to get new timestamps.
+   - Compare with saved timestamps.
+   - For each changed category:
+     - Use the relevant saved timestamp as `date_from` in `/sync/all-items/` request.
+     - Process and update local data.
+   - Update saved timestamps for the next sync.
+
++ Response 200
 
 ## Last Activities [/sync/activities]
 ### Get last activity [POST]

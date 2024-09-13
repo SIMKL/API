@@ -2993,26 +2993,6 @@ By following these steps, you ensure that:
 - Data transfer is minimized by only fetching changes since the last sync.
 - The user experiences seamless synchronization without unnecessary delays or data usage.
 
----
-
-**Example Workflow Recap:**
-
-1. **First Sync:**
-
-   - Save all timestamps from `/sync/activities`.
-   - Fetch all items without `date_from`.
-   - Store data locally.
-
-2. **Further Syncs:**
-
-   - Call `/sync/activities` to get new timestamps.
-   - Compare with saved timestamps.
-   - For each changed category:
-     - Use the relevant saved timestamp as `date_from` in `/sync/all-items/` request.
-     - Process and update local data.
-   - Update saved timestamps for the next sync.
-
-By properly using `date_from` with the activity endpoint and comparing the specific dates you need or just the main `"all"` date, you optimize your application's performance and provide a better experience for your users.
 
 ### Example Workflow Recap [GET]
 
@@ -3028,6 +3008,10 @@ By properly using `date_from` with the activity endpoint and comparing the speci
      - Use the relevant saved timestamp as `date_from` in `/sync/all-items/` request.
      - Process and update local data.
    - Update saved timestamps for the next sync.
+   
+  
+By properly using `date_from` with the activity endpoint and comparing the specific dates you need or just the main `"all"` date, you optimize your application's performance and provide a better experience for your users.
+
 
 + Response 200
 

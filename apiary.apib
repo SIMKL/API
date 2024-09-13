@@ -2748,7 +2748,8 @@ To start a sync first check the last activities of the user and then do an updat
 
 ## How to Use Sync [/sync/how-to-use-sync]
 
-**How to Properly Use `date_from` Together with the `Last Activities` Endpoint**
+**How to properly use `date_from` together with the <a href="#reference/sync/last-activities">Last Activities</a> and <a href="#reference/sync/get-all-items">Get All Items</a>
+ endpoints**
 
 To efficiently synchronize a user's watch history with your application using the Simkl API, you should leverage the `date_from` parameter in conjunction with the `/sync/activities` endpoint. This allows you to fetch only the data that has changed since your last sync, reducing data transfer and processing time. Below is a step-by-step guide on how to implement this:
 
@@ -3119,7 +3120,7 @@ Variable|Description
 
 **IMPORTANT:** Please keep in mind that adding more data to the request (using extended and episode_watched_at) makes the reply exponentially larger, + a few megabytes in most cases, so please use it only when needed and always with the use of `date_from` so that the server reply was very small and fast.
 
-More details on how to use `date_from` field see <a href="#reference/sync/last-activities">here</a>
+More details on how to use `date_from` field see <a href="#reference/sync/how-to-use-sync">here</a>
 
 
 + Request (application/json)

@@ -2901,7 +2901,7 @@ After processing the updates, overwrite your saved timestamps with the new ones 
 
 ### **3. Detailed Steps with Examples**
 
-**First Sync:**
+#### **First Sync:**
 
 1. **Call `/sync/activities` and Save Timestamps**
 
@@ -2919,21 +2919,22 @@ After processing the updates, overwrite your saved timestamps with the new ones 
 
    Process and store the data locally.
 
-**Subsequent Syncs:**
 
-1. **Call `/sync/activities`**
+
+#### **Subsequent Syncs:**
+
+###### 1. **Call `/sync/activities`**
 
    ```http
    POST https://api.simkl.com/sync/activities
    ```
-
-2. **Compare Timestamps**
+###### 2. **Compare Timestamps**
 
    Compare each timestamp with the saved ones.
 
    - **Example:** If `movies.rated_at` has changed from `2023-10-11T08:00:00Z` to `2023-10-12T09:00:00Z` (compared to your saved copy), you need to fetch updated movie ratings.
 
-3. **Fetch Updates with `date_from`**
+###### 3. **Fetch Updates with `date_from`**
 
    For updated categories, make requests like:
 
@@ -2941,12 +2942,12 @@ After processing the updates, overwrite your saved timestamps with the new ones 
    GET https://api.simkl.com/sync/all-items/movies/?date_from=2023-10-11T08:00:00Z
    ```
 
-4. **Process Updates**
+###### 4. **Process Updates**
 
    - **Add or Update Items:** Incorporate new data into your local store.
    - **Remove Items:** If `removed_from_list` has changed, fetch the full list and remove items not present.
 
-5. **Update Saved Timestamps**
+###### 5. **Update Saved Timestamps**
 
    Replace old timestamps with the new ones from the latest `/sync/activities` response.
 

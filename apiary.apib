@@ -2733,6 +2733,111 @@ This endpoint's default url filters are `?budget=1-500&release=1995-2025&langs=e
     ]
 
 
+## Genres [/movies/{genre}/{type}/{country}/{year}/{sort}{?client_id}]
+### Get items filtered by genre, years, etc... [GET]
+
+<h4>📄 Pagination &#128275; Token Not Required</h4>
+Returns an array of ([Standard Media Object](#introduction/about-simkl-api/standard-media-objects))
+This endpoint accepts all parameters from the [https://simkl.com/movies/all/](https://simkl.com/movies/all/), select the necessary filters and copy parameters from the URL.
+
+Genres API duplicates the URLs of the Genres on the website, so create a filter on the website and add it to the genres API.
+
++ Parameters
+
+    + genre = all (optional, string, `action`)
+    + type = movies (optional, string, `documentaries`) ... Type of the movie.
+    + country = us (optional, string, `gb`) ... Where the movie was released.
+    + year = 2010s (optional, string, `this-week`)
+    + sort = rank (optional, string, `popular-this-month`)
+    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+   Simple query
+   `https://api.simkl.com/movies/action/2016?client_id=***`
+
+   Query with all parameters
+   `https://api.simkl.com/movies/all/all-types/all-countries/all-years/popular-today?client_id=***`
+
+    PS: Please use your `client_id`.
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        ```json
+        [
+            {
+                "title": "Toy Story 3",
+                "year": 2010,
+                "date": "2010-06-16T00:00:00-05:00",
+                "url": "/movies/63604/toy-story-3",
+                "poster": "92/9239026bcfa0c731",
+                "fanart": "92/9240427e874c8c23",
+                "ids": {
+                    "simkl_id": 63604,
+                    "slug": "toy-story-3"
+                },
+                "rank": 186,
+                "ratings": {
+                    "simkl": {
+                        "rating": 7.8,
+                        "votes": 2742
+                    },
+                    "imdb": {
+                        "rating": 8.3,
+                        "votes": 907118
+                    }
+                }
+            },
+            {
+                "title": "Dangal",
+                "year": 2016,
+                "date": "2016-12-21T00:00:00-05:00",
+                "url": "/movies/524600/dangal",
+                "poster": "53/5327482ea7bd7c77b",
+                "fanart": "16/161418093805d34562",
+                "ids": {
+                    "simkl_id": 524600,
+                    "slug": "dangal"
+                },
+                "rank": 203,
+                "ratings": {
+                    "simkl": {
+                        "rating": 7.9,
+                        "votes": 377
+                    },
+                    "imdb": {
+                        "rating": 8.3,
+                        "votes": 216570
+                    }
+                }
+            },
+            {
+                "title": "Dave Chappelle: Sticks & Stones",
+                "year": 2019,
+                "date": "2019-08-26T00:00:00-05:00",
+                "url": "/movies/1153930/dave-chappelle-sticks-and-stones",
+                "poster": "84/84381468a25ffcf5d",
+                "fanart": "11/11782778acd57d3e71",
+                "ids": {
+                    "simkl_id": 1153930,
+                    "slug": "dave-chappelle-sticks-and-stones"
+                },
+                "rank": 244,
+                "ratings": {
+                    "simkl": {
+                        "rating": 7.7,
+                        "votes": 196
+                    },
+                    "imdb": {
+                        "rating": 8.3,
+                        "votes": 28318
+                    }
+                }
+            }
+        ]
+        ```
 
 
 

@@ -2733,7 +2733,7 @@ This endpoint's default url filters are `?budget=1-500&release=1995-2025&langs=e
     ]
 
 
-## Genres [/movies/{genre}/{type}/{country}/{year}/{sort}{?client_id}]
+## Genres [/movies/genres/{genre}/{type}/{country}/{year}/{sort}{?client_id}]
 ### Get items filtered by genre, years, etc... [GET]
 
 <h4>📄 Pagination &#128275; Token Not Required</h4>
@@ -2754,10 +2754,10 @@ Genres API duplicates the URLs of the Genres on the website, so create a filter 
 + Request
 
    Simple query
-   `https://api.simkl.com/movies/action/2016?client_id=***`
+   `https://api.simkl.com/movies/genres/action/2016?client_id=***`
 
    Query with all parameters
-   `https://api.simkl.com/movies/all/all-types/all-countries/all-years/popular-today?client_id=***`
+   `https://api.simkl.com/movies/genres/all/all-types/all-countries/all-years/popular-today?client_id=***`
 
     PS: Please use your `client_id`.
     

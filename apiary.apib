@@ -3372,7 +3372,8 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
         }
 
 + Request (application/json)
-<h6>Get Anime list and watched episodes:</h6> `https://api.simkl.com/sync/all-items/anime/?extended=full_anime_seasons`
+<h6>Get Anime list and watched episodes:</h6> 
+`https://api.simkl.com/sync/all-items/anime/?extended=full`
 
     + Header
             Authorization: Bearer [token]
@@ -3420,11 +3421,9 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
                     }
                 ]
             }
-
-
-
+            
     + Body
-    
+            
             {
                 "anime": [
                     {
@@ -3443,6 +3442,61 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
                                 "anidb": "9977"
                             }
                         },
+                        "seasons": [
+                            {
+                                "number": 1,
+                                "episodes": [
+                                    { "number": 1 },
+                                    { "number": 2 },
+                                    { "number": 3 },
+                                    { "number": 4 },
+                                    { "number": 5 },
+                                    { "number": 6 },
+                                    { "number": 7 },
+                                    { "number": 8 },
+                                    { "number": 9 },
+                                    { "number": 10 },
+                                    { "number": 11 },
+                                    { "number": 12 }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+
++ Request (application/json)
+<h6>Get Anime list and watched episodes:</h6> 
+`https://api.simkl.com/sync/all-items/anime/?extended=full_anime_seasons`
+
+    + Header
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+            
++ Response 200 (application/json)            
+
+    + Body
+    
+            {
+                "anime": [
+                    {
+                        "last_watched_at": "2015-01-06T13:43:26Z",
+                        "rate": 9,
+                        "status": "watching",
+                        "last_watched": "S01E01",
+                        "next_to_watch": "S01E02",
+                        "show": {
+                            "title": "Fate/Stay Night: Unlimited Blade Works",
+                            "year": 2014,
+                            "ids": {
+                                "simkl": 46116,
+                                "imdb": "tt3621796",
+                                "mal": "22297",
+                                "anidb": "9977",
+                                "tvdb": "278626"
+                            }
+                        },
+                        "tvdb_seasons": [2,3],
                         "seasons": [
                             {
                                 "number": 1,

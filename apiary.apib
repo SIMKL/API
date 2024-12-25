@@ -3223,6 +3223,7 @@ Anime block has `anime_type` field, possible values are `tv`,`special`,`ova`,`mo
 Variable|Description
 ---|----
 `extended=full`| adds a list of episodes user have watched
+`extended=anime_seasons`| same as `full` + TVDB season and episode numbers for every episode.
 `extended=simkl_ids_only`| minified response, returns only simkl IDs and slugs.
 `extended=ids_only`| minified response, returns only all IDs and slugs without any additionl info.
 `episode_watched_at=yes`| adds a time when user watched the episode as `watched_at` time for all episodes
@@ -3256,6 +3257,9 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
     + extended (optional, string, `full`) ... `full` returns more info including a list of watched episodes
         + Values
             + `full`
+            + `anime_seasons`
+            + `simkl_ids_only`
+            + `ids_only`
     + episode_watched_at (optional, string, `yes`) ... `yes` returns the date when user watched the episode
         + Values
             + `yes`

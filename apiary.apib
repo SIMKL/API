@@ -982,8 +982,12 @@ Page limit is 20, max items per page is 50.
             + `tv`
             + `anime`
             + `movie`
-    + q (required, string, `john wick`) ...
-    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+    + q (required, string, `john wick`) ... A search term or a URL pointing to media. When using URLs, **`type`** is optional.
+        + Example: `john wick`
+        + Example: `john wick 2014`
+        + Example: `https://www.imdb.com/title/tt2911666/` 
+        + Example: `https://letterboxd.com/film/john-wick/`
+    + client_id (optional, string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 
 + Request 

@@ -187,6 +187,9 @@ It is required that you cache images in your app or server by `image_url` foreve
 ## Standard Media Objects
 
 All methods will accept or return standard media objects for `movie`, `show`, `episode` items. 
+
+Anime can has `anime_type` with possible values `tv|movie|special|ova|ona|music video`.
+
 Here are examples for all objects:
 
 <table>
@@ -973,6 +976,8 @@ Search items by title, sorted by relevance (what people search most). This metho
 
 For `movies` or `anime` with movie type, tmdb id points to the movies section on TMDB site, otherwise to the TV section 
 
+Items with  `endpoint_type = anime` has additional anime `type` key, see possible values for the `anime_type` key in [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects),
+
 Page limit is 20, max items per page is 50.
 
 + Parameters
@@ -1016,7 +1021,7 @@ Page limit is 20, max items per page is 50.
               "title":"John Wick: Chapter 2",
               "year":2017,
               "poster": "54\/5465988836c0aaa33",
-              "endpoint_type": "movie",
+              "endpoint_type": "movies",
               "ids":{  
                  "simkl_id":471618,
                  "slug":"john-wick-chapter-2",
@@ -1025,7 +1030,7 @@ Page limit is 20, max items per page is 50.
            },
            {  
               "title":"John Wick",
-              "endpoint_type": "movie",
+              "endpoint_type": "movies",
               "year":2014,
               "poster": "28\/2893788382afb90ce",
               "ids":{  
@@ -1036,7 +1041,7 @@ Page limit is 20, max items per page is 50.
            },
            {  
               "title":"John Wick: Chapter 3",
-              "endpoint_type": "movie",
+              "endpoint_type": "movies",
               "year":2019,
               "poster": "57\/5747702654de3d19d",
               "ids":{  
@@ -1072,7 +1077,7 @@ Page limit is 20, max items per page is 50.
 
         [{
             "title": "John Wick: Chapter 2",
-            "endpoint_type": "movie",
+            "endpoint_type": "movies",
             "year": 2017,
             "poster": "50\/501682403c298b56c",
             "url": "\/movies\/471618\/john-wick-chapter-2",
@@ -1094,7 +1099,7 @@ Page limit is 20, max items per page is 50.
             }
         }, {
             "title": "John Wick",
-            "endpoint_type": "movie",
+            "endpoint_type": "movies",
             "year": 2014,
             "poster": "28\/2893788382afb90ce",
             "url": "\/movies\/342994\/john-wick",
@@ -1116,7 +1121,7 @@ Page limit is 20, max items per page is 50.
             }
         }, {
             "title": "John Wick: Chapter 3",
-            "endpoint_type": "movie",
+            "endpoint_type": "movies",
             "year": 2019,
             "poster": "57\/5747702654de3d19d",
             "url": "\/movies\/687232\/john-wick-chapter-3",
@@ -1133,6 +1138,69 @@ Page limit is 20, max items per page is 50.
             }
         }]
 
++ Request 
+    **Search by url**, imdb anime Attack on Titan example in "movie" endpoint:
+    
+    https://api.simkl.com/search/movie?q=https://www.imdb.com/title/tt2560140/&page=1&limit=10&extended=full&client_id=***
+    
+    PS: Please use your `client_id`.
+
+ + Body
+    
++ Response 200 (application/json)
+
+    + Headers
+    
+            Content-Type:application/json
+            X-Pagination-Page:1
+            X-Pagination-Limit:10
+            X-Pagination-Page-Count:20
+            X-Pagination-Item-Count:50
+        
+    + Body
+
+        [
+            {
+                "title": "Shingeki no Kyojin",
+                "title_en": "Attack on Titan (S1)",
+                "title_romaji": "Shingeki no Kyojin",
+                "year": 2013,
+                "endpoint_type": "anime",
+                "type": "tv",
+                "poster": "23\/23563e7856a42e5",
+                "all_titles": [
+                    "Shingeki no Kyojin",
+                    "Attack on Titan",
+                    "\u8fdb\u51fb\u7684\u5de8\u4eba",
+                    "Advancing Giants",
+                    "Shingeki no Kyojin TV",
+                    "Shingeki no Kyojin S1",
+                    "AoT",
+                    "SnK",
+                    "shingeki",
+                    "AoT TV"
+                ],
+                "url": "\/anime\/39687\/shingeki-no-kyojin",
+                "ep_count": 25,
+                "rank": 109,
+                "status": "ended",
+                "ratings": {
+                    "simkl": {
+                        "rating": 8.7,
+                        "votes": 7715
+                    },
+                    "mal": {
+                        "rating": 8.6,
+                        "votes": 2877607,
+                        "rank": 117
+                    }
+                },
+                "ids": {
+                    "simkl_id": 39687,
+                    "slug": "shingeki-no-kyojin"
+                }
+            }
+        ]
             
 ## File [/search/file]
 ### Find show, anime or movie by file[POST]

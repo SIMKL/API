@@ -610,26 +610,79 @@ item*|object|[episode or movie object](/#introduction/about-simkl-api/standard-m
             
 
 # Group Ratings
-## Ratings by ID [/ratings{?fields}]
 
-### Get movie, tv show or anime rating [GET]
+The **Simkl Ratings API** allows you to retrieve Simkl average rating information (0–10), ranks, external ratings (e.g. IMDB, MAL), drop rates, and trailer availability for movies, TV shows, and anime on Simkl.
+
+## Ratings by ID [/ratings{?simkl,fields,client_id}]
+
+### Get movie, TV show, or anime rating [GET]
 
 <h4>&#128275; Token Not Required</h4>
+
+> You only need to supply a valid `client_id` obtained from your [App Settings](https://simkl.com/settings/developer/).
+
+Use this endpoint to retrieve rating information by providing a **Simkl ID**. You can request additional fields, such as external ratings (IMDB, MAL), watch status, trailer availability, etc.
+
+
++ Parameters
+
+    + simkl (optional, integer, `10280`) ... 
+       - The unique Simkl ID of the item (movie, TV show, or anime).  
+       - Example: `simkl=10280`  
+       - If omitted, the API might not return any data unless another valid ID parameter is provided.
+       
+    + fields (optional, string, `rank,droprate,simkl,ext,has_trailer,reactions,year`) ... 
+        - A comma-separated list of additional fields to include in the response.  
+            - `simkl` – returns the Simkl rating and votes.
+            - `ext` – includes external ratings such as IMDB or MAL if available.  
+            - `rank` – returns the rank within the Simkl service for that media type (movie, tv, anime).  
+            - `status` – includes the release status of the item.  
+            - `year` – includes the year of release.  
+            - `reactions` – includes reaction data if available.
+            - `has_trailer` – indicates if the movie/TV show/anime has a trailer.  
+            - Example: `fields=rank,droprate,simkl,ext,has_trailer,reactions,year`
+        + Values
+            + `simkl`
+            + `ext`
+            + `rank`
+            + `status`
+            + `year`
+            + `reactions`
+            + `has_trailer`
+    + hulu (optional, integer, `752375`) ... Hulu ID. All other parameters can be empty if this one specified.
+    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
+    + tvdb (optional, integer, `153021, the-walking-dead`) ... TVDB ID. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for better search by tmdb title field. Use 'show' to search both anime and tv. Use 'anime' to limit the search by title in anime. 'movie' is theatrical movie, not anime movie.
+        + Values
+            + `show`
+            + `movie`
+            + `tv`
+            + `anime`
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. To search TV Shows specify `type` parameter. All other parameters can be empty if this one specified.
+    + imdb (optional, string, `tt1520211`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
+        + Values
+            + `tt1520211`
+            + `http://www.imdb.com/title/tt1520211/`
+    + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
+    + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + anilist (optional, integer, `21`) ... AniList ID
+    + kitsu (optional, integer, `12`) ... Kitsu ID
+    + livechart (optional, integer, `321`) ... LiveChart ID
+    + anisearch (optional, integer, `2227`) ... aniSearch ID
+    + animeplanet (optional, string, `one-piece`) ... Anime-Planet ID
+    + traktslug (optional, string, `john-wick-chapter-4-2023`) ... Trakt slug
+    + letterboxd (optional, string, `the-truman-show`) ... Letterboxd slug
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
+
 Returns ratings (0-10), rank (movie, tv, anime have their own rank), external ratings (IMDB, MAL), drop rate and if we have trailers for the movie or not(add /trailer parameter to the link and the best trailer will be opened).
+
 
 > possible IDs: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect).
 
 + Parameters
 
-    + fields (optional, string, `rank,droprate`) ... can use multiple values separated by comma
-        + Values
-            + `has_trailer`
-            + `ext`
-            + `simkl`
-            + `rank`
-            + `status`
-            + `year`
-            + `reactions`
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
 + Request
@@ -642,22 +695,32 @@ Returns ratings (0-10), rank (movie, tv, anime have their own rank), external ra
     + Body
     
             {
-                "id":202806,
+                "id": 10280,
                 "link": "https://simkl.com/tv/10280/the-big-bang-theory",
-                "simkl":{
-                    "rating":7.8,
-                    "votes":1995
+                "simkl": {
+                    "rating": 7.9,
+                    "votes": 3378
                 },
-                "rank":{
-                    "type":"show",
-                    "value":1027
+                "release_year": "2007",
+                "reactions": {
+                    "total": 89,
+                    "reviews": 5,
+                    "comments": 18,
+                    "positive": 4,
+                    "negative": 0,
+                    "neutral": 1
                 },
-                "IMDB":{
-                    "rating":8.1,
-                    "votes":750606
+                "rank": {
+                    "type": "show",
+                    "value": "1071"
                 },
-                "has_trailer":true
-            }
+                    "droprate": "3.2%",
+                    "IMDB": {
+                    "rating": 8.1,
+                    "votes": 895026
+                },
+                "has_trailer": true
+                }
             
 ## Ratings by Watchlist [/ratings{/type}{?user_watchlist,fields,client_id}]
 

@@ -740,20 +740,21 @@ Use this endpoint when you need updated ratings or release status for **items in
 It is highly recommended to  cache data for ended TV/anime shows and released movies (or items in the Completed list) for longer periods, as their average ratings and statuses rarely change.
 > possible `fields` values: `simkl,link,ext,rank,status,year`
 
-#### Response:
+###### `status` Response:
 
 Below is a table of possible `release_status` values by media type:
 
 | Type | Status | Meaning |
 |:-----------:|:-----------------------------------------|:-----------------------------------------------------------|
-| **`movie`** | **upcoming**, **planned**, **cancelled**, **in production**, **post production**, **rumored**                         | Various states indicating the movie is not yet fully released or has been cancelled. |
-|             | **released**                             | The movie is already out.                                  |
-| **`tv`**    | **upcoming**                             | The series is not yet released.                            |
-|             | **returning series**                     | The series is ongoing, with more episodes/seasons planned. |
-|             | **ended series**                         | The series has finished; no new episodes will be released. |
-| **`anime`** | **upcoming**                             | The anime is not yet released.   
-|             | **ended**                                | The anime has concluded; no new episodes are planned.      |
-|             | **ongoing**                              | The anime is actively airing or has new episodes planned.  |
+| **`movie`** | **`upcoming`, `planned`,`cancelled`, `in production`, `post production`, `rumored`**                         | Various states indicating the movie is not yet fully released or has been cancelled. |
+|             | **`released`**                             | The movie is already out.                                  |
+| **`tv`**    | **`upcoming`, `planned`, `in production`, `cancelled`**                             | The series is not yet released.                            |
+|             | **`returning series`**                     | The series is ongoing, with more episodes/seasons planned. |
+|             | **`ended series`**                         | The series has finished; no new episodes will be released. |
+| **`anime` `type=tv`** | **`upcoming`,`planned`, `in production`, `cancelled`**                             | The anime is not yet released.   
+| **`anime` `type=movie`** | **`upcoming`, `planned`, `cancelled`, `in production`, `post production`, `rumored`**                             | The anime is not yet released.   
+|             | **`ended`**                                | The anime has concluded; no new episodes are planned.      |
+|             | **`ongoing`**                              | The anime is actively airing or has new episodes planned.  |
 
 + Parameters
     + type (optional, string, `anime`) 

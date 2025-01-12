@@ -712,23 +712,43 @@ Returns ratings (0-10) for items in the user's watchlists, ranks (separate for m
 
     + Body
     
-            {
-                "id":202806,
-                "link": "https://simkl.com/tv/10280/the-big-bang-theory",
-                "simkl":{
-                    "rating":7.8,
-                    "votes":1995
+            [
+                {
+                    "id": 268470,
+                    "type": "movie",
+                    "link": "https:\/\/simkl.com\/movies\/268470\/tinker-bell-and-the-pirate-fairy",
+                    "release_status": "released",
+                    "release_year": 2014,
+                    "rank": 10628,
+                    "simkl": {
+                        "rating": 7.1,
+                        "votes": 151,
+                        "droprate": "1%"
+                    },
+                    "imdb": {
+                        "rating": 6.6,
+                        "votes": 15119
+                    }
                 },
-                "rank":{
-                    "type":"show",
-                    "value":1027
-                },
-                "IMDB":{
-                    "rating":8.1,
-                    "votes":750606
-                },
-                "has_trailer":true
-            }            
+                {
+                    "id": 2331788,
+                    "type": "anime",
+                    "link": "https:\/\/simkl.com\/anime\/2331788\/kamonohashi-ron-no-kindan-suiri-2nd-season",
+                    "release_status": "ongoing",
+                    "release_year": 2024,
+                    "rank": 1561,
+                    "simkl": {
+                        "rating": 7,
+                        "votes": 19,
+                        "droprate": "3.9%"
+                    },
+                    "mal": {
+                        "rating": 7.6,
+                        "votes": 4132,
+                        "rank": 1693
+                    }
+                }
+            ]            
 # Group Redirect
 
 ## Redirect to Simkl, trailer or Twitter [/redirect{?to,title,year,season,episode,client_id}]

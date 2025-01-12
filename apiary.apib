@@ -738,13 +738,13 @@ Use this endpoint when you need updated ratings or release status for **items in
 - Current release status for each item (e.g., ongoing, released, ended).
 
 It is highly recommended to  cache data for ended TV/anime shows and released movies (or items in the Completed list) for longer periods, as their average ratings and statuses rarely change.
-> possible `fields` values: `simkl,link,ext,rank,status,year`
+> possible `fields` values: `simkl,link,ext,rank,release_status,year`
 
-###### `status` Response:
+###### `release_status` Response:
 
 Below is a table of possible `release_status` values by media type:
 
-| Type | Status | Meaning |
+| Type | Release Status | Meaning |
 |:-----------:|:-----------------------------------------|:-----------------------------------------------------------|
 | **`movie`** | **`upcoming`, `rumored`, `planned`, `in production`, `post production`,`cancelled`**                         | Various states indicating the movie is not yet fully released or has been cancelled. |
 |             | **`released`**                             | The movie is already out.                                  |
@@ -772,19 +772,19 @@ Below is a table of possible `release_status` values by media type:
             + `dropped`
             + `hold`
        
-    + fields (optional, string, `link,simkl,ext,rank,status,year`) ... 
+    + fields (optional, string, `link,simkl,ext,rank,release_status,year`) ... 
         - A comma-separated list of additional fields to include in the response.  
             - `simkl` – returns the Simkl rating and votes.
             - `ext` – includes external ratings such as IMDB or MAL if available.  
             - `rank` – returns the rank within the Simkl service for that media type (movie, tv, anime).  
-            - `status` – includes the release status of the item.  
+            - `release_status` – includes the release status of the item.  
             - `year` – includes the year of release.  
             - Example: `fields=rank,droprate,simkl,ext,year`
         + Values
             + `simkl`
             + `ext`
             + `rank`
-            + `status`
+            + `release_status`
             + `year`
             + `reactions`
             + `has_trailer`
@@ -792,7 +792,7 @@ Below is a table of possible `release_status` values by media type:
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
 + Request
-`https://api.simkl.com/ratings/anime/?user_watchlist=watching,plantowatch&fields=link,ext,simkl,rank,status,year&client_id=***`
+`https://api.simkl.com/ratings/anime/?user_watchlist=watching,plantowatch&fields=link,ext,simkl,rank,release_status,year&client_id=***`
 
     + Header
 

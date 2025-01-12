@@ -621,7 +621,7 @@ The **Simkl Ratings API** allows you to retrieve Simkl average rating informatio
 
 > You only need to supply a valid `client_id` obtained from your [App Settings](https://simkl.com/settings/developer/).
 
-Use this endpoint to retrieve rating information by providing a **Simkl ID**. You can request additional fields, such as external ratings (IMDB, MAL), watch status, trailer availability, etc.
+Use this endpoint to retrieve rating information by providing a **Simkl ID**. You can request additional fields, such as external ratings (IMDB, MAL), trailer availability, etc.
 
 
 + Parameters
@@ -727,36 +727,41 @@ Returns ratings (0-10), rank (movie, tv, anime have their own rank), external ra
 ### Get ratings for the watchlist's items [GET]
 
 <h4>&#128275; Token Required</h4>
-Returns ratings (0-10) for items in the user's watchlists, ranks (separate for movies, TV shows, and anime), external ratings (IMDB, MAL), and drop rates.
 
-> possible `fields` values: `link,ext,simkl,rank,status,year`
+#### When to use it:
+Use this endpoint when you need updated ratings or release status for **items in a user’s watchlist**. For example, cached data from `/sync/` can change over time if show airing statuses or movie release information are updated.
+
+
+#### What you can fetch:
+- Ratings and statuses for movies, TV shows, and anime in a user’s watchlist.  
+- Filter by list type (`watching`, `plantowatch`, `completed`, `dropped`, `hold`), or retrieve items from all lists at once.  
+- Current release status for each item (e.g., ongoing, released, ended).
+
+It is highly recommended to  cache data for ended TV/anime shows and released movies (or items in the Completed list) for longer periods, as their average ratings and statuses rarely change.
+> possible `fields` values: `simkl,link,ext,rank,status,year`
 
 #### Response:
-`release_status` values:
 
-| Type     | Released | Returning        | Upcoming                                                         |
-|----------|:--------:|:----------------:|------------------------------------------------------------------|
-| movie    | released |         -        | upcoming,planned,cancelled,in production,post production,rumored |
-| tv       |   ended  | returning series |                                                                  |
-| anime    |   ended  |      ongoing     |                                                                  |
+Below is a table of possible `release_status` values by media type:
+
+| Type | Status | Meaning |
+|:-----------:|:-----------------------------------------|:-----------------------------------------------------------|
+| **`movie`** | **upcoming**, **planned**, **cancelled**, **in production**, **post production**, **rumored**                         | Various states indicating the movie is not yet fully released or has been cancelled. |
+|             | **released**                             | The movie is already out.                                  |
+| **`tv`**    | **upcoming**                             | The series is not yet released.                            |
+|             | **returning series**                     | The series is ongoing, with more episodes/seasons planned. |
+|             | **ended series**                         | The series has finished; no new episodes will be released. |
+| **`anime`** | **upcoming**                             | The anime is not yet released.   
+|             | **ended**                                | The anime has concluded; no new episodes are planned.      |
+|             | **ongoing**                              | The anime is actively airing or has new episodes planned.  |
 
 + Parameters
-    + type (optional, string, ``) 
+    + type (optional, string, `anime`) 
         + Values
-            + `watching`
-            + `plantowatch`
-            + `completed`
-            + `dropped`
-            + `hold`
-    + fields (optional, string, `link,ext`) ... can use multiple values separated by comma
-        + Values
-            + `link`
-            + `ext`
-            + `simkl`
-            + `rank`
-            + `status`
-            + `year`
-    + user_watchlist = `all` (string) 
+            + `tv`
+            + `anime`
+            + `movies`
+    + user_watchlist = `all` (string,`watching,plantowatch`) 
         + Values
             + `all`
             + `watching`
@@ -764,10 +769,30 @@ Returns ratings (0-10) for items in the user's watchlists, ranks (separate for m
             + `completed`
             + `dropped`
             + `hold`
+       
+    + fields (optional, string, `link,,simkl,ext,rank,status,year`) ... 
+        - A comma-separated list of additional fields to include in the response.  
+            - `simkl` – returns the Simkl rating and votes.
+            - `ext` – includes external ratings such as IMDB or MAL if available.  
+            - `rank` – returns the rank within the Simkl service for that media type (movie, tv, anime).  
+            - `status` – includes the release status of the item.  
+            - `year` – includes the year of release.  
+            - `reactions` – includes reaction data if available.
+            - `has_trailer` – indicates if the movie/TV show/anime has a trailer.  
+            - Example: `fields=rank,droprate,simkl,ext,has_trailer,reactions,year`
+        + Values
+            + `simkl`
+            + `ext`
+            + `rank`
+            + `status`
+            + `year`
+            + `reactions`
+            + `has_trailer`
+            
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
 + Request
-`https://api.simkl.com/ratings?simkl=10280&fields=link,ext,simkl,rank,status,year&client_id=***`
+`https://api.simkl.com/ratings/anime/?user_watchlist=watching,plantowatch&fields=link,ext,simkl,rank,status,year&client_id=***`
 
     + Header
 

@@ -610,16 +610,27 @@ item*|object|[episode or movie object](/#introduction/about-simkl-api/standard-m
             
 
 # Group Ratings
-## Ratings by ID [/ratings]
+## Ratings by ID [/ratings{?fields}]
 
 ### Get movie, tv show or anime rating [GET]
 
 <h4>&#128275; Token Not Required</h4>
-Returns rating (between 0 and 10), rank (movie, tv, anime have their own rank), external ratings (IMDB, MAL), drop rate and if we have trailers for the movie or not(add /trailer parameter to the link and the best trailer will be opened).
-
-> possible `fields` values: `rank,droprate,simkl,ext,has_trailer,reactions,year`
+Returns ratings (0-10), rank (movie, tv, anime have their own rank), external ratings (IMDB, MAL), drop rate and if we have trailers for the movie or not(add /trailer parameter to the link and the best trailer will be opened).
 
 > possible IDs: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect).
+
++ Parameters
+
+    + fields (optional, string, `rank,droprate`) ... can use multiple values separated by comma
+        + Values
+            + `has_trailer`
+            + `ext`
+            + `simkl`
+            + `rank`
+            + `status`
+            + `year`
+            + `reactions`
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
 + Request
 `https://api.simkl.com/ratings?simkl=10280&fields=rank,droprate,simkl,ext,has_trailer,reactions,year&client_id=***`
@@ -648,7 +659,7 @@ Returns rating (between 0 and 10), rank (movie, tv, anime have their own rank), 
                 "has_trailer":true
             }
             
-## Ratings by Watchlist [/ratings?user_watchlist=all]
+## Ratings by Watchlist [/ratings{/type}{?user_watchlist,fields,client_id}]
 
 ### Get movie, tv show or anime rating [GET]
 
@@ -665,6 +676,32 @@ Returns ratings (0-10) for items in the user's watchlists, ranks (separate for m
 | movie    | released |         -        | upcoming,planned,cancelled,in production,post production,rumored |
 | tv       |   ended  | returning series |                                                                  |
 | anime    |   ended  |      ongoing     |                                                                  |
+
++ Parameters
+    + type (optional, string, ``) 
+        + Values
+            + `watching`
+            + `plantowatch`
+            + `completed`
+            + `dropped`
+            + `hold`
+    + fields (optional, string, `link,ext`) ... can use multiple values separated by comma
+        + Values
+            + `link`
+            + `ext`
+            + `simkl`
+            + `rank`
+            + `status`
+            + `year`
+    + user_watchlist = `all` (string) 
+        + Values
+            + `all`
+            + `watching`
+            + `plantowatch`
+            + `completed`
+            + `dropped`
+            + `hold`
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
             
 + Request
 `https://api.simkl.com/ratings?simkl=10280&fields=link,ext,simkl,rank,status,year&client_id=***`

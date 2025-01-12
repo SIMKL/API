@@ -746,13 +746,12 @@ Below is a table of possible `release_status` values by media type:
 
 | Type | Status | Meaning |
 |:-----------:|:-----------------------------------------|:-----------------------------------------------------------|
-| **`movie`** | **`upcoming`, `planned`,`cancelled`, `in production`, `post production`, `rumored`**                         | Various states indicating the movie is not yet fully released or has been cancelled. |
+| **`movie`** | **`upcoming`, `rumored`, `planned`, `in production`, `post production`,`cancelled`**                         | Various states indicating the movie is not yet fully released or has been cancelled. |
 |             | **`released`**                             | The movie is already out.                                  |
 | **`tv`**    | **`upcoming`, `planned`, `in production`, `cancelled`**                             | The series is not yet released.                            |
 |             | **`returning series`**                     | The series is ongoing, with more episodes/seasons planned. |
 |             | **`ended`**                         | The series has finished; no new episodes will be released. |
-| **`anime`**<br>`anime_type=tv` from `/sync/` endpoint | **`upcoming`,`planned`, `in production`, `cancelled`**                             | The anime is not yet released.   
-| **`anime`**<br> `anime_type=movie` from `/sync/` endpoint | **`upcoming`, `planned`, `cancelled`, `in production`, `post production`, `rumored`**                             | The anime is not yet released.   
+| **`anime`** | **`upcoming`,, `rumored` `planned`, `in production`, `post production`,`cancelled`**                             | The anime is not yet released.   
 |             | **`ongoing`**                              | The anime is actively airing or has new episodes planned.  |
 |             | **`ended`**                                | The anime has concluded; no new episodes are planned.      |
 

@@ -4458,14 +4458,34 @@ item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-me
 
 
 ## Check if watched [/sync/watched{/episodes}/{?specials,counters}]
+This endpoint retrieves one or a list of shows, seasons or episodes in a show a user has watched. 
+
+
+**Path parameters**:
+
+- Without **`/episodes/`**
+  Returns simple list of shows and movies you posted. Watched it or not.
+- With **`/episodes/`** (optional)  
+  Returns seasons and episodes list of specific tv show or a movie.
+
+**Query parameters for `/episodes/`**:
+
+- **`specials`** (optional, boolean, default: `false`)  
+  Includes special episodes, which will be categorized as season `0`.
+- **`counters`** (optional, boolean, default: `false`)  
+  Returns only watched counters for episodes. (Note: Counters are not available for movies or single-part anime films.)
+  
+  
+**Post parameters**:
+
 ### Get specific user's watched items [POST]
 <h4>&#128274; Token Required</h4>
+
 This endpoint retrieves the list of shows or episodes a user has watched. You can pass different IDs to get their corresponding statuses in the user's watchlist.
 
-To view all watched TV/anime episodes, append `/episodes` to the URL. The following query parameters can be included:
+The JSON body may contain various IDs (e.g., Simkl, TMDB, IMDB, Netflix, etc.) to check watch status.
 
-- **`specials`**: Includes special episodes, which will be categorized as season `0`.
-- **`counters`**: Displays only watched counters for episodes. (Note: Counters are not available for movies or single-part anime films.)
+To view all watched TV/anime episodes, append `/episodes` to the URL. The following query parameters can be included:
 
 ---
 
@@ -4480,37 +4500,49 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
 | `watched` | `YYYY-MM-DDTHH:MM:SSZ` | The last watched date and time of the episode or movie. (UTC format)|
 
 + Parameters
+    + episodes (optional, string) 
+        *If `episodes` is present in the path (`/sync/watched/episodes`), the endpoint checks TV episodes instead of movies.*
     + specials (optional, string, `false`) ...
         + Values
             + `true`
             + `false`
-    + counters (optional, string, `false`) ...
+    + counters(optional, string, `false`) ...
         + Values
             + `true`
             + `false`
-    + type (optional, string, `movie`).
-        + Values
-            + `movie`
-            + `tv`
-    + title (optional, string, `Pixels`) ...  Movie or TV Show\Anime name
-    + year (optional, integer, `2015`) ...  Release year
-    + season (optional, integer, `1`) ...  TV Show Season
-    + episode (optional, integer, `2`) ...  TV Show Episode number
-    + simkl (optional, integer, `1`) ...  TV Show/Anime id
-    + hulu (optional, integer, `752375`) ... [IN_DEV] hulu_id. All other parameters can be empty if this one specified.
-    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not always work.
-    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
-    + tvdb (optional, integer, `153021, the-walking-dead`) ... [IN_DEV] TVDB ID. All other parameters can be empty if this one specified.
-    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
-        + Values
-            + `show`
-            + `movie`
-    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. If you are searching for a TV Show, specify `type` param as well. All other parameters can be empty if this one specified.
-    + imdb (optional, string, `tt3659388`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
-        + Values
-            + `tt3659388`
-            + `http://www.imdb.com/title/tt3659388/`
-    + anidb (optional, integer, `10846`) ... [IN_DEV] AniDB ID. All other parameters can be empty if this one specified.
+            
+            
+
++ Attributes (object)
+    + An **array** of items to check. Each item can include:
+        + type (enum[string], optional) - Improves search for TMDb.
+            + Members
+                + `show`
+                + `movie`
+        + title: `The Walking Dead` (string, optional) - TV show, anime, or movie title
+        + year: 2010 (number, optional) - Release year
+        + season: 1 (number, optional) - If set, movies will be ignored (anime typically do not have seasons)
+        + episode: 4 (number, optional) - If set, movies will be ignored
+        + simkl: 2090 (optional, number, `1`) - Simkl ID
+        + hulu: 752375 (number, optional) - Hulu ID (all other parameters can be empty if this is specified)
+        + netflix: 70210890 (number, optional) - Netflix movie/show ID (in beta)
+        + mal: 4246 (number, optional) - MyAnimeList ID
+        + tvdb: 153021 (number, optional) - TVDB ID (all other parameters can be empty if this is specified)
+        + tmdb: 76757 (number, optional) - TMDb ID (specify `type` for TV shows; other params can be empty if this is specified)
+        + imdb (enum[string], optional) - IMDB ID or full URL (other parameters can be empty if this is specified).
+            + Members
+                + `tt1520211`
+                + `http://www.imdb.com/title/tt1520211/`
+
+        + anidb: 10846 (number, optional) - AniDB ID (all other parameters can be empty if this is specified)
+        + crunchyroll: 656641 (number, optional) - Crunchyroll ID (episode ID or URL ID)
+        + anilist: 21 (number, optional) - AniList ID
+        + kitsu: 12 (number, optional) - Kitsu ID
+        + livechart: 321 (number, optional) - LiveChart ID
+        + anisearch: 2227 (number, optional) - aniSearch ID
+        + animeplanet: `one-piece` (string, optional) - Anime-Planet ID
+        + traktslug: `john-wick-chapter-4-2023` (string, optional) - Trakt slug
+        + letterboxd: `the-truman-show` (string, optional) - Letterboxd slug
 
 
 + Request (application/json)

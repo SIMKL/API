@@ -4506,9 +4506,10 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
             + `http://www.imdb.com/title/tt3659388/`
     + anidb (optional, integer, `10846`) ... [IN_DEV] AniDB ID. All other parameters can be empty if this one specified.
 
-    
+
 + Request (application/json)
-    
+`/sync/watched/episodes?specials=true`
+
     + Header
             
             Authorization: Bearer [token]
@@ -4516,18 +4517,56 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
 
     + Body
     
+        [
+          {
+            "netflix": 70262639,
+            "type": "movie"
+          },
+          {
+            "netflix": 70080650
+          },
+          {
+            "hulu": 764084
+          }
+        ]
+            
++ Response 200 (application/json)
+
+    + Body
+    
             [{
                 "netflix": 70262639,
-                "type": "movie"
+                "list": "watching",
+                "result": true,
+                "watched": "2017-02-04T16:10:51Z"
+            },
+            {
+                "netflix": 70080650,
+                "result": false
+            },
+            {
+                "hulu":764084,
+                "result": "not_found"
+            }]
+            
+            
++ Request (application/json)
+`/sync/watched`
+    
+    + Header
+            
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+            [{
+                "simkl": 2091057
             },{
-                "netflix": 70080650
-            },{
-                "hulu":764084
+                "imdb": "tt12917170"
             }]
             
 
 + Response 200 (application/json)
-`/sync/watched/episodes?specials=true`
 
     + Body
             [
@@ -4605,27 +4644,6 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
                     "result": "not_found"
                 }
             ]
-            
-+ Response 200 (application/json)
-`/sync/watched`
-
-    + Body
-    
-            [{
-                "netflix": 70262639,
-                "list": "watching",
-                "result": true,
-                "watched": "2017-02-04T16:10:51Z"
-            },
-            {
-                "netflix": 70080650,
-                "result": false
-            },
-            {
-                "hulu":764084,
-                "result": "not_found"
-            }]
-
             
 
 # Group Users

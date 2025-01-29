@@ -4460,23 +4460,24 @@ item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-me
 ## Check if watched [/sync/watched{/episodes}/{?specials,counters}]
 ### Get specific user's watched items [POST]
 <h4>&#128274; Token Required</h4>
-Use this method if you want to see which shows or episodes user has seen. You can pass different ids and get their corresponding statuses in a user's list.
+This endpoint retrieves the list of shows or episodes a user has watched. You can pass different IDs to get their corresponding statuses in the user's watchlist.
 
-Add `episodes` to the url to see all tv/anime episodes with watched statuses and counters. Possible variables for the episodes are: 
+To view all watched TV/anime episodes, append `/episodes` to the URL. The following query parameters can be included:
 
-- `specials` specials will be included as season 0
-- `counters` will show only watched counters for the episodes, there are no counters for the movies or anime movies with one part
+- **`specials`**: Includes special episodes, which will be categorized as season `0`.
+- **`counters`**: Displays only watched counters for episodes. (Note: Counters are not available for movies or single-part anime films.)
 
+---
 
-<h4>POSSIBLE JSON RESPONSE DATA</h4>
-Key|Value|Description
----|----|-----
-result|`true`|Found a match and found in user's watchlist
-result|`false`|Found a match but could not find in user's watchlist
-result|`not_found`|Could not find a match in Simkl database with such Title\Year or ID
-list|`completed`,`watching`,`dropped`,`hold`,`plantowatch`|User's watchlist where it's located
-watched|`YYYY-MM-DDTHH:MM:SSZ`|Datetime in UTC format when the last episode or movie was watched
+### 📌 JSON Response Data
 
+| Key     | Value                                  | Description |
+|---------|----------------------------------------|-------------|
+| `result` | `true`                                | The item was found in the user's watchlist. |
+| `result` | `false`                               | The item was found but is not in the user's watchlist. |
+| `result` | `not_found`                           | No match found in the Simkl database using the provided Title, Year, or ID. |
+| `list`   | `completed`, `watching`, `dropped`, `hold`, `plantowatch` | The user's watchlist category for the item. |
+| `watched` | `YYYY-MM-DDTHH:MM:SSZ` (UTC format) | The last watched date and time of the episode or movie. |
 
 + Parameters
     + specials (optional, string, `false`) ...

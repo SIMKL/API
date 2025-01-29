@@ -4257,8 +4257,6 @@ Key|Type|Value
                 ]
             }   
 
-+ Response 200 (application/json)
-    + Body
 
 ## Remove Ratings [/sync/ratings/remove]
 ### Remove ratings [POST]
@@ -4459,27 +4457,30 @@ item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-me
             }
 
 
-## Check if watched [/sync/watched]
+## Check if watched [/sync/watched{/episodes}/{?specials,counters}]
 ### Get specific user's watched items [POST]
 <h4>&#128274; Token Required</h4>
-Use this method if you want to see which shows or episodes user has seen. You can pass different ids and get their appropriate statuses in a user's list.
+Use this method if you want to see which shows or episodes user has seen. You can pass different ids and get their corresponding statuses in a user's list.
+
+Add `episodes` to the url to see all tv/anime episodes with watched statuses and counters. Possible variables for the episodes are: 
+
+- `specials` specials will be included as season 0
+- `counters` will show only watched counters for the episodes, there are no counters for the movies or anime movies with one part
+
 
 <h4>POSSIBLE JSON RESPONSE DATA</h4>
 Key|Value|Description
 ---|----|-----
-type|`movie`| Found the movie
-type|`tv`| Found the TV or Anime show
 result|`true`|Found a match and found in user's watchlist
 result|`false`|Found a match but could not find in user's watchlist
 result|`not_found`|Could not find a match in Simkl database with such Title\Year or ID
-list|`completed`|User watched the movie or seen all episodes
-list|`plantowatch`|Found in users's Plan to Watch list
-list|`dropped`|Found in users's Not Interesting list
+list|`completed`,`watching`,`dropped`,`hold`,`plantowatch`|User's watchlist where it's located
 watched|`YYYY-MM-DDTHH:MM:SSZ`|Datetime in UTC format when the last episode or movie was watched
 
 
 + Parameters
-
+    + specials (optional, string, `false`) ...
+    + counters (optional, string, `false`) ...
     + type (optional, string, `movie`).
         + Values
             + `movie`
@@ -4506,6 +4507,7 @@ watched|`YYYY-MM-DDTHH:MM:SSZ`|Datetime in UTC format when the last episode or m
 
     
 + Request (application/json)
+    
     + Header
             
             Authorization: Bearer [token]
@@ -4522,7 +4524,89 @@ watched|`YYYY-MM-DDTHH:MM:SSZ`|Datetime in UTC format when the last episode or m
                 "hulu":764084
             }]
             
+
 + Response 200 (application/json)
+`/sync/watched/episodes?specials=true`
+
+    + Body
+            [
+                {
+                    "simkl": 2091057,
+                    "result": false,
+                    "list": "watching",
+                    "last_watched_at": "2025-01-29T15:01:08Z",
+                    "episodes_total": 8,
+                    "episodes_aired": 7,
+                    "episodes_to_be_aired": 1,
+                    "episodes_watched": 6,
+                    "seasons": [
+                        {
+                            "number": 1,
+                            "episodes_total": 8,
+                            "episodes_aired": 7,
+                            "episodes_to_be_aired": 1,
+                            "episodes_watched": 6,
+                            "episodes": [
+                                {
+                                    "number": 1,
+                                    "watched": true,
+                                    "aired": true,
+                                    "last_watched_at": "2025-01-29T15:01:03Z"
+                                },
+                                {
+                                    "number": 2,
+                                    "watched": true,
+                                    "aired": true,
+                                    "last_watched_at": "2025-01-29T15:01:04Z"
+                                },
+                                {
+                                    "number": 3,
+                                    "watched": true,
+                                    "aired": true,
+                                    "last_watched_at": "2025-01-29T15:01:05Z"
+                                },
+                                {
+                                    "number": 4,
+                                    "watched": true,
+                                    "aired": true,
+                                    "last_watched_at": "2025-01-29T15:01:06Z"
+                                },
+                                {
+                                    "number": 5,
+                                    "watched": true,
+                                    "aired": true,
+                                    "last_watched_at": "2025-01-29T15:01:07Z"
+                                },
+                                {
+                                    "number": 6,
+                                    "watched": true,
+                                    "aired": true,
+                                    "last_watched_at": "2025-01-29T15:01:08Z"
+                                },
+                                {
+                                    "number": 7,
+                                    "watched": false,
+                                    "aired": true,
+                                    "last_watched_at": null
+                                },
+                                {
+                                    "number": 8,
+                                    "watched": false,
+                                    "aired": false,
+                                    "last_watched_at": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "imdb": "tt12917170",
+                    "result": "not_found"
+                }
+            ]
+            
++ Response 200 (application/json)
+`/sync/watched`
 
     + Body
     
@@ -4541,8 +4625,7 @@ watched|`YYYY-MM-DDTHH:MM:SSZ`|Datetime in UTC format when the last episode or m
                 "result": "not_found"
             }]
 
-
-
+            
 
 # Group Users
 User's public data will return all info with GET methods without OAuth\PIN authorization.

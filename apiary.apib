@@ -4457,7 +4457,7 @@ item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-me
             }
 
 
-## Check if watched [/sync/watched{/episodes}/{?specials,counters}]
+## Check if watched [/sync/watched{/episodes}/{?specials,counters,client_id}]
 This endpoint retrieves one or a list of shows, seasons or episodes in a show a user has watched. 
 
 
@@ -4466,7 +4466,7 @@ This endpoint retrieves one or a list of shows, seasons or episodes in a show a 
 - Without **`/episodes/`**
   Returns simple list of shows and movies you posted. Watched it or not.
 - With **`/episodes/`** (optional)  
-  Returns seasons and episodes list of specific tv show or a movie.
+  Returns seasons and episodes counters and watched statuses with a list of specific tv shows or a movies.
 
 **Query parameters for `/episodes/`**:
 
@@ -4498,10 +4498,15 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
 | `result` | `not_found`                           | No match found in the Simkl database using the provided Title, Year, or ID. |
 | `list`   | `completed`, `watching`, `dropped`, `hold`, `plantowatch` | The user's watchlist category for the item. |
 | `watched` | `YYYY-MM-DDTHH:MM:SSZ` | The last watched date and time of the episode or movie. (UTC format)|
-
+| `episodes_total`               | `8`                                            | The total number of episodes in the show or season. |
+| `episodes_aired`               | `7`                                            | The number of episodes that have aired so far. |
+| `episodes_to_be_aired`         | `1`                                            | The number of episodes yet to be aired. |
+| `episodes_watched`             | `6`                                            | The number of episodes the user has watched. |
+| `seasons`                      | `[...]` (array)                                | A list of seasons for the show. |
+| `seasons[].episodes`            | `[...]` (array)                                | A list of episodes in the season. |
 + Parameters
     + episodes (optional, string) 
-        *If `episodes` is present in the path (`/sync/watched/episodes`), the endpoint checks TV episodes instead of movies.*
+        *If `episodes` is present in the path (`/sync/watched/episodes`), the endpoint checks TV episodes instead of movies and the responce will contaign episode and watched counters.*
     + specials (optional, string, `false`) ...
         + Values
             + `true`
@@ -4511,10 +4516,10 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
             + `true`
             + `false`
             
-            
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
 + Attributes (object)
-    + An **array** of items to check. Each item can include:
+    + Click here to see an **array** of items to check. Each item can include:
         + type (enum[string], optional) - Improves search for TMDb.
             + Members
                 + `show`
@@ -4546,7 +4551,9 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
 
 
 + Request (application/json)
-`/sync/watched/episodes?specials=true`
+<h6>Get a list of shows or movies is user has watched them or not</h6>
+`https://api.simkl.com/sync/watched/` 
+
 
     + Header
             
@@ -4588,8 +4595,12 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
             }]
             
             
+
 + Request (application/json)
-`/sync/watched`
+<h6>Get a list of shows with episodes a user has watched including the spesicals season. <br><br>
+<i>If you don't need specials, set `specials=false`</i> </h6>
+`https://api.simkl.com/sync/watched/episodes?specials=true&counters=true` 
+
     
     + Header
             

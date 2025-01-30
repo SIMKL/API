@@ -4457,24 +4457,8 @@ item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-me
             }
 
 
-## Check if watched [/sync/watched{/episodes}/{?specials,counters,client_id}]
+## Check if watched [/sync/watched{?extended}]
 This endpoint retrieves one or a list of shows, seasons or episodes in a show a user has watched. 
-
-
-**Path parameters**:
-
-- Without **`/episodes/`**
-  Returns simple list of shows and movies you posted. Watched it or not.
-- With **`/episodes/`** (optional)  
-  Returns seasons and episodes counters and watched statuses with a list of specific tv shows or a movies.
-
-**Query parameters for `/episodes/`**:
-
-- **`specials`** (optional, boolean, default: `false`)  
-  Includes special episodes, which will be categorized as season `0`.
-- **`counters`** (optional, boolean, default: `false`)  
-  Returns only watched counters for episodes. (Note: Counters are not available for movies or single-part anime films.)
-  
   
 **Post parameters**:
 
@@ -4485,8 +4469,18 @@ This endpoint retrieves the list of shows or episodes a user has watched. You ca
 
 The JSON body may contain various IDs (e.g., Simkl, TMDB, IMDB, Netflix, etc.) to check watch status.
 
-To view all watched TV/anime episodes, append `/episodes` to the URL. The following query parameters can be included:
+#####**Query Parameters**:
+- **`extended`** *(optional)* – Controls the level of detail in the response. Possible values:
+  - `counters` – Includes watched counts only.
+  - `episodes` – Retrieves all episodes with counters.
+  - `specials` – Includes special episodes as season `0`, and adjusts counters accordingly.
 
+  These values can be combined using a comma (`,`) separator.  
+  **Example:** `?extended=counters,specials`
+
+#####**Limitations**
+- When using the `extended` parameter, the request can include a **maximum of 100 items**.  
+- Exceeding this limit will result in an error.
 ---
 
 ### 📌 JSON Response Data
@@ -4505,16 +4499,11 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
 | `seasons`                      | `[...]` (array)                                | A list of seasons for the show. |
 | `seasons[].episodes`            | `[...]` (array)                                | A list of episodes in the season. |
 + Parameters
-    + episodes (optional, string) 
-        *If `episodes` is present in the path (`/sync/watched/episodes`), the endpoint checks TV episodes instead of movies and the responce will contaign episode and watched counters.*
-    + specials (optional, string, `false`) ...
+    + extended (optional, string, `counters`) ... You can use multiple values joined by comma. 
         + Values
-            + `true`
-            + `false`
-    + counters(optional, string, `false`) ...
-        + Values
-            + `true`
-            + `false`
+            + `counters`
+            + `episodes`
+            + `specials`
             
     + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
 
@@ -4552,7 +4541,7 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
 
 + Request (application/json)
 <h6>Get a list of shows or movies is user has watched them or not</h6>
-`https://api.simkl.com/sync/watched/&client_id=***` 
+`https://api.simkl.com/sync/watched/?client_id=***` 
 
 
     + Header
@@ -4599,7 +4588,7 @@ To view all watched TV/anime episodes, append `/episodes` to the URL. The follow
 + Request (application/json)
 <h6>Get a list of shows with episodes a user has watched including the spesicals season. <br><br>
 <i>If you don't need specials, set `specials=false`</i> </h6>
-`https://api.simkl.com/sync/watched/episodes?specials=true&counters=true&client_id=***` 
+`https://api.simkl.com/sync/watched/?extended=episodes,specials&client_id=***` 
 
     
     + Header

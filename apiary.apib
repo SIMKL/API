@@ -4587,8 +4587,8 @@ The JSON body may contain various IDs (e.g., Simkl, TMDB, IMDB, Netflix, etc.) t
 
 + Request (application/json)
 <h6>Get a list of shows with episodes a user has watched including the spesicals season. <br><br>
-<i>If you don't need specials, set `specials=false`</i> </h6>
-`https://api.simkl.com/sync/watched/?extended=episodes,specials&client_id=***` 
+<i>If you don't need specials, remove it from the extended</i> </h6>
+`https://api.simkl.com/sync/watched/?extended=episodes,specials,counters&client_id=***` 
 
     
     + Header

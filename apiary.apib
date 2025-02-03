@@ -3499,6 +3499,7 @@ Variable|Description
 `extended=ids_only`| minified response, returns only all IDs and slugs without any additionl info.
 `episode_watched_at=yes`| adds a time when user watched the episode as `watched_at` time for all episodes
 `next_watch_info=yes`| adds more info about next to watch episodes
+`memos=yes`| includes user's memo
 
 **IMPORTANT:** Please keep in mind that adding more data to the request (using extended and episode_watched_at) makes the reply exponentially larger, + a few megabytes in most cases, so please use it only when needed and always with the use of `date_from` so that the server reply was very small and fast.
 
@@ -3542,7 +3543,9 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
 
       + Body
         {
-            "shows": [{
+            "shows": [
+            {
+            "added_to_watchlist_at":"2010-01-20T20:09:04Z",
             "last_watched_at": null,
             "status": "hold",
             "user_rating": null,
@@ -3569,6 +3572,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
           ],
           "anime": [
             {
+              "added_to_watchlist_at":"2010-01-20T20:09:04Z",
               "last_watched_at": "2014-11-06T22:05:52Z",
               "user_rating": 10,
               "status": "completed",
@@ -3591,6 +3595,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
               }
             },
             {
+              "added_to_watchlist_at":"2010-01-20T20:09:04Z",
               "last_watched_at": "2016-10-19T08:34:23Z",
               "user_rating": null,
               "status": "plantowatch",
@@ -3610,6 +3615,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
           ],
           "movies": [
             {
+              "added_to_watchlist_at":"2010-01-20T20:09:04Z",
               "last_watched_at": "2014-08-09T07:25:55Z",
               "user_rating": null,
               "status": "completed",
@@ -3625,6 +3631,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
               }
             },
             {
+              "added_to_watchlist_at":"2010-01-20T20:09:04Z",
               "last_watched_at": "2014-08-16T18:45:20Z",
               "user_rating": null,
               "status": "completed",
@@ -3644,7 +3651,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
 
 + Request (application/json)
 <h6>Get Anime list and watched episodes:</h6> 
-`https://api.simkl.com/sync/all-items/anime/?extended=full`
+`https://api.simkl.com/sync/all-items/anime/?extended=full&memos=yes`
 
     + Header
             Authorization: Bearer [token]
@@ -3657,9 +3664,14 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
             {
                 "movies": [
                     {
+                        "added_to_watchlist_at":"2010-01-20T20:09:04Z",
                         "last_watched_at": "2014-08-09T07:25:55Z",
                         "rate": null,
                         "status": "completed",
+                        "memo":{
+                            "text": "super memo."
+                            "is_private": true
+                        },
                         "movie": {
                             "title": "Captain America: The First Avenger",
                             "year": 2011,
@@ -3673,12 +3685,14 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
                 ],
                 "anime": [
                     {
+                        "added_to_watchlist_at":"2010-01-20T20:09:04Z",
                         "last_watched_at": "2015-01-06T13:43:26Z",
                         "rate": null,
                         "status": "watching",
                         "last_watched": "E01",
                         "next_to_watch": "E02",
                         "anime_type": "movie", 
+                        "memo":[],
                         "show": {
                             "title": "Fate/Stay Night: Unlimited Blade Works",
                             "year": 2014,
@@ -3698,6 +3712,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
             {
                 "anime": [
                     {
+                        "added_to_watchlist_at":"2010-01-20T20:09:04Z",
                         "last_watched_at": "2015-01-06T13:43:26Z",
                         "rate": 9,
                         "status": "watching",
@@ -3751,6 +3766,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
             {
                 "anime": [
                     {
+                        "added_to_watchlist_at":"2010-01-20T20:09:04Z",
                         "last_watched_at": "2015-01-06T13:43:26Z",
                         "rate": 9,
                         "status": "watching",

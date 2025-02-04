@@ -3651,7 +3651,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
 
 + Request (application/json)
 <h6>Get Anime list and watched episodes:</h6> 
-`https://api.simkl.com/sync/all-items/anime/?extended=full&memos=yes`
+`https://api.simkl.com/sync/all-items/anime/?extended=full`
 
     + Header
             Authorization: Bearer [token]
@@ -3830,7 +3830,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
                     }
                 ]
             }
-            
+
 + Request (application/json)
 <h6>Get Anime list with memos:</h6> 
 `https://api.simkl.com/sync/all-items/anime/?memos=yes`
@@ -3842,17 +3842,16 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
 + Response 200 (application/json)
 
     + Body
-
+            
             {
                 "anime": [
                     {
                         "added_to_watchlist_at":"2010-01-20T20:09:04Z",
                         "last_watched_at": "2015-01-06T13:43:26Z",
-                        "rate": null,
+                        "rate": 9,
                         "status": "watching",
-                        "last_watched": "E01",
-                        "next_to_watch": "E02",
-                        "anime_type": "movie", 
+                        "last_watched": "S01E01",
+                        "next_to_watch": "S01E02", 
                         "memo":{
                             "text": "super memo."
                             "is_private": true
@@ -3870,7 +3869,9 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
                     }
                 ]
             }
-            
+
+
+
 
 ## Add Items to the history [/sync/history]
 ### Add items to watched/watching history [POST]

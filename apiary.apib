@@ -3526,6 +3526,9 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
             + `hold`
             + `completed`
             + `dropped`
+    + date_from (optional, string, `2016-09-12T13:00:30Z`) ... returns the items updated from the passed value
+        + Values
+            + `2016-09-12T13:00:30Z`
     + extended (optional, string, `full`) ... `full` returns more info including a list of watched episodes
         + Values
             + `full`
@@ -3535,9 +3538,9 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
     + episode_watched_at (optional, string, `yes`) ... `yes` returns the date when user watched the episode
         + Values
             + `yes`
-    + date_from (optional, string, `2016-09-12T13:00:30Z`) ... returns the items updated from the passed value
+    + memos (optional, string, `yes`) ... `yes` returns memos in addition all other data
         + Values
-            + `2016-09-12T13:00:30Z`
+            + `yes`
             
 + Response 200 (application/json)
 
@@ -3853,7 +3856,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
                         "last_watched": "S01E01",
                         "next_to_watch": "S01E02", 
                         "memo":{
-                            "text": "super memo."
+                            "text": "super memo.",
                             "is_private": true
                         },
                         "show": {

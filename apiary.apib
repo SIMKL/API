@@ -3660,54 +3660,6 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
 + Response 200 (application/json)
 
     + Body
-
-            {
-                "movies": [
-                    {
-                        "added_to_watchlist_at":"2010-01-20T20:09:04Z",
-                        "last_watched_at": "2014-08-09T07:25:55Z",
-                        "rate": null,
-                        "status": "completed",
-                        "memo":{
-                            "text": "super memo."
-                            "is_private": true
-                        },
-                        "movie": {
-                            "title": "Captain America: The First Avenger",
-                            "year": 2011,
-                            "ids": {
-                                "simkl": 55328,
-                                "imdb": "tt0458339",
-                                "tmdb": "1771"
-                            }
-                        }
-                    }
-                ],
-                "anime": [
-                    {
-                        "added_to_watchlist_at":"2010-01-20T20:09:04Z",
-                        "last_watched_at": "2015-01-06T13:43:26Z",
-                        "rate": null,
-                        "status": "watching",
-                        "last_watched": "E01",
-                        "next_to_watch": "E02",
-                        "anime_type": "movie", 
-                        "memo":[],
-                        "show": {
-                            "title": "Fate/Stay Night: Unlimited Blade Works",
-                            "year": 2014,
-                            "ids": {
-                                "simkl": 46116,
-                                "imdb": "tt3621796",
-                                "mal": "22297",
-                                "anidb": "9977"
-                            }
-                        }
-                    }
-                ]
-            }
-            
-    + Body
             
             {
                 "anime": [
@@ -3875,6 +3827,46 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
                                 ]
                             }
                         ]
+                    }
+                ]
+            }
+            
++ Request (application/json)
+<h6>Get Anime list with memos:</h6> 
+`https://api.simkl.com/sync/all-items/anime/?memos=yes`
+
+    + Header
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+            
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "anime": [
+                    {
+                        "added_to_watchlist_at":"2010-01-20T20:09:04Z",
+                        "last_watched_at": "2015-01-06T13:43:26Z",
+                        "rate": null,
+                        "status": "watching",
+                        "last_watched": "E01",
+                        "next_to_watch": "E02",
+                        "anime_type": "movie", 
+                        "memo":{
+                            "text": "super memo."
+                            "is_private": true
+                        },
+                        "show": {
+                            "title": "Fate/Stay Night: Unlimited Blade Works",
+                            "year": 2014,
+                            "ids": {
+                                "simkl": 46116,
+                                "imdb": "tt3621796",
+                                "mal": "22297",
+                                "anidb": "9977"
+                            }
+                        }
                     }
                 ]
             }

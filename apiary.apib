@@ -3901,7 +3901,7 @@ Key|Type|Value
 `watched_at`|datetime|UTC datetime when the item was watched
 
 + Request (application/json) 
-    Put the series and all episode to completed list
+    Mark all episodes as watched. Will put the show into Completed watchlist if the show has ended. If the show is still airing will mark all aired episodes as watched and keep it in Watching watchlist.
     
     + Body
     
@@ -3927,6 +3927,7 @@ Key|Type|Value
     + Body
 
 + Request (application/json)
+ Example request with multiple media types, seasons and episodes
     + Header
             
             Authorization: Bearer [token]
@@ -4010,7 +4011,7 @@ Key|Type|Value
 
 
 + Request (application/json) 
-    Anime query example
+    Anime request example
     
     + Body
     

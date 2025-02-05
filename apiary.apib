@@ -3890,6 +3890,7 @@ You can include movies, shows, episodes, or even specific seasons. The more deta
   3. **If the show has ended:** The show will be moved to your *Completed* list.
 - **Using `watched_at`:** If you include a UTC datetime in `watched_at`, the item is recorded as watched at that time.
 - **Marking as completed:** You can add `status: "completed"` to mark a show as completed. However, if the show is still airing, it will be added to your "watching" watchlist instead and all aired episodes will be markded as watched. The updated watchlist status will be returned in the response.
+- **Moving to watching:** You can add `status: "watching"` to keep the show in the Watching watchlist without updating any episodes.
 
 
 #### Handling Anime Seasons with TVDB/TMDB IDs

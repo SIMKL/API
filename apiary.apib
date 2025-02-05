@@ -3879,15 +3879,27 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
 ## Add Items to the history [/sync/history]
 ### Add items to watched/watching history [POST]
 <h4>&#128274; Token Required</h4>
-Add items to the user's watched history. You can pass shows, seasons, episodes and movies. If no episodes for the show is passed then it will be marked as completed. If seasons will be specified then only episodes in those seasons will be marked.
+
+This endpoint lets you add items to a user's watched history. 
+
+You can include movies, shows, episodes, or even specific seasons. The more details you provide (like title, year, and IDs), the easier it is for Simkl to match the item correctly.
+- **If no episodes provided:** If you add a show without specifying episodes, the entire show is added to Watching watchlist.
+- **Using `watched_at`:** If you include a UTC datetime in `watched_at`, the item is recorded as watched at that time.
+- **Marking as completed:** You can add `status: "completed"` to mark a show as completed. However, if the show is still airing, it will be added to your "watching" watchlist instead and all aired episodes will be markded as watched. The updated watchlist status will be returned in the response.
+
+
+#### Handling Anime Seasons with TVDB/TMDB IDs
+By default, anime seasons on Simkl are treated as separate series. To mark all seasons for an anime (when using only TVDB or TMDB IDs) starting from first season, include the flag:
+```json
+"use_tvdb_anime_seasons": true
+```
+in the item object.
+
+Each media object should include as much data as possible—especially `title`, `year`, and `ids`—to help Simkl accurately detect the item. You can also include a `watched_at` field to specify the UTC datetime when the item was watched.
+
 
 if `watched_at` UTC datetime is passed then all will be marked as watched in the past. 
 
-You can add `status: "completed"` to the post object's item to mark the seires as completed. If the series are still airing, it will be put on `watching` list instead of `completed` list. Watchlist statuses are returning in response.
-
-By default, anime seasons are treated as separate series. If you want to mark all seasons using the TVDB/TMDB ID, set `use_tvdb_anime_seasons: true` in the item object
-
-Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
 
 <h4>JSON POST DATA</h4>
 Key|Type|Value
@@ -3901,6 +3913,9 @@ Key|Type|Value
 ---|----|-----
 `item*`|object|movie, show or episode objects 
 `watched_at`|datetime|UTC datetime when the item was watched
+
+#### Moving between Watchlists 
+Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-specific-list)  if you only need to move items between Watchlists.
 
 + Request (application/json) 
     Mark all Titan's seasons as watched. Will put the show into Completed watchlist if the show has ended. If the show is still airing will mark all aired episodes as watched and keep it in Watching watchlist.

@@ -3883,7 +3883,7 @@ More details on how to use `date_from` field see <a href="#reference/sync/how-to
 This endpoint lets you add items to a user's watched history. 
 
 You can include movies, shows, episodes, or even specific seasons. The more details you provide (like title, year, and IDs), the easier it is for Simkl to match the item correctly.
-- **If no episodes provided:** If you add a show without specifying episodes, the entire show is added to Watching watchlist.
+- **If no episodes provided:** If you add a show without specifying episodes: 1. Show not ended - the entire show is added to Watching watchlist. 2. Show airing - marks all aired episodes as watched. 3. Show ended - moves the show to Completed watchlist.
 - **Using `watched_at`:** If you include a UTC datetime in `watched_at`, the item is recorded as watched at that time.
 - **Marking as completed:** You can add `status: "completed"` to mark a show as completed. However, if the show is still airing, it will be added to your "watching" watchlist instead and all aired episodes will be markded as watched. The updated watchlist status will be returned in the response.
 

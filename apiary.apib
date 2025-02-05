@@ -3883,7 +3883,9 @@ Add items to the user's watched history. You can pass shows, seasons, episodes a
 
 if `watched_at` UTC datetime is passed then all will be marked as watched in the past. 
 
-You can add `status=completed` to the post object's item to mark the seires as completed. If the series are still airing, it will be put on `watching` list instead of `completed` list. Watchlist statuses are returning in response.
+You can add `status: "completed"` to the post object's item to mark the seires as completed. If the series are still airing, it will be put on `watching` list instead of `completed` list. Watchlist statuses are returning in response.
+
+By default, anime seasons are treated as separate series. If you want to mark all seasons using the TVDB/TMDB ID, set `use_tvdb_anime_seasons: true` in the item object
 
 Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
 
@@ -3901,7 +3903,8 @@ Key|Type|Value
 `watched_at`|datetime|UTC datetime when the item was watched
 
 + Request (application/json) 
-    Mark all episodes as watched. Will put the show into Completed watchlist if the show has ended. If the show is still airing will mark all aired episodes as watched and keep it in Watching watchlist.
+    Mark all Titan's seasons as watched. Will put the show into Completed watchlist if the show has ended. If the show is still airing will mark all aired episodes as watched and keep it in Watching watchlist.
+    
     
     + Body
     
@@ -3911,6 +3914,7 @@ Key|Type|Value
                         "title": "Attack on Titan",
                         "year": 2013,
                         "status": "completed",
+                        "use_tvdb_anime_seasons": true,
                         "ids": {
                             "simkl": 39687,
                             "mal": 16498,
@@ -3925,6 +3929,39 @@ Key|Type|Value
 
 + Response 200 (application/json)
     + Body
+    
+    {
+        "added": {
+            "movies": 0,
+            "shows": 7,
+            "episodes": 0,
+            "statuses": [
+                {
+                    "request": {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "status": "completed",
+                        "use_tvdb_anime_seasons": true,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    },
+                    "response": {
+                        "status": "watching"
+                    }
+                } 
+            ]
+        },
+        "not_found": {
+            "movies": [],
+            "shows": [],
+            "episodes": []
+        }
+    }
 
 + Request (application/json)
  Example request with multiple media types, seasons and episodes

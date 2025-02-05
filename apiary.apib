@@ -3883,6 +3883,8 @@ Add items to the user's watched history. You can pass shows, seasons, episodes a
 
 if `watched_at` UTC datetime is passed then all will be marked as watched in the past. 
 
+You can add `status=completed` to the post object's item to mark the seires as completed. If the series are still airing, it will be put on `watching` list instead of `completed` list. Watchlist statuses are returning in response.
+
 Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
 
 <h4>JSON POST DATA</h4>
@@ -3897,6 +3899,39 @@ Key|Type|Value
 ---|----|-----
 `item*`|object|movie, show or episode objects 
 `watched_at`|datetime|UTC datetime when the item was watched
+
++ Request (application/json) 
+    Anime query example
+    
+    + Body
+    
+            {
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        },
+                        "episodes": [
+                            {
+                                "number": 1
+                            },
+                            {
+                                "number": 2
+                            }
+                        ]
+                    }
+                ]
+            }   
+
+
++ Response 200 (application/json)
+    + Body
 
 + Request (application/json)
     + Header

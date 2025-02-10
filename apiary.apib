@@ -3932,72 +3932,6 @@ Key|Type|Value
 Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-specific-list)  if you only need to move items between Watchlists.
 
 + Request (application/json) 
-   Add the memo to the TV Shows
-    
-    + Header
-            
-            Authorization: Bearer [token]
-            simkl-api-key: [client_id]
-
-    + Body
-    
-            {
-                "shows": [
-                    {
-                        "title": "The Walking Dead",
-                        "year": 2010,
-                        "memo": {
-                            "text": "max 140 chars memo",
-                            "is_private": false
-                        },
-                        "ids": {
-                            "simkl": 2090,
-                            "tvdb": 153021,
-                            "imdb": "tt1520211"
-                        }
-                    }
-                ]
-            }   
-
-
-+ Response 200 (application/json)
-    + Body
-    
-    {
-        "added": {
-            "movies": 0,
-            "shows": 0,
-            "episodes": 0,
-            "statuses": [
-                {
-                    "request": {
-                        "title": "The Walking Dead",
-                        "year": 2010,
-                        "memo": {
-                            "text": "max 140 chars memo",
-                            "is_private": false
-                        },
-                        "ids": {
-                            "simkl": 2090,
-                            "tvdb": 153021,
-                            "imdb": "tt1520211"
-                        }
-                    },
-                    "response": {
-                        "status": "completed"
-                    }
-                } 
-            ]
-        },
-        "not_found": {
-            "movies": [],
-            "shows": [],
-            "episodes": []
-        }
-    }
-
-
-+ Request (application/json) 
     Mark all Titan's seasons as watched. Will put the show into Completed watchlist if the show has ended. If the show is still airing will mark all aired episodes as watched and keep it in Watching watchlist.
     
     + Header
@@ -4181,6 +4115,72 @@ Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-
 
 + Response 200 (application/json)
     + Body
+    
+
++ Request (application/json) 
+   Add the memo to the TV Shows
+    
+    + Header
+            
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "shows": [
+                    {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "memo": {
+                            "text": "max 140 chars memo",
+                            "is_private": false
+                        },
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        }
+                    }
+                ]
+            }   
+
+
++ Response 200 (application/json)
+    + Body
+    
+    {
+        "added": {
+            "movies": 0,
+            "shows": 0,
+            "episodes": 0,
+            "statuses": [
+                {
+                    "request": {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "memo": {
+                            "text": "max 140 chars memo",
+                            "is_private": false
+                        },
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        }
+                    },
+                    "response": {
+                        "status": "completed"
+                    }
+                } 
+            ]
+        },
+        "not_found": {
+            "movies": [],
+            "shows": [],
+            "episodes": []
+        }
+    }
 
 ## Remove Items from History and from Lists [/sync/history/remove]
 ### Remove items from watched/watching history [POST]

@@ -3501,6 +3501,8 @@ Variable|Description
 `next_watch_info=yes`| adds more info about next to watch episodes
 `memos=yes`| adds member's memo
 
+if a user doesn't have anything in his watchlists, the response will be `null`
+
 **IMPORTANT:** Please keep in mind that adding more data to the request (using extended and episode_watched_at) makes the reply exponentially larger, + a few megabytes in most cases, so please use it only when needed and always with the use of `date_from` so that the server reply was very small and fast.
 
 More details on how to use `date_from` field see <a href="#reference/sync/how-to-use-sync">here</a>

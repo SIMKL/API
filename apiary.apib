@@ -3490,6 +3490,8 @@ Returns all items that user has in his watchlist (watching, plan to watch, dropp
 
 Anime block has `anime_type` field, possible values are `tv`,`special`,`ova`,`movie`,`music video`,`ona`.
 
+**Note:** If a user doesn't have anything in his watchlists, the response will be `null`
+
 <h4>You can add to the URL:</h4>
 Variable|Description
 ---|----
@@ -3500,8 +3502,6 @@ Variable|Description
 `episode_watched_at=yes`| adds a time when user watched the episode as `watched_at` time for all episodes
 `next_watch_info=yes`| adds more info about next to watch episodes
 `memos=yes`| adds member's memo
-
-if a user doesn't have anything in his watchlists, the response will be `null`
 
 **IMPORTANT:** Please keep in mind that adding more data to the request (using extended and episode_watched_at) makes the reply exponentially larger, + a few megabytes in most cases, so please use it only when needed and always with the use of `date_from` so that the server reply was very small and fast.
 

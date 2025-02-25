@@ -3911,10 +3911,13 @@ By default, anime seasons on Simkl are treated as separate series. To mark all s
 ```
 in the item object.
 
+
 Each media object should include as much data as possible—especially `title`, `year`, and `ids`—to help Simkl accurately detect the item. You can also include a `watched_at` field to specify the UTC datetime when the item was watched.
 
 
 if `watched_at` UTC datetime is passed then all will be marked as watched in the past. 
+
+Possible values in response for the `anime_type` key see [Standard Media Object](/#introduction/about-simkl-api/standard-media-objects) and for the `simkl_type` are `movie,tv,anime`
 
 
 <h4>JSON POST DATA</h4>
@@ -3990,6 +3993,8 @@ Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-
                     },
                     "response": {
                         "status": "watching"
+                        "simkl_type": "anime",
+                        "anime_type": "tv"
                     }
                 } 
             ]
@@ -4176,6 +4181,8 @@ Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-
                     },
                     "response": {
                         "status": "completed"
+                        "simkl_type": "tv",
+                        "anime_type": null
                     }
                 } 
             ]

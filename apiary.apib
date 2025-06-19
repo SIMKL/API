@@ -3510,8 +3510,11 @@ Variable|Description
 
 More details on how to use `date_from` field see <a href="#reference/sync/how-to-use-sync">here</a>
 
-
 + Request (application/json)
+<h6>⚠️ IMPORTANT ⚠️</h6>
+<h7>Do not use without fetching the **Activity** endpoint first.</h7>
+<h7>Always use `date_from` to sync only small changes. This avoids overloading the API server and helps keep it stable for all users.</h7>
+<h7>[How to use Sync](#reference/sync/how-to-use-sync).</h7>
 <h6>Get list of all the shows, anime and movies in a format of <a href="https://simkl.com/51/tv/">https://simkl.com/51/tv/</a></h6>
 `https://api.simkl.com/sync/all-items/` 
     + Header

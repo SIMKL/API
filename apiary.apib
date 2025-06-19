@@ -3483,6 +3483,10 @@ If you have any ideas how to make sync even better for you, please [let us know]
 
 
 ## Get All Items [/sync/all-items/{type}/{status}{?date_from}]
+#### ⚠️ IMPORTANT ⚠️
+Do not use without fetching the **Activity** endpoint first.  
+Always use `date_from` to sync only small changes.  
+[How to use Sync](#reference/sync/how-to-use-sync)
 ### Get all items in the user's watchlist [GET]
 <h4>&#128274; Token Required &#10024; Full Info optional</h4>
 Returns all items that user has in his watchlist (watching, plan to watch, dropped, completed), shows, anime, movies. 

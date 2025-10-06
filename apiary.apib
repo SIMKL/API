@@ -3167,8 +3167,10 @@ Creates or replaces the current scrobble session for the user and item. Sets the
 
 **Behavior:** Replaces any existing session for this item and clears previous pauses. Does not mark the item as watched. Session auto-expires after calculated runtime based on item length and current progress.
 
-Start watching a movie using IMDB and TMDB IDs
 + Request (application/json)
+    Start watching a movie using IMDB and TMDB IDs
+    
+   
     + Headers
     
             Authorization: Bearer [token]
@@ -3188,6 +3190,8 @@ Start watching a movie using IMDB and TMDB IDs
           }
 
 + Response 201 (application/json)
+    **Note**: Only `/scrobble/start` returns `id: 0`. `/scrobble/pause` and `/scrobble/stop` return a 64bit `id`.<br><br>On a 409 conflict (already completed within an hour), the response includes `watched_at` and `expires_at` instead of `id`.<br><br> Calling `/scrobble/start` also sets the user's internal "watching now" status and replaces any existing start/checkin session for this item (clearing previous pauses).
+
 
     + Body
     
@@ -3210,10 +3214,9 @@ Start watching a movie using IMDB and TMDB IDs
             }
           }
             
-**Note**: Only `/scrobble/start` returns `id: 0`. `/scrobble/pause` and `/scrobble/stop` return a 64bit `id`. On a 409 conflict (already completed within an hour), the response includes `watched_at` and `expires_at` instead of `id`. Calling `/scrobble/start` also sets the user's internal "watching now" status and replaces any existing start/checkin session for this item (clearing previous pauses).
 
-Start watching a TV show episode using IMDB ID
 + Request (application/json)
+    Start watching a TV show episode using IMDB ID
     + Headers
     
             Authorization: Bearer [token]
@@ -3259,8 +3262,8 @@ Start watching a TV show episode using IMDB ID
             }
           }
 
-Start watching an anime TV episode using TMDB ID (maps to AniDB episode numbering)
 + Request (application/json)
+    Start watching an anime TV episode using TMDB ID (maps to AniDB episode numbering)
     + Headers
     
             Authorization: Bearer [token]
@@ -3309,8 +3312,8 @@ Start watching an anime TV episode using TMDB ID (maps to AniDB episode numberin
             }
         }
 
-Start watching an anime movie using MAL ID
 + Request (application/json)
+    Start watching an anime movie using MAL ID
     + Headers
 
             Authorization: Bearer [token]
@@ -3358,8 +3361,8 @@ Pauses an active scrobble session and saves the current progress to the database
 
 **Behavior:** Adds a pause event to the DB. Does not mark the item as watched. The paused session can be resumed by calling `/scrobble/start` with the same item.
 
-Pause watching a TV show episode using Simkl and TMDB IDs
 + Request (application/json)
+    Pause watching a TV show episode using Simkl and TMDB IDs
     + Headers
     
             Authorization: Bearer [token]
@@ -3464,8 +3467,8 @@ Stops the current scrobble session and marks the item as watched if progress is 
 
 **Behavior:** If ≥80% complete, adds to watch history and marks as watched. If <80%, creates a paused session (like `/scrobble/pause`). Prevents duplicate scrobbles within an hour (409 response). Stop sessions expire after 1 hour.
 
-Stop watching a TV show episode with 85% progress (marks as watched)
 + Request (application/json)
+    Stop watching a TV show episode with 85% progress (marks as watched)
     + Headers
     
             Authorization: Bearer [token]
@@ -3510,8 +3513,8 @@ Stop watching a TV show episode with 85% progress (marks as watched)
                 }
             }
 
-Pause watching an anime TV episode using TMDB ID (maps to AniDB episode numbering)
 + Request (application/json)
+    Pause watching an anime TV episode using TMDB ID (maps to AniDB episode numbering)
     + Headers
     
             Authorization: Bearer [token]
@@ -3562,13 +3565,15 @@ Pause watching an anime TV episode using TMDB ID (maps to AniDB episode numberin
    
 
 + Response 409 (application/json)
-    if you're trying to stop an already completed scrobble session within an hour.
+    if you are trying to stop an already completed scrobble session within an hour.
     + Body
     
             {
                 "watched_at": "2024-01-15T10:30:00.000Z",
                 "expires_at": "2024-01-15T11:30:00.000Z"
             }
+
+
 
 
 # Group Sync

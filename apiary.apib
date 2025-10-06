@@ -3983,6 +3983,34 @@ Playback progress records are automatically retained based on the user's subscri
 
 These retention periods determine how long paused playback sessions remain available for the user to resume. Users can view and manage their saved playbacks at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).
 
+
+### Error Responses
+The API uses standard HTTP status codes to indicate the success or failure of a request.
+
+| Status Code | Meaning | Description |
+|---|---|---|
+| `201 Created` | Success | The scrobble event was successfully created. |
+| `204 No Content`| Success | The playback session was successfully deleted. |
+| `400 Bad Request`| Client Error | The request was malformed. This can happen if you send a scrobble request without a `movie`, `show`, or `anime` object, or if there's a concurrency issue (see Rate Limiting). |
+| `401 Unauthorized`| Client Error | The provided access token is invalid or has expired. |
+| `404 Not Found` | Client Error | The requested item (movie, show, episode) could not be found on Simkl, or the URL is incorrect. |
+| `409 Conflict` | Client Error | Returned by `/scrobble/stop` if you try to scrobble an item that was already marked as watched within the last hour. The response body will contain `watched_at` and `expires_at` timestamps. |
+
+### Session Expiry & Storage
+- **`start` sessions** have an `end_on` timestamp set to current time + remaining runtime, but are not automatically deleted when expired
+- **`stop` sessions** have an `end_on` timestamp set to current time + 1 hour, but are not automatically deleted when expired  
+- **`pause` sessions** have an `end_on` timestamp set to current time, but are not automatically deleted when expired
+- All session types persist in the playback until manually removed via the `DELETE` endpoint or by the user
+
+The `runtime in minutes` is determined as follows:
+- **Movies**: Uses the movie's runtime from Simkl's database. Defaults to `90` minutes if not available.
+- **TV Shows**: Uses the episode's specific runtime. Defaults to `45` minutes if not available.
+- **Anime**: Uses the episode's specific runtime. Defaults to `25` minutes if not available.
+
+### Concurrency & Rate Limiting
+To ensure data integrity, the API processes scrobble events sequentially for each user. If you send multiple requests at once, they will be queued. A request may time out and fail with a `400 Bad Request` error if it has to wait too long for the previous one to complete. We recommend queuing scrobble events in your application and sending them one by one.
+
+
 ### Get Playback Sessions [GET]
 <h4>&#128274; Token Required</h4>
 Retrieves all paused playback sessions for the user. You can optionally filter by type by appending `/movie` or `/episode` to the path. Only one session per show/movie/anime is stored (the latest paused one).
@@ -4080,31 +4108,6 @@ Deletes a specific paused playback session by its ID.
             authorization: Bearer your-access-token
 + Response 204 (No Content)
 
-### Error Responses
-The API uses standard HTTP status codes to indicate the success or failure of a request.
-
-| Status Code | Meaning | Description |
-|---|---|---|
-| `201 Created` | Success | The scrobble event was successfully created. |
-| `204 No Content`| Success | The playback session was successfully deleted. |
-| `400 Bad Request`| Client Error | The request was malformed. This can happen if you send a scrobble request without a `movie`, `show`, or `anime` object, or if there's a concurrency issue (see Rate Limiting). |
-| `401 Unauthorized`| Client Error | The provided access token is invalid or has expired. |
-| `404 Not Found` | Client Error | The requested item (movie, show, episode) could not be found on Simkl, or the URL is incorrect. |
-| `409 Conflict` | Client Error | Returned by `/scrobble/stop` if you try to scrobble an item that was already marked as watched within the last hour. The response body will contain `watched_at` and `expires_at` timestamps. |
-
-### Session Expiry & Storage
-- **`start` sessions** have an `end_on` timestamp set to current time + remaining runtime, but are not automatically deleted when expired
-- **`stop` sessions** have an `end_on` timestamp set to current time + 1 hour, but are not automatically deleted when expired  
-- **`pause` sessions** have an `end_on` timestamp set to current time, but are not automatically deleted when expired
-- All session types persist in the playback until manually removed via the `DELETE` endpoint or by the user
-
-The `runtime in minutes` is determined as follows:
-- **Movies**: Uses the movie's runtime from Simkl's database. Defaults to `90` minutes if not available.
-- **TV Shows**: Uses the episode's specific runtime. Defaults to `45` minutes if not available.
-- **Anime**: Uses the episode's specific runtime. Defaults to `25` minutes if not available.
-
-### Concurrency & Rate Limiting
-To ensure data integrity, the API processes scrobble events sequentially for each user. If you send multiple requests at once, they will be queued. A request may time out and fail with a `400 Bad Request` error if it has to wait too long for the previous one to complete. We recommend queuing scrobble events in your application and sending them one by one.
 
 
 

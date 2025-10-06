@@ -3114,7 +3114,7 @@ Genres API duplicates the URLs of the Genres on the website, so create a filter 
 
 # Group Scrobble
 #### IN DEVELOPMENT
-Scrobbling lets apps report real-time playback progress. Use it when a user starts, pauses, or stops watching. If you want to instantly mark an item as watched without scrobbling, use [Sync - add to historybb](#reference/sync/add-items-to-the-history).
+Scrobbling lets apps report real-time playback progress. Use it when a user starts, pauses, or stops watching. If you want to instantly mark an item as watched without scrobbling, use [Sync - add to history](#reference/sync/add-items-to-the-history).
 
 Pass as much data as possible (title, year, ids) so Simkl can detect the item reliably.
 
@@ -3122,7 +3122,7 @@ Progress is a percentage from 0.00 to 100.00 (input format: flexible, max 2 deci
 Scrobble id is a 64bit integer
 
 ## Overview
-Simkl stores only **one active scrobble session per show/movie/anime**. Starting a new session replaces any existing one for that item and clears previous pauses. Paused sessions (created by `/scrobble/pause` or `/scrobble/stop` with <80% progress) can be retrieved via [Get Playbacks](#reference/sync/get-playbacks/get-playback-sessions) and resumed by calling `/scrobble/start` with the same item. To delete a paused session, use [Delete Playback](#reference/sync/get-playbacks/delete-playback).
+Simkl stores only **one active scrobble session per show/movie/anime**. Starting a new session replaces any existing one for that item and clears previous pauses. Paused sessions (created by `/scrobble/pause` or `/scrobble/stop` with <80% progress) can be retrieved via [Get Playbacks](#reference/sync/playback/get-playback-sessions) and resumed by calling `/scrobble/start` with the same item. To delete a paused session, use [Delete Playback](#reference/sync/playback/delete-playback).
 
 **Typical Flow:**
 1. Call `/scrobble/start` when playback begins.
@@ -3139,7 +3139,7 @@ Simkl stores only **one active scrobble session per show/movie/anime**. Starting
 
 **Session Management:**
 - **Expiry timestamps**: Start sessions get expiry = current time + remaining runtime; stop sessions get expiry = current time + 1 hour; pause sessions get expiry = current time
-- **Persistence**: All sessions persist in the playback until manually removed (no automatic cleanup)
+- **Persistence**: All sessions persist in the playback until manually removed (no automatic cleanup), and are retained based on the user&#39;s subscription plan: Free (7 days), PRO (30 days), VIP (90 days)
 - **Rate limiting**: One scrobble operation per user at a time (20-second lock timeout)
 - **Duplicate prevention**: 409 response if trying to stop an already completed session within 1 hour
 
@@ -3163,7 +3163,7 @@ Either `movie`, `show` + `episode`, or `anime` + `episode` objects are required.
 <h4>&#128274; Token Required</h4>
 Creates or replaces the current scrobble session for the user and item. Sets the user's internal "watching now" status. Call this when playback begins or to resume a paused session. The response includes the `progress` sent in the request, returned as a float.
 
-**When to use:** On video start, or to resume from a paused session (retrieved via [Get Playbacks](#reference/sync/get-playbacks/get-playback-sessions)). The session auto-ends after the item's runtime elapses if no pause/stop is called.
+**When to use:** On video start, or to resume from a paused session (retrieved via [Get Playbacks](#reference/sync/playback/get-playback-sessions)). The session auto-ends after the item's runtime elapses if no pause/stop is called.
 
 **Behavior:** Replaces any existing session for this item and clears previous pauses. Does not mark the item as watched. Session auto-expires after calculated runtime based on item length and current progress.
 
@@ -3357,7 +3357,7 @@ Creates or replaces the current scrobble session for the user and item. Sets the
 <h4>&#128274; Token Required</h4>
 Pauses an active scrobble session and saves the current progress to the database for later resumption. The response includes the `progress` sent in the request, returned as a float.
 
-**When to use:** Call when the user pauses playback to save progress without marking as watched. This creates a paused session that can be retrieved later via [Get Playbacks](#reference/sync/get-playbacks/get-playback-sessions).
+**When to use:** Call when the user pauses playback to save progress without marking as watched. This creates a paused session that can be retrieved later via [Get Playbacks](#reference/sync/playback/get-playback-sessions).
 
 **Behavior:** Adds a pause event to the DB. Does not mark the item as watched. The paused session can be resumed by calling `/scrobble/start` with the same item.
 
@@ -3572,7 +3572,6 @@ Stops the current scrobble session and marks the item as watched if progress is 
                 "watched_at": "2024-01-15T10:30:00.000Z",
                 "expires_at": "2024-01-15T11:30:00.000Z"
             }
-
 
 
 
@@ -3943,9 +3942,8 @@ If you have any ideas how to make sync even better for you, please [let us know]
         }
 
 
-## Playbacks [/sync/playback/{type}]
-
-### IN DEVELOPMENT 
+## Playback [/sync/playback/{type}]
+#### IN DEVELOPMENT
 
 A **playback** is a temporary session that stores viewing progress for a movie, TV show episode, or anime episode when playback is paused or stopped before completion. Playbacks are created automatically when users pause their viewing or stop watching before completing an item (less than 80% progress).
 
@@ -3967,7 +3965,7 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 4. The `/sync/playback/{type}` endpoint retrieves these temporary playback records so apps can display "Continue Watching" lists
 5. Users can resume a saved playback by calling `/scrobble/start` with the same item
 
-**Key differences from SYNC HISTORY endpoints:**
+**Key differences from sync endpoints:**
 
 - **Playbacks** (`/sync/playback`) = Temporary pause/resume events for in-progress viewing (NOT on watchlist)
 - **Sync/History** (`/sync/history`) = Permanent watchlist records for completed items (≥80% progress)
@@ -3975,48 +3973,55 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 - Playback sessions persist in the database until manually deleted or until `/scrobble/start` is called for the same item
 - When retrieved via GET, sessions are automatically filtered out if the user has already watched the item after the playback was created (but remain in the database)
 
+**Retention periods by subscription plan:**
 
-**Retention periods by Simkl subscription plan:**
+Playback progress records are automatically retained based on the user's subscription level:
 
-Playback progress records are **temporary** and are automatically retained based on the member's subscription level:
+- **Free users**: 7 days retention
+- **PRO users**: 30 days retention  
+- **VIP users**: 90 days retention
 
-- **Free member**: 7 days retention
-- **PRO member**: 30 days retention  
-- **VIP member**: 90 days retention
-
-These retention periods determine how long paused playback sessions remain available for the member to resume.
-
-**Members can view and manage their saved playbacks at** [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).
-
+These retention periods determine how long paused playback sessions remain available for the user to resume. Users can view and manage their saved playbacks at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).
 
 ### Get Playback Sessions [GET]
 <h4>&#128274; Token Required</h4>
-Retrieve all paused playback sessions for the user. 
+Retrieves all paused playback sessions for the user. You can optionally filter by type by appending `/movie` or `/episode` to the path. Only one session per show/movie/anime is stored (the latest paused one).
 
-Note: Playback `id` field are 64bit integer
+**When to use:** To get a list of items the user paused and can resume. Use this to display "Continue Watching" lists in your app.
+
+**Behavior:** 
+- Returns paused sessions created by `/scrobble/pause` or `/scrobble/stop` (<80% progress)
+- Sessions for items the user has already watched (where their last watch time is after the session pause time) are automatically filtered out
+- Sessions are ordered by pause time (newest first)
+- Use the returned data to resume via `/scrobble/start`
+
+**User Management:** Users can view and manage their paused sessions at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/) to manually delete unwanted sessions, mark items as watched, or use bulk selection tools for cleanup.
+
+Note: Playback `id` field is a 64bit integer. `progress` is returned as a percentage (float number from 0 to 100, e.g., `0`, `45.5`, `75`, `100`). While you can POST in scrobble `75.00`, the response will always be `75`.
+
+**Anime Episode Mapping:** Anime episodes return both AniDB episode numbers (`season`, `number`) and TVDB numbers (`tvdb_season`, `tvdb_number`) since Simkl maps between these different numbering systems.
 
 + Parameters
-    + type (optional, string, `movie`) ... Filter by item type.
+    + type (optional, string, `movies`) ... Filter by item type.
         + Values
-            + `movie`
-            + `episode`
+            + `movies`
+            + `episodes`
     + date_from (string, optional) ... Filter sessions from this date
     + date_to (string, optional) ... Filter sessions until this date
-    + use_tvdb_anime_seasons (boolean, optional) ... Include TVDB season/episode numbers for anime
 
 + Request
     + Headers
-    
+            
             simkl-api-key: your-api-key
             authorization: Bearer your-access-token
 
 + Response 200 (application/json)
     + Body
-    
+            
             [
                 {
                     "id": 123,
-                    "progress": 0.45,
+                    "progress": 45.5,
                     "paused_at": "2024-01-15T10:30:00.000Z",
                     "type": "episode",
                     "episode": {
@@ -4039,7 +4044,7 @@ Note: Playback `id` field are 64bit integer
                 },
                 {
                     "id": 124,
-                    "progress": 0.75,
+                    "progress": 75,
                     "paused_at": "2024-01-15T11:15:00.000Z",
                     "type": "movie",
                     "movie": {
@@ -4055,22 +4060,52 @@ Note: Playback `id` field are 64bit integer
                 }
             ]
 
-### Delete Playback [DELETE]
-Remove a specific paused playback session by its ID. 
+### Delete Playback [DELETE /sync/playback/{id}]
+Deletes a specific paused playback session by its ID.
 
-`204` response code on success.
+**When to use:** When a user no longer wants to resume a paused session (e.g., they finished watching elsewhere or changed their mind).
+
+**Behavior:** Permanently removes the paused session. Returns 204 on success, 404 if the session doesn't exist or belongs to another user.
+
+**Alternative:** Users can also manage their paused sessions manually at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/) without using the API, including bulk deletion and marking items as watched.
 
 + Parameters
-    + `id` (number, required) - The playback session ID to delete
+    + id (number, required, in path) - The playback session ID to delete
 
 + Request
 
     + Headers
-    
+        
             simkl-api-key: your-api-key
             authorization: Bearer your-access-token
-
 + Response 204 (No Content)
+
+### Error Responses
+The API uses standard HTTP status codes to indicate the success or failure of a request.
+
+| Status Code | Meaning | Description |
+|---|---|---|
+| `201 Created` | Success | The scrobble event was successfully created. |
+| `204 No Content`| Success | The playback session was successfully deleted. |
+| `400 Bad Request`| Client Error | The request was malformed. This can happen if you send a scrobble request without a `movie`, `show`, or `anime` object, or if there's a concurrency issue (see Rate Limiting). |
+| `401 Unauthorized`| Client Error | The provided access token is invalid or has expired. |
+| `404 Not Found` | Client Error | The requested item (movie, show, episode) could not be found on Simkl, or the URL is incorrect. |
+| `409 Conflict` | Client Error | Returned by `/scrobble/stop` if you try to scrobble an item that was already marked as watched within the last hour. The response body will contain `watched_at` and `expires_at` timestamps. |
+
+### Session Expiry & Storage
+- **`start` sessions** have an `end_on` timestamp set to current time + remaining runtime, but are not automatically deleted when expired
+- **`stop` sessions** have an `end_on` timestamp set to current time + 1 hour, but are not automatically deleted when expired  
+- **`pause` sessions** have an `end_on` timestamp set to current time, but are not automatically deleted when expired
+- All session types persist in the playback until manually removed via the `DELETE` endpoint or by the user
+
+The `runtime in minutes` is determined as follows:
+- **Movies**: Uses the movie's runtime from Simkl's database. Defaults to `90` minutes if not available.
+- **TV Shows**: Uses the episode's specific runtime. Defaults to `45` minutes if not available.
+- **Anime**: Uses the episode's specific runtime. Defaults to `25` minutes if not available.
+
+### Concurrency & Rate Limiting
+To ensure data integrity, the API processes scrobble events sequentially for each user. If you send multiple requests at once, they will be queued. A request may time out and fail with a `400 Bad Request` error if it has to wait too long for the previous one to complete. We recommend queuing scrobble events in your application and sending them one by one.
+
 
 
 ## Get All Items [/sync/all-items/{type}/{status}{?date_from}]

@@ -3943,7 +3943,51 @@ If you have any ideas how to make sync even better for you, please [let us know]
         }
 
 
-## Get Playbacks [/sync/playback/{type}]
+## Playbacks [/sync/playback/{type}]
+
+### IN DEVELOPMENT 
+
+A **playback** is a temporary session that stores viewing progress for a movie, TV show episode, or anime episode when playback is paused or stopped before completion. Playbacks are created automatically when users pause their viewing or stop watching before completing an item (less than 80% progress).
+
+**Important:** Playbacks are **NOT** the same as Simkl's sync/watchlist endpoints. Playbacks are temporary pause/resume events and are **NOT saved to the user's watchlist**. They exist solely to track in-progress viewing sessions.
+
+### Relationship to Scrobbling
+
+**Scrobbling** and **playbacks** work together to provide a complete viewing progress tracking system:
+
+- **Scrobbling** (`/scrobble/start`, `/scrobble/pause`, `/scrobble/stop`) is the *action* of reporting real-time playback progress to the API
+- **Playbacks** are *temporary records* created by scrobble pause/stop actions, storing pause points that can be resumed later
+- **Sync/History** endpoints (like `/sync/history`) are for *permanent* watchlist records that track what users have watched
+
+**How they connect:**
+
+1. When a user calls `/scrobble/pause`, it creates a **temporary playback record** with the current progress (not added to watchlist)
+2. When a user calls `/scrobble/stop` with **less than 80%** progress, it creates a **temporary playback record** (not added to watchlist)
+3. When a user calls `/scrobble/stop` with **80% or more** progress, the item is **marked as watched in the user's history/watchlist** (no resumable playback is created)
+4. The `/sync/playback/{type}` endpoint retrieves these temporary playback records so apps can display "Continue Watching" lists
+5. Users can resume a saved playback by calling `/scrobble/start` with the same item
+
+**Key differences from SYNC HISTORY endpoints:**
+
+- **Playbacks** (`/sync/playback`) = Temporary pause/resume events for in-progress viewing (NOT on watchlist)
+- **Sync/History** (`/sync/history`) = Permanent watchlist records for completed items (≥80% progress)
+- Only **one playback session per item** is stored (the most recent pause point)
+- Playback sessions persist in the database until manually deleted or until `/scrobble/start` is called for the same item
+- When retrieved via GET, sessions are automatically filtered out if the user has already watched the item after the playback was created (but remain in the database)
+
+
+**Retention periods by Simkl subscription plan:**
+
+Playback progress records are **temporary** and are automatically retained based on the member's subscription level:
+
+- **Free member**: 7 days retention
+- **PRO member**: 30 days retention  
+- **VIP member**: 90 days retention
+
+These retention periods determine how long paused playback sessions remain available for the member to resume.
+
+**Members can view and manage their saved playbacks at** [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).
+
 
 ### Get Playback Sessions [GET]
 <h4>&#128274; Token Required</h4>

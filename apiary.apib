@@ -3112,6 +3112,463 @@ Genres API duplicates the URLs of the Genres on the website, so create a filter 
         ]
         ```
 
+# Group Scrobble
+#### IN DEVELOPMENT
+Scrobbling lets apps report real-time playback progress. Use it when a user starts, pauses, or stops watching. If you want to instantly mark an item as watched without scrobbling, use [Sync - add to historybb](#reference/sync/add-items-to-the-history).
+
+Pass as much data as possible (title, year, ids) so Simkl can detect the item reliably.
+
+Progress is a percentage from 0.00 to 100.00 (input format: flexible, max 2 decimal places, e.g., `75`, `75.0`, `75.12`; response format: standardized, e.g., `75`, `75.12`, `45.5`).
+Scrobble id is a 64bit integer
+
+## Overview
+Simkl stores only **one active scrobble session per show/movie/anime**. Starting a new session replaces any existing one for that item and clears previous pauses. Paused sessions (created by `/scrobble/pause` or `/scrobble/stop` with <80% progress) can be retrieved via [Get Playbacks](#reference/sync/get-playbacks/get-playback-sessions) and resumed by calling `/scrobble/start` with the same item. To delete a paused session, use [Delete Playback](#reference/sync/get-playbacks/delete-playback).
+
+**Typical Flow:**
+1. Call `/scrobble/start` when playback begins.
+2. Call `/scrobble/pause` to save progress if paused.
+3. Call `/scrobble/stop` when finished (marks as watched if ≥80% complete).
+4. Retrieve paused sessions with `/sync/playback/{type}`.
+5. Delete unwanted paused sessions with `DELETE /sync/playback/{id}`.
+
+**Action Types in Responses:**
+- `"start"` - Returned by `/scrobble/start` when beginning or resuming playback
+- `"pause"` - Returned by `/scrobble/pause` or `/scrobble/stop` when progress < 80%
+- `"scrobble"` - Returned by `/scrobble/stop` when progress ≥ 80% (marks as watched)
+- `"checkin"` - Returned by `/scrobble/checkin`
+
+**Session Management:**
+- **Expiry timestamps**: Start sessions get expiry = current time + remaining runtime; stop sessions get expiry = current time + 1 hour; pause sessions get expiry = current time
+- **Persistence**: All sessions persist in the playback until manually removed (no automatic cleanup)
+- **Rate limiting**: One scrobble operation per user at a time (20-second lock timeout)
+- **Duplicate prevention**: 409 response if trying to stop an already completed session within 1 hour
+
+Note: in Sync playback responses, `progress` is returned as a percentage (float number from 0 to 100, e.g., `0`, `45.5`, `75`, `100`). While you can POST `75.00`, the response will always be `75`.
+
+**Anime Episode Numbering:** Simkl uses AniDB as the primary source for anime data, which has different season/episode numbering than TMDB/TVDB. When you send anime scrobbles using TMDB season/episode numbers, Simkl maps them to the corresponding AniDB episode numbers. The response includes both the Simkl\AniDB episode numbers (`season`, `number`) and the original TVDB numbers (`tvdb_season`, `tvdb_number`) for reference. For example, TMDB Season 2 Episode 4 might map to Simkl\AniDB Season 1 Episode 4, as shown in the anime examples below.
+
+#### JSON POST DATA
+| Key         | Type                | Value                                                                                                                                     |
+| ----------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| progress*   | float               | Playback progress percent `0–100` (e.g., `75`, `75.0`, `75.5`, `75.00`).                                                     |
+| movie       | object              | [movie object](/introduction/about-simkl-api/standard-media-objects)                                                                |
+| show        | object              | [show object](/introduction/about-simkl-api/standard-media-objects)|
+| anime       | object              | [anime object](/introduction/about-simkl-api/standard-media-objects)|
+| episode     | object              | Include an `episode` with `show` or `anime` object |
+
+Either `movie`, `show` + `episode`, or `anime` + `episode` objects are required.
+
+## Start [/scrobble/start]
+### Start watching [POST]
+<h4>&#128274; Token Required</h4>
+Creates or replaces the current scrobble session for the user and item. Sets the user's internal "watching now" status. Call this when playback begins or to resume a paused session. The response includes the `progress` sent in the request, returned as a float.
+
+**When to use:** On video start, or to resume from a paused session (retrieved via [Get Playbacks](#reference/sync/get-playbacks/get-playback-sessions)). The session auto-ends after the item's runtime elapses if no pause/stop is called.
+
+**Behavior:** Replaces any existing session for this item and clears previous pauses. Does not mark the item as watched. Session auto-expires after calculated runtime based on item length and current progress.
+
+Start watching a movie using IMDB and TMDB IDs
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+
+          {
+            "progress": 12.5,
+            "movie": {
+              "title": "Inception",
+              "year": 2010,
+              "ids": {
+                "imdb": "tt1375666",
+                "tmdb": 27205
+              }
+            }
+          }
+
++ Response 201 (application/json)
+
+    + Body
+    
+          {
+            "id": 0,
+            "action": "start",
+            "progress": 70,
+            "movie": {
+              "title": "Inception",
+              "year": 2010,
+              "anime_type": null,
+              "ids": {
+                "simkl": 472214,
+                "slug": "inception",
+                "imdb": "tt1375666",
+                "letterslug": "inception",
+                "tmdb": "27205",
+                "tvdbslug": "inception"
+              }
+            }
+          }
+            
+**Note**: Only `/scrobble/start` returns `id: 0`. `/scrobble/pause` and `/scrobble/stop` return a 64bit `id`. On a 409 conflict (already completed within an hour), the response includes `watched_at` and `expires_at` instead of `id`. Calling `/scrobble/start` also sets the user's internal "watching now" status and replaces any existing start/checkin session for this item (clearing previous pauses).
+
+Start watching a TV show episode using IMDB ID
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+    
+          {
+            "progress": 42.0,
+            "show": {
+              "title": "Stranger Things",
+              "year": 2016,
+              "ids": {
+                "imdb": "tt4574334"
+              }
+            },
+            "episode": {
+              "season": 1,
+              "number": 3
+            }
+          }
+
+    
++ Response 201 (application/json)
+
+     + Body
+    
+          {
+            "id": 0,
+            "action": "start",
+            "progress": 42,
+            "show": {
+              "title": "Stranger Things",
+              "year": 2016,
+              "ids": {
+                "simkl": 548312,
+                "imdb": "tt4574334" 
+              }
+            },
+            "episode": { 
+              "season": 1, 
+              "number": 3,
+              "title": "Chapter Three: Holly, Jolly"
+            }
+          }
+
+Start watching an anime TV episode using TMDB ID (maps to AniDB episode numbering)
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+    
+          {
+            "progress": 42.2,
+            "anime": {
+              "ids": {
+                 "tmdb": 1429
+              }
+            },
+            "episode": {
+              "season": 2,
+              "number": 4
+            }
+          }
+
++ Response 201 (application/json)
+
+     + Body
+        {
+            "id": 0,
+            "action": "start",
+            "progress": 42.2,
+            "episode": {
+                "season": 1,
+                "number": 4,
+                "title": "Soldier",
+                "tvdb_season": 2,
+                "tvdb_number": 4
+            },
+            "anime": {
+                "title": "Shingeki no Kyojin Season 2",
+                "year": 2017,
+                "anime_type": "tv",
+                "ids": {
+                    "simkl": 439744,
+                    "slug": "shingeki-no-kyojin-season-2",
+                    "mal": "25777",
+                    "anilist": "20958",
+                    "kitsu": "8671",
+                    "anidb": "10944"
+                }
+            }
+        }
+
+Start watching an anime movie using MAL ID
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+
+          {
+            "progress": 25.5,
+            "anime": {
+              "ids": {
+                 "mal": 37987
+              }
+            }
+          }
+
++ Response 201 (application/json)
+
+     + Body
+        {
+            "id": 0,
+            "action": "start",
+            "progress": 25.5,
+            "anime": {
+                "title": "Violet Evergarden the Movie",
+                "year": 2020,
+                "anime_type": "movie",
+                "ids": {
+                    "simkl": 799363,
+                    "slug": "gekijouban-violet-evergarden",
+                    "mal": "37987",
+                    "anilist": "103047",
+                    "kitsu": "41450",
+                    "anidb": "14013"
+                }
+            }
+        }
+
+
+## Pause [/scrobble/pause]
+### Pause watching [POST]
+<h4>&#128274; Token Required</h4>
+Pauses an active scrobble session and saves the current progress to the database for later resumption. The response includes the `progress` sent in the request, returned as a float.
+
+**When to use:** Call when the user pauses playback to save progress without marking as watched. This creates a paused session that can be retrieved later via [Get Playbacks](#reference/sync/get-playbacks/get-playback-sessions).
+
+**Behavior:** Adds a pause event to the DB. Does not mark the item as watched. The paused session can be resumed by calling `/scrobble/start` with the same item.
+
+Pause watching a TV show episode using Simkl and TMDB IDs
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    
+    + Body
+    
+            {
+                "show": {
+                    "ids": {
+                        "simkl": 12345,
+                        "tmdb": 1429
+                    }
+                },
+                "episode": {
+                    "season": 1,
+                    "number": 1
+                },
+                "progress": 45.5
+            }
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "id": 312312312123,
+                "action": "pause",
+                "progress": 45.5,
+                "episode": {
+                    "season": 1,
+                    "number": 1,
+                    "title": "Episode 1"
+                },
+                "show": {
+                    "title": "Breaking Bad",
+                    "year": 2008,
+                    "ids": {
+                        "simkl": 12345,
+                        "slug": "breaking-bad",
+                        "tmdb": 1429
+                    }
+                }
+            }
+            
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+    
+          {
+            "progress": 42.2,
+            "anime": {
+              "ids": {
+                 "tmdb": 1429
+              }
+            },
+            "episode": {
+              "season": 2,
+              "number": 4
+            }
+          }
+
++ Response 201 (application/json)
+
+     + Body
+        {
+            "id": 1123123124120,
+            "action": "pause",
+            "progress": 42.2,
+            "episode": {
+                "season": 1,
+                "number": 4,
+                "title": "Soldier",
+                "tvdb_season": 2,
+                "tvdb_number": 4
+            },
+            "anime": {
+                "title": "Shingeki no Kyojin Season 2",
+                "year": 2017,
+                "anime_type": "tv",
+                "ids": {
+                    "simkl": 439744,
+                    "slug": "shingeki-no-kyojin-season-2",
+                    "mal": "25777",
+                    "anilist": "20958",
+                    "kitsu": "8671",
+                    "anidb": "10944"
+                }
+            }
+        }
+        
+
+## Stop [/scrobble/stop]
+### Stop watching [POST]
+<h4>&#128274; Token Required</h4>
+
+Stops the current scrobble session and marks the item as watched if progress is ≥80%, otherwise saves it as a paused session. The response includes the `progress` sent in the request, returned as a float.
+
+**When to use:** Call when playback ends. If progress ≥80%, the item is marked as watched. If <80%, it behaves like a pause (saves progress for later resumption).
+
+**Behavior:** If ≥80% complete, adds to watch history and marks as watched. If <80%, creates a paused session (like `/scrobble/pause`). Prevents duplicate scrobbles within an hour (409 response). Stop sessions expire after 1 hour.
+
+Stop watching a TV show episode with 85% progress (marks as watched)
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    
+    + Body
+    
+            {
+                "show": {
+                    "ids": {
+                        "simkl": 12345,
+                        "tmdb": 1429
+                    }
+                },
+                "episode": {
+                    "season": 1,
+                    "number": 1
+                },
+                "progress": 85.0
+            }
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "id": 124,
+                "action": "scrobble",
+                "progress": 85,
+                "episode": {
+                    "season": 1,
+                    "number": 1,
+                    "title": "Episode 1"
+                },
+                "show": {
+                    "title": "Breaking Bad",
+                    "year": 2008,
+                    "ids": {
+                        "simkl": 12345,
+                        "slug": "breaking-bad",
+                        "tmdb": 1429
+                    }
+                }
+            }
+
+Pause watching an anime TV episode using TMDB ID (maps to AniDB episode numbering)
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+    
+          {
+            "progress": 42.2,
+            "anime": {
+              "ids": {
+                 "tmdb": 1429
+              }
+            },
+            "episode": {
+              "season": 2,
+              "number": 4
+            }
+          }
+
++ Response 201 (application/json)
+
+     + Body
+        {
+            "id": 1123123124120,
+            "action": "pause",
+            "progress": 42.2,
+            "episode": {
+                "season": 1,
+                "number": 4,
+                "title": "Soldier",
+                "tvdb_season": 2,
+                "tvdb_number": 4
+            },
+            "anime": {
+                "title": "Shingeki no Kyojin Season 2",
+                "year": 2017,
+                "anime_type": "tv",
+                "ids": {
+                    "simkl": 439744,
+                    "slug": "shingeki-no-kyojin-season-2",
+                    "mal": "25777",
+                    "anilist": "20958",
+                    "kitsu": "8671",
+                    "anidb": "10944"
+                }
+            }
+        }
+   
+
++ Response 409 (application/json)
+    if you're trying to stop an already completed scrobble session within an hour.
+    + Body
+    
+            {
+                "watched_at": "2024-01-15T10:30:00.000Z",
+                "expires_at": "2024-01-15T11:30:00.000Z"
+            }
 
 
 # Group Sync
@@ -3479,6 +3936,92 @@ If you have any ideas how to make sync even better for you, please [let us know]
                 "removed_from_list": "2016-10-29T09:03:45Z"
             }
         }
+
+
+## Get Playbacks [/sync/playback/{type}]
+
+### Get Playback Sessions [GET]
+<h4>&#128274; Token Required</h4>
+Retrieve all paused playback sessions for the user. 
+
+Note: Playback `id` field are 64bit integer
+
++ Parameters
+    + type (optional, string, `movie`) ... Filter by item type.
+        + Values
+            + `movie`
+            + `episode`
+    + date_from (string, optional) ... Filter sessions from this date
+    + date_to (string, optional) ... Filter sessions until this date
+    + use_tvdb_anime_seasons (boolean, optional) ... Include TVDB season/episode numbers for anime
+
++ Request
+    + Headers
+    
+            simkl-api-key: your-api-key
+            authorization: Bearer your-access-token
+
++ Response 200 (application/json)
+    + Body
+    
+            [
+                {
+                    "id": 123,
+                    "progress": 0.45,
+                    "paused_at": "2024-01-15T10:30:00.000Z",
+                    "type": "episode",
+                    "episode": {
+                        "season": 1,
+                        "episode": 5,
+                        "title": "Episode 5",
+                        "tvdb_season": 1,
+                        "tvdb_number": 5
+                    },
+                    "show": {
+                        "title": "Breaking Bad",
+                        "year": 2008,
+                        "ids": {
+                            "simkl": 12345,
+                            "slug": "breaking-bad",
+                            "tmdb": 1429,
+                            "imdb": "tt0903747"
+                        }
+                    }
+                },
+                {
+                    "id": 124,
+                    "progress": 0.75,
+                    "paused_at": "2024-01-15T11:15:00.000Z",
+                    "type": "movie",
+                    "movie": {
+                        "title": "Inception",
+                        "year": 2010,
+                        "ids": {
+                            "simkl": 67890,
+                            "slug": "inception",
+                            "tmdb": 27205,
+                            "imdb": "tt1375666"
+                        }
+                    }
+                }
+            ]
+
+### Delete Playback [DELETE]
+Remove a specific paused playback session by its ID. 
+
+`204` response code on success.
+
++ Parameters
+    + `id` (number, required) - The playback session ID to delete
+
++ Request
+
+    + Headers
+    
+            simkl-api-key: your-api-key
+            authorization: Bearer your-access-token
+
++ Response 204 (No Content)
 
 
 ## Get All Items [/sync/all-items/{type}/{status}{?date_from}]

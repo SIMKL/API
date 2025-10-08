@@ -4027,6 +4027,10 @@ To ensure data integrity, the API processes scrobble events sequentially for eac
 <h4>&#128274; Token Required</h4>
 Retrieves all paused playback sessions for the user. You can optionally filter by type by appending `/movie` or `/episode` to the path. Only one session per show/movie/anime is stored (the latest paused one).
 
+`limit` is set to 10000 items by default, it's a maximum number of items you can retrive. 
+
+`hide_watched` is true by default. All watched items with newer `watched date` than `paused date` will be hidden.
+
 **When to use:** To get a list of items the user paused and can resume. Use this to display "Continue Watching" lists in your app.
 
 **Behavior:** 
@@ -4046,6 +4050,11 @@ Note: Playback `id` field is a 64bit integer. `progress` is returned as a percen
         + Values
             + `movies`
             + `episodes`
+    + limit (optional, number) ... Slice your result to the first N items
+    + hide_watched (optional, boolean) ...Hide already watched episodes\movies
+        + Values
+            + `true`
+            + `false`
     + date_from (string, optional) ... Filter sessions from this date
     + date_to (string, optional) ... Filter sessions until this date
 

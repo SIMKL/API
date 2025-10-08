@@ -1550,6 +1550,7 @@ Here are some examples of the things you can build with the Random Search API:
     + Header
             
             Authorization: Bearer [token]
+            simkl-api-key: [client_id]
             
 + Response 200 (application/json)
 
@@ -4047,9 +4048,9 @@ Note: Playback `id` field is a 64bit integer. `progress` is returned as a percen
 
 + Request
     + Headers
-            
-            simkl-api-key: your-api-key
-            authorization: Bearer your-access-token
+             
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
 
 + Response 200 (application/json)
     + Body
@@ -4112,8 +4113,8 @@ Deletes a specific paused playback session by its ID.
 
     + Headers
         
-            simkl-api-key: your-api-key
-            authorization: Bearer your-access-token
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
 + Response 204 (No Content)
 
 

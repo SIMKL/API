@@ -3975,7 +3975,7 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 4. The `/sync/playback/{type}` endpoint retrieves these temporary playback records so apps can display "Continue Watching" lists
 5. Users can resume a saved playback by calling `/scrobble/start` with the same item
 
-**Key differences from sync endpoints:**
+**Key differences from sync watch history endpoints:**
 
 - **Playbacks** (`/sync/playback`) = Temporary pause/resume events for in-progress viewing (NOT on watchlist)
 - **Sync** (`/sync/all-items`) = Permanent watchlist records for completed items (≥80% progress)

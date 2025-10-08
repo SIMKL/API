@@ -3959,7 +3959,7 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 
 **Note:** Playbacks are **NOT** the same as Simkl's sync/watchlist endpoints. Playbacks are temporary pause/resume events and are **NOT saved to the user's watchlist**. They exist solely to track in-progress viewing sessions.
 
-**⚠️ IMPORTANT:** Always use the [Activity API endpoint](#reference/sync/activities) first to check when you need to refresh playback data. This endpoint provides timestamps for various categories including `paused_at` which indicates when playback sessions were last updated. By checking this endpoint first, you can optimize your application's performance and only sync playback data when changes have occurred.
+**⚠️ IMPORTANT:** Always use the [Activity API endpoint](#reference/sync/activities) first to check when you need to refresh sync or playback data. This endpoint provides timestamps for various categories including `paused_at` which indicates when playback sessions were last updated. By checking this endpoint first, you can optimize your application's performance and only sync playback data when changes have occurred.
 
 ### Relationship to Scrobbling
 

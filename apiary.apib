@@ -3141,7 +3141,7 @@ Simkl stores only **one active scrobble session per show/movie/anime**. Starting
 
 **Session Management:**
 - **Expiry timestamps**: Start sessions get expiry = current time + remaining runtime; stop sessions get expiry = current time + 1 hour; pause sessions get expiry = current time
-- **Persistence**: All sessions persist in the playback until manually removed (no automatic cleanup), and are retained based on the user&#39;s subscription plan: Free (7 days), PRO (30 days), VIP (90 days)
+- **Persistence**: All sessions persist in the playback until manually removed (no automatic cleanup) or until replaced by next scrobble update for that title, and are retained based on the user&#39;s subscription plan: Free (7 days), PRO (30 days), VIP (90 days)
 - **Rate limiting**: One scrobble operation per user at a time (20-second lock timeout)
 - **Duplicate prevention**: 409 response if trying to stop an already completed session within 1 hour
 

@@ -4012,7 +4012,7 @@ The API uses standard HTTP status codes to indicate the success or failure of a 
 - **`start` sessions** have an `end_on` timestamp set to current time + remaining runtime, but are not automatically deleted when expired
 - **`stop` sessions** have an `end_on` timestamp set to current time + 1 hour, but are not automatically deleted when expired  
 - **`pause` sessions** have an `end_on` timestamp set to current time, but are not automatically deleted when expired
-- All session types persist in the playback until manually removed via the `DELETE` endpoint or by the user
+- All playback session types persist in the playback until manually removed via the `DELETE` endpoint, or by the user, or until they are replaced by the next scrobble update for that title
 
 The `runtime in minutes` is determined as follows:
 - **Movies**: Uses the movie's runtime from Simkl's database. Defaults to `90` minutes if not available.

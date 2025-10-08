@@ -3129,7 +3129,7 @@ Simkl stores only **one active scrobble session per show/movie/anime**. Starting
 1. Call `/scrobble/start` when playback begins.
 2. Call `/scrobble/pause` to save progress if paused.
 3. Call `/scrobble/stop` when finished (marks as watched if ≥80% complete).
-4. If activity endpoint has `paused_at` updated, retrieve paused sessions with `/sync/playback/{type}`.
+4. If activity endpoint has `playback` updated, retrieve paused sessions with `/sync/playback/{type}`.
 5. Delete unwanted paused sessions with `DELETE /sync/playback/{id}`.
 
 > Members can view and manage their saved playbacks at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).
@@ -3621,7 +3621,7 @@ Headers:
     "tv_shows": {
         "all": "2023-10-12T09:03:45Z",
         "rated_at": "2023-10-11T08:00:00Z",
-        "paused_at": "2024-10-11T08:00:00Z",
+        "playback": "2024-10-11T08:00:00Z",
         "plantowatch": "2023-10-12T09:03:45Z",
         "watching": "2023-10-10T07:00:00Z",
         "completed": "2023-10-09T06:00:00Z",
@@ -3632,7 +3632,7 @@ Headers:
     "anime": {
         "all": "2023-10-12T09:03:45Z",
         "rated_at": "2023-10-10T08:00:00Z",
-        "paused_at": "2024-10-11T08:00:00Z",
+        "playback": "2024-10-11T08:00:00Z",
         "plantowatch": "2023-10-11T09:03:45Z",
         "watching": "2023-10-09T07:00:00Z",
         "completed": "2023-10-08T06:00:00Z",
@@ -3643,7 +3643,7 @@ Headers:
     "movies": {
         "all": "2023-10-12T09:03:45Z",
         "rated_at": "2023-10-11T08:00:00Z",
-        "paused_at": "2024-10-11T08:00:00Z",
+        "playback": "2024-10-11T08:00:00Z",
         "plantowatch": "2023-10-10T09:03:45Z",
         "completed": "2023-10-09T07:00:00Z",
         "dropped": "2023-10-08T06:00:00Z",
@@ -3884,7 +3884,7 @@ Name|Description
 `all`| latest update time within the category, use it as first check
 `settings`| any update in https://simkl.com/settings/ will trigger update time. For example when user changes his name or time zone.
 `rated_at` | If updated, use the <i>Get Ratings</i> endpoint with the <i>date_from</i> parameter to retrieve the latest rating updates or deletions.<br><br><b>CAUTION!</b> When a user rates a movie, it will be automatically moved to "Completed". If a user rates a TV show and it's not in the user’s watchlist, it will be automatically moved to the "Watching" watchlist.
-`paused_at`| if updated check the <i>Playback</i> endpoint with <i>date_from</i> parameter to get latest added playbacks or without the parameter to make a full sync.
+`playback`| if updated check the <i>Playback</i> endpoint with <i>date_from</i> parameter to get latest added playbacks or without the parameter to make a full sync.
 `plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`dropped`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
 `removed_from_list`| Check the <i>Get All Items</i> endpoint without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
 
@@ -3921,7 +3921,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
             "tv_shows": {
                 "all": "2016-10-29T09:03:45Z",
                 "rated_at": "2016-10-29T09:03:45Z",
-                "paused_at": "2017-10-29T09:03:45Z",
+                "playback": "2017-10-29T09:03:45Z",
                 "plantowatch": "2016-10-29T09:03:45Z",
                 "watching": "2016-10-29T09:03:45Z",
                 "completed": "2016-10-29T09:03:45Z",
@@ -3932,7 +3932,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
             "anime": {
                 "all": "2016-10-29T09:03:45Z",
                 "rated_at": "2016-10-29T09:03:45Z",
-                "paused_at": "2018-10-29T09:03:45Z",
+                "playback": "2018-10-29T09:03:45Z",
                 "plantowatch": "2016-10-29T09:03:45Z",
                 "watching": "2016-10-29T09:03:45Z",
                 "completed": "2016-10-29T09:03:45Z",
@@ -3943,7 +3943,7 @@ If you have any ideas how to make sync even better for you, please [let us know]
             "movies": {
                 "all": "2016-10-29T09:03:45Z",
                 "rated_at": "2016-10-29T09:03:45Z",
-                "paused_at": "2018-10-29T09:03:45Z",
+                "playback": "2018-10-29T09:03:45Z",
                 "plantowatch": "2016-10-29T09:03:45Z",
                 "completed": "2016-10-29T09:03:45Z",
                 "dropped": "2016-10-29T09:03:45Z",
@@ -3959,7 +3959,7 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 
 **Note:** Playbacks are **NOT** the same as Simkl's sync/watchlist endpoints. Playbacks are temporary pause/resume events and are **NOT saved to the user's watchlist**. They exist solely to track in-progress viewing sessions.
 
-**⚠️ IMPORTANT:** Always use the [Activity API endpoint](#reference/sync/activities) first to check when you need to refresh sync or playback data. This endpoint provides timestamps for various categories including `paused_at` which indicates when playback sessions were last updated. By checking this endpoint first, you can optimize your application's performance and only sync playback data when changes have occurred.
+**⚠️ IMPORTANT:** Always use the [Activity API endpoint](#reference/sync/activities) first to check when you need to refresh sync or playback data. This endpoint provides timestamps for various categories including `playback` which indicates when playback sessions were last updated. By checking this endpoint first, you can optimize your application's performance and only sync playback data when changes have occurred.
 
 ### Relationship to Scrobbling
 

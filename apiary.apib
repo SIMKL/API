@@ -3967,7 +3967,7 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 
 - **Scrobbling** (`/scrobble/start`, `/scrobble/pause`, `/scrobble/stop`) is the *action* of reporting real-time playback progress to the API
 - **Playbacks** are *temporary records* created by scrobble pause/stop actions, storing pause points that can be resumed later
-- **Sync/History** endpoints (like `/sync/history`) are for *permanent* watchlist records that track what users have watched
+- **Sync/** endpoints (like `/sync/all-items`) are for *permanent* watchlist records that track what users have watched
 
 **How they connect:**
 
@@ -3980,7 +3980,7 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 **Key differences from sync endpoints:**
 
 - **Playbacks** (`/sync/playback`) = Temporary pause/resume events for in-progress viewing (NOT on watchlist)
-- **Sync/History** (`/sync/history`) = Permanent watchlist records for completed items (≥80% progress)
+- **Sync** (`/sync/all-items`) = Permanent watchlist records for completed items (≥80% progress)
 - Only **one playback session per item** is stored (the most recent pause point)
 - Playback sessions persist in the database until manually deleted or until `/scrobble/start` is called for the same item
 - When retrieved via GET, sessions are automatically filtered out if the user has already watched the item after the playback was created (but remain in the database)
@@ -3993,7 +3993,9 @@ Playback progress records are automatically retained based on the user's subscri
 - **PRO users**: 30 days retention  
 - **VIP users**: 90 days retention
 
-These retention periods determine how long paused playback sessions remain available for the user to resume. Users can view and manage their saved playbacks at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).
+These retention periods determine how long paused playback sessions remain available for the user to resume.
+
+**Users can view and manage their saved playbacks at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).**
 
 
 ### Error Responses

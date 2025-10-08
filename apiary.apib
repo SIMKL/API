@@ -3129,8 +3129,11 @@ Simkl stores only **one active scrobble session per show/movie/anime**. Starting
 1. Call `/scrobble/start` when playback begins.
 2. Call `/scrobble/pause` to save progress if paused.
 3. Call `/scrobble/stop` when finished (marks as watched if ≥80% complete).
-4. Retrieve paused sessions with `/sync/playback/{type}`.
+4. If activity endpoint has `paused_at` updated, retrieve paused sessions with `/sync/playback/{type}`.
 5. Delete unwanted paused sessions with `DELETE /sync/playback/{id}`.
+
+> Members can view and manage their saved playbacks at [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/).
+
 
 **Action Types in Responses:**
 - `"start"` - Returned by `/scrobble/start` when beginning or resuming playback

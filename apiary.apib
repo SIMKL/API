@@ -2127,6 +2127,8 @@ Returns an array of customized ([Standard Media Object](#introduction/about-simk
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 Returns a single detail info of the anime. Same as `/tv/summary` endpoint + added `anime_type`,`en_title` fields, possible values are `tv`,`special`,`ova`, `movie`,`music video`,`ona`.
 
+You can use `extended=full_anime_seasons` - same as `full` + added TVDB seasons as `mapped_tvdb_seasons: [1,2]`. IMDB\TVDB\TMDB ids will also be added for 2+ seasons.
+
 + Parameters
 
     + id (required, string, `40398`) ... Simkl ID or IMDB ID. 
@@ -2275,6 +2277,8 @@ Returns a single detail info of the anime. Same as `/tv/summary` endpoint + adde
 <h4>&#128275; Token Not Required &#10024; Full Info</h4>
 Returns an array of all episodes of the Anime
 
+You can use `extended=full_anime_seasons` - same as `full`  + TVDB season and episode numbers for every episode.
+
 + Parameters
 
     + id (required, integer) ... simkl id of the anime
@@ -2325,6 +2329,63 @@ Returns an array of all episodes of the Anime
                 "simkl_id": 979612
             }
         }] 
+        
++ Request
+
+   https://api.simkl.com/anime/episodes/39687?extended=full_anime_seasons&client_id=***
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+        [
+          {
+            "episode": 1,
+            "type": "episode",
+            "aired": true,
+            "img": null,
+            "date": "2021-04-09T01:28:00+09:00",
+            "ids": {
+              "simkl_id": 7938475
+            },
+            "tvdb": {
+              "season": 2,
+              "episode": 1
+            }
+          },
+          {
+            "episode": 2,
+            "type": "episode",
+            "aired": true,
+            "img": null,
+            "date": "2021-04-16T01:28:00+09:00",
+            "ids": {
+              "simkl_id": 7938477
+            },
+            "tvdb": {
+              "season": 2,
+              "episode": 2
+            }
+          },
+          {
+            "episode": 3,
+            "type": "episode",
+            "aired": true,
+            "img": null,
+            "date": "2021-04-23T01:28:00+09:00",
+            "ids": {
+              "simkl_id": 7938479
+            },
+            "tvdb": {
+              "season": 2,
+              "episode": 3
+            }
+          }
+        ]
+
      
      
         

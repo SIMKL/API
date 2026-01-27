@@ -3528,7 +3528,9 @@ Stops the current scrobble session and marks the item as watched if progress is 
 
 **When to use:** Call when playback ends. If progress `>= 80%`, the item is marked as watched. If `progress < 80%`, it behaves like a pause (saves progress for later resumption).
 
-**Behavior:** If `>= 80%` complete, adds to watch history and marks as watched. If `< 80%`, creates a paused session (like `/scrobble/pause`). Prevents duplicate scrobbles within an hour (409 response) on a per episode/movie basis. Stop sessions expire after 1 hour.
+**Behavior:** If `>= 80%` complete, adds to watch history and marks as watched. If `< 80%`, creates a paused session (like `/scrobble/pause`). 
+
+There’s duplicate protection for stop/pause events at `>= 80%` progress. Any additional stop/pause events for the same movie or episode will be ignored, and a 409 response code will be returned. Duplicate protection lasts for 1 hour.
 
 + Request (application/json)
     Stop watching a TV show episode with 85% progress (marks as watched)

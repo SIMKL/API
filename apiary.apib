@@ -488,126 +488,7 @@ https://data.simkl.in/calendar/2024/1/movie_release.json
 
 All calendar items have Simkl rank and ratings, [poster images](/#introduction/about-simkl-api/images), as well as SIMKL, TVDB, TMDB, IMDB, and MAL IDs where available.
 
-# Group Checkin
-Mobile apps can do checkin manually. If you are curretlty watching a movie or an episode you can simply do checkin from your phone or tablet and the episode will be automatically marked as watched in 15-40 minutes (based on the episode\movie lenth).
 
-If you wish to instantly mark episode\movie as watched please use [Sync, Add to History method](/#reference/sync/add-to-history/check-into-an-item)
-
-## Checkin [/checkin]
-
-### Check into an item [GET]
-<h4>&#128274; Token Required</h4>
-This should be tied to a user manual action. The item will be as watching on the site and if the time has elapsed it will switch to completed. 
-
-Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
-
-<h4>JSON POST DATA</h4>
-Key|Type|Value
----|----|-----
-item*|object|[episode or movie object](/#introduction/about-simkl-api/standard-media-objects).
-
-<b>Note</b>: If there is checkin in progress, 409 code will be returned and response will contain an expires_at datetime when you will be able to ckeckin again.
-
-+ Request (application/json)
-    
-    + Body
-
-            {
-                "movie": {
-                    "title": "Guardians of the Galaxy",
-                    "year": 2014,
-                    "ids": {
-                        "slug": "guardians-of-the-galaxy-2014",
-                        "imdb": "tt2015381",
-                        "tmdb": 118340
-                    }
-                }
-            }
-            
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "movie": {
-                    "title": "Guardians of the Galaxy",
-                    "year": 2014,
-                    "ids": {
-                        "simkl": 212566,
-                        "imdb": "tt2015381",
-                        "tmdb": 118340
-                    }
-                }
-            }
-            
-+ Request (application/json)
-    
-    + Body
-    
-            {
-                "show": {
-                    "title": "Breaking Bad",
-                    "year": 2008,
-                    "ids": {
-                      "tvdb": 81189,
-                      "imdb": "tt0903747"
-                    },
-                    "episode": {
-                        "season": 2,
-                        "number": 7
-                    }
-                }
-            }
-    
-+ Response 200 (application/json)
-
-     + Body
-    
-            {
-                "show": {
-                    "title": "Breaking Bad",
-                    "year": 2008,
-                    "ids": {
-                      "tvdb": 81189,
-                      "imdb": "tt0903747"
-                    },
-                    "episode": {
-                        "season": 2,
-                        "number": 7
-                    }
-                }
-            }
-
-+ Request
-    
-    + Body
-    
-            {
-                "show": {
-                    "netflix": 70236425
-                }
-            }
-    
-+ Response 200
-
-    + Body
-    
-            {
-                "show": {
-                    "netflix": 70236425
-                }
-            }
-    
-+ Response 409
-
-    There is already a checkin in progress.
-
-    + Body
-        
-            {
-                "expires_at": "2015-05-10T20:11:25Z"
-            }
-            
 
 # Group Ratings
 
@@ -3639,14 +3520,367 @@ There’s duplicate protection for stop/pause events at `>= 80%` progress. Any a
             }
 
 
+## Check-in [/scrobble/checkin]
+### Check in to an item [POST]
+<h4>&#128274; Token Required</h4>
+
+**What is Check-in?**
+
+Check-in is a simple way for users to tell their friends "I'm watching this right now" without requiring a media player or real-time progress tracking. Unlike scrobbling (which requires integration with a media player and only marks as watched after receiving /pause or /stop requests with ≥80% progress), check-in is a manual one time request the user sends to indicate that they're watching something right now and watnt the Simkl server to auto mark it as watched after the check-in expires (based on runtime).
+
+Think of it like pressing "I'm watching this" on your remote—one tap and you're done. Simkl takes care of the rest: it shows what you're watching on your profile, and when the movie or episode ends (based on runtime), it automatically marks it as watched. No app running in the background, no progress updates needed.
+
+**Perfect for:**
+- 🎬 **At the movies** – Check in when the film starts, put your phone away, and it's marked watched when you leave
+- 📺 **Watching live TV** – Cable, satellite, or a friend's streaming account with no Simkl integration
+- 🛋️ **Couch mode** – Just want to track without installing plugins or using scrobble-compatible apps
+
+**Typical Use Cases:**
+- User is watching on a device/service without Simkl integration (cable TV, theater, friend's account)
+- User wants to show on his Simkl profile "Watching Now" bar
+- User prefers manual tracking over automatic scrobbling
+- Social viewing parties or watch-alongs
+
+**How Check-in Works on the Simkl Website:**
+
+Users can manually check in via the **"Check in / Watching Now"** button found on:
+- **Movie pages** ([example](https://simkl.com/movies/81500/the-avengers)) - Button appears `Checkin\Watching Now ` 
+- **Episode pages** ([example](https://simkl.com/tv/548312/stranger-things/season-1/episode-1/)) - Button `Watching Now` on each episode
+
+When clicked, a popover appears allowing users to:
+1. Optionally set their current progress (via slider or minute input)
+2. Click "Started Watching Now" to check in
+
+After check-in:
+- The content appears in the user's Dashboard [https://simkl.com/my/dashboard/](https://simkl.com/my/dashboard/) **"Watching Now" bar** (visible to friends based on privacy settings)
+- The check-in automatically expires after the item's runtime
+- When expired, Simkl **automatically marks the item as watched**
+
+**Behavior:**
+- Creates a check-in event visible in the user's "Watching Now" bar on the dashboard
+- Session auto-expires based on item runtime (calculated as: `now + remaining runtime * (1 - progress/100)`)
+- The `progress` parameter is **optional** (defaults to 0% if not provided). Use it to indicate how far into the content you are when checking in
+- Can be canceled or converted via another `/scrobble/stop`, `/scrobble/pause`, or `/scrobble/start`
+- Calling again with the same item **extends/resets** the check-in duration
+- When expired, Simkl automatically marks the item as watched (in about 10-120 seconds after 100% progress) and posts to connected social accounts if the user has enabled this option in the sharing settings for example to X.
+
+**Action Types in Responses:**
+- `"checkin"` - Returned when check-in is created or updated
+
+**Comparison: Check-in vs Start vs Pause vs Stop**
+
+| Feature | `/scrobble/checkin` | `/scrobble/start` | `/scrobble/pause` | `/scrobble/stop` |
+|---------|---------------------|-------------------|-------------------|------------------|
+| **Purpose** | Manual "watching now" | Real-time playback tracking | Save progress mid-watch | End playback session |
+| **Progress tracking** | ✅ Optional (affects expiry) | ✅ Required | ✅ Required | ✅ Required |
+| **Requires media player** | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Auto-marks watched** | ✅ On expiry | ❌ No | ❌ No | ✅ If ≥80% |
+| **Shows in Watching bar** | ✅ Yes | ✅ Yes | ❌ No | ❌ No |
+| **Shows in Progress Manager** | ❌ No | ❌ No | ✅ Yes | ✅ If < 80% |
+
+
+**Managing Check-ins:**
+
+>Users can view their active checkin on Simkl website Dashboard [https://simkl.com/my/dashboard/](https://simkl.com/my/dashboard/) and manage their paused/stopped check-ins and playback sessions at:
+> [https://simkl.com/my/history/playback-progress-manager/](https://simkl.com/my/history/playback-progress-manager/)
+
++ Request (application/json)
+    Check in to a movie using Simkl ID (fastest lookup), IMDB, and TMDB IDs
+    
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+
+          {
+            "movie": {
+              "title": "Inception",
+              "year": 2010,
+              "ids": {
+                "simkl": 472214,
+                "imdb": "tt1375666",
+                "tmdb": 27205
+              }
+            }
+          }
+
++ Response 201 (application/json)
+
+    + Body
+    
+          {
+            "id": 9876543210123,
+            "action": "checkin",
+            "progress": 0,
+            "movie": {
+              "title": "Inception",
+              "year": 2010,
+              "anime_type": null,
+              "ids": {
+                "simkl": 472214,
+                "slug": "inception",
+                "imdb": "tt1375666",
+                "letterslug": "inception",
+                "tmdb": "27205",
+                "tvdbslug": "inception"
+              }
+            }
+          }
+            
+
++ Request (application/json)
+    Check in to a TV show episode using IMDB ID (with 25% progress - already 25% into the episode)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+    
+          {
+            "progress": 25.5,
+            "show": {
+              "title": "Stranger Things",
+              "year": 2016,
+              "ids": {
+                "imdb": "tt4574334"
+              }
+            },
+            "episode": {
+              "season": 1,
+              "number": 3
+            }
+          }
+
+    
++ Response 201 (application/json)
+
+     + Body
+    
+          {
+            "id": 9876543210124,
+            "action": "checkin",
+            "progress": 25.5,
+            "show": {
+              "title": "Stranger Things",
+              "year": 2016,
+              "ids": {
+                "simkl": 548312,
+                "slug": "stranger-things",
+                "tmdb": "66732",
+                "tvdb": "305288",
+                "imdb": "tt4574334"
+              }
+            },
+            "episode": { 
+              "season": 1, 
+              "number": 3,
+              "title": "Chapter Three: Holly, Jolly"
+            }
+          }
+
++ Request (application/json)
+    Check in to an anime using show type with TVDB ID or TMDB ID (useful for media players that use TVDB\TMDB for anime)
+    + Headers
+
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+
+          {
+            "show": {
+              "ids": {
+                 "tvdb": 267440,
+                 "tmdb": 1429
+              }
+            },
+            "episode": {
+              "season": 1,
+              "number": 5
+            }
+          }
+
++ Response 201 (application/json)
+
+     + Body
+        {
+            "id": 9876543210127,
+            "action": "checkin",
+            "progress": 0,
+            "episode": {
+                "season": 1,
+                "number": 5,
+                "title": "The Lord of a Coastland",
+                "tvdb_season": 1,
+                "tvdb_number": 5
+            },
+            "anime": {
+                "title": "Shingeki no Kyojin",
+                "year": 2013,
+                "anime_type": "tv",
+                "ids": {
+                    "simkl": 39687,
+                    "slug": "shingeki-no-kyojin",
+                    "tvdb": "267440",
+                    "tmdb": "1429",
+                    "imdb": "tt2560140",
+                    "mal": "16498",
+                    "anilist": "16498",
+                    "kitsu": "7442",
+                    "anidb": "9541"
+                }
+            }
+        }
+
+
++ Request (application/json)
+    Check in to an anime episode using TMDB ID with 50% progress (maps to AniDB episode numbering)
+    + Headers
+    
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+    
+          {
+            "progress": 42.2,
+            "anime": {
+              "ids": {
+                 "tmdb": 1429
+              }
+            },
+            "episode": {
+              "season": 2,
+              "number": 4
+            }
+          }
+
++ Response 201 (application/json)
+
+     + Body
+        {
+            "id": 9876543210125,
+            "action": "checkin",
+            "progress": 42.2,
+            "episode": {
+                "season": 1,
+                "number": 4,
+                "title": "Soldier",
+                "tvdb_season": 2,
+                "tvdb_number": 4
+            },
+            "anime": {
+                "title": "Shingeki no Kyojin Season 2",
+                "year": 2017,
+                "anime_type": "tv",
+                "ids": {
+                    "simkl": 439744,
+                    "slug": "shingeki-no-kyojin-season-2",
+                    "mal": "25777",
+                    "anilist": "20958",
+                    "kitsu": "8671",
+                    "anidb": "10944"
+                }
+            }
+        }
+
++ Request (application/json)
+    Check in to an anime movie using MAL ID
+    + Headers
+
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+    + Body
+
+          {
+            "anime": {
+              "ids": {
+                 "mal": 37987
+              }
+            }
+          }
+
++ Response 201 (application/json)
+
+     + Body
+        {
+            "id": 9876543210126,
+            "action": "checkin",
+            "progress": 0,
+            "anime": {
+                "title": "Violet Evergarden the Movie",
+                "year": 2020,
+                "anime_type": "movie",
+                "ids": {
+                    "simkl": 799363,
+                    "slug": "gekijouban-violet-evergarden",
+                    "tmdb": "533514",
+                    "imdb": "tt8652818",
+                    "mal": "37987",
+                    "anilist": "103047",
+                    "kitsu": "41450",
+                    "anidb": "14013"
+                }
+            }
+        }
+
+
+## Delete [/sync/playback/{id}]
+### Delete a playback session [DELETE]
+<h4>&#128274; Token Required</h4>
+
+Deletes an active scrobble session, check-in, or paused playback. Use this to cancel a check-in before it auto-completes, remove a paused session, or cancel an active scrobble.
+
+**When to use:**
+- User wants to cancel an active check-in before it auto-completes
+- User started scrobbling the wrong content
+- User wants to remove a paused session from their playback history
+
+**Alternative: Convert Check-in to Scrobble**
+
+You can also use other scrobble endpoints to convert or end a check-in:
+
+| Action | Endpoint | Effect on Check-in |
+|--------|----------|-------------------|
+| **Mark watched now** | `/scrobble/stop` with ≥80% | Immediately marks as watched, cancels auto-complete |
+| **Save progress** | `/scrobble/pause` | Converts to paused session, cancels auto-complete |
+| **Switch to scrobbling** | `/scrobble/start` | Replaces check-in with real-time scrobble session |
+
+This is useful when a user checks in but then wants to switch to real-time tracking, or wants to mark something as watched immediately without waiting for the check-in to expire.
+
++ Parameters
+    + id: `9876543210123` (number, required) - The playback ID returned in the scrobble/check-in response
+
++ Request
+    + Headers
+
+            Authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "deleted": true
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "not_found"
+            }
+
+
 
 # Group Sync
 
-Simkl can be one central place where you store all your watch history. Syncing allows all your devices and apps have your watch history up to date. Use Simkl as your a cloud backup for all your Media history.
+Simkl can be one central place where you store all your watch history as well as all member Watchlists like Watching, Plan to Watch, on Hold, Dropped, Completed. Syncing allows all your devices and apps have your watch history up to date. Use Simkl as your a cloud backup for all your Media history.
 
 
 <h3>Get All Items</h3>
-This is a list of all your movies, shows and episodes that you watched or have in your Plan to Watch list.
+This is a list of all your movies, shows and episodes that you watched or have in your Watchlists like Watching, Plan to Watch, etc list.
 
 To start a sync first check the last activities of the user and then do an update only if the date in one of them have changed scince your last check.
 
@@ -4026,7 +4260,7 @@ A **playback** is a temporary session that stores viewing progress for a movie, 
 
 **Scrobbling** and **playbacks** work together to provide a complete viewing progress tracking system:
 
-- **Scrobbling** (`/scrobble/start`, `/scrobble/pause`, `/scrobble/stop`) is the *action* of reporting real-time playback progress to the API
+- **Scrobbling** (`/scrobble/start`, `/scrobble/pause`, `/scrobble/stop`, `/scrobble/checkin`) is the *action* of reporting real-time playback progress to the API
 - **Playbacks** are *temporary records* created by scrobble pause/stop actions, storing pause points that can be resumed later
 - **Sync/** endpoints (like `/sync/all-items`) are for *permanent* watchlist records that track what users have watched
 

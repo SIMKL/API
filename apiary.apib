@@ -3063,6 +3063,26 @@ Pass as much data as possible (title, year, ids) so Simkl can detect the item re
 Progress is a percentage from 0.00 to 100.00 (input format: flexible, max 2 decimal places, e.g., `75`, `75.0`, `75.12`; response format: standardized, e.g., `75`, `75.12`, `45.5`).
 Scrobble id is a 64bit integer
 
+
+### Supported ID keys (inside `ids`)
+
+| ID key       | Description                |
+|-------------|-----------------------------|
+| **simkl**   | Simkl internal ID (e.g. `49108`, `1265720`, `437940`) |
+| **anidb**   | AniDB ID. All other parameters can be empty if this one specified. Example: `10846`. Integer. |
+| **anilist** | AniList ID. Example: `21`. Integer. |
+| **animeplanet** | Anime-Planet ID. Example: `one-piece`. String. |
+| **anisearch** | aniSearch ID. Example: `2227`. Integer. |
+| **imdb**    | IMDb ID or full URL. Example: `tt1520211`. String. |
+| **kitsu**   | Kitsu ID. Example: `12`. Integer. |
+| **letterboxd** | Letterboxd slug. Example: `the-truman-show`. String. |
+| **livechart** | LiveChart ID. Example: `321`. Integer. |
+| **mal**     | MyAnimeList ID. Example: `4246`. Integer. |
+| **netflix** | Netflix movieid. Example: `70210890`. Integer. |
+| **tmdb**    | The Movie Database (TMDb) ID. For TV shows specify `type`. Example: `76757`. Integer. |
+| **tvdb**    | TVDB ID. Example: `153021`, `the-walking-dead`. Integer or string. |
+| **traktslug** | Trakt slug. Example: `john-wick-chapter-4-2023`. String. |
+
 ## Overview
 Simkl stores only **one active scrobble session per show/movie/anime**. Starting a new session replaces any existing one for that item and clears previous pauses. Paused sessions (created by `/scrobble/pause` or `/scrobble/stop` with <80% progress) can be retrieved via [Get Playbacks](#reference/sync/playback/get-playback-sessions) and resumed by calling `/scrobble/start` with the same item. To delete a paused session, use [Delete Playback](#reference/sync/playback/delete-playback).
 
@@ -3883,6 +3903,25 @@ Simkl can be one central place where you store all your watch history as well as
 This is a list of all your movies, shows and episodes that you watched or have in your Watchlists like Watching, Plan to Watch, etc list.
 
 To start a sync first check the last activities of the user and then do an update only if the date in one of them have changed scince your last check.
+
+### Supported ID keys (inside `ids`)
+
+| ID key       | Description                |
+|-------------|-----------------------------|
+| **simkl**   | Simkl internal ID (e.g. `49108`, `1265720`, `437940`) |
+| **anidb**   | AniDB ID. All other parameters can be empty if this one specified. Example: `10846`. Integer. |
+| **anilist** | AniList ID. Example: `21`. Integer. |
+| **animeplanet** | Anime-Planet ID. Example: `one-piece`. String. |
+| **anisearch** | aniSearch ID. Example: `2227`. Integer. |
+| **imdb**    | IMDb ID or full URL. Example: `tt1520211`. String. |
+| **kitsu**   | Kitsu ID. Example: `12`. Integer. |
+| **letterboxd** | Letterboxd slug. Example: `the-truman-show`. String. |
+| **livechart** | LiveChart ID. Example: `321`. Integer. |
+| **mal**     | MyAnimeList ID. Example: `4246`. Integer. |
+| **netflix** | Netflix movieid. Example: `70210890`. Integer. |
+| **tmdb**    | The Movie Database (TMDb) ID. For TV shows specify `type`. Example: `76757`. Integer. |
+| **tvdb**    | TVDB ID. Example: `153021`, `the-walking-dead`. Integer or string. |
+| **traktslug** | Trakt slug. Example: `john-wick-chapter-4-2023`. String. |
 
 ## How to Use Sync [/sync/how-to-use-sync]
 

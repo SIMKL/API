@@ -1442,6 +1442,89 @@ Here are some examples of the things you can build with the Random Search API:
                 "url": "https://simkl.com/movies/179868/terminator-genisys"
             }
 
+# Group Trending
+Simkl provides pre-built JSON files with trending data ranked by the number of watchers. These are the same rankings displayed on [Simkl Most Watched](https://simkl.com/movies/best-movies/most-watched/) pages for [Movies](https://simkl.com/movies/best-movies/most-watched/), [TV Shows](https://simkl.com/tv/best-shows/most-watched/), and [Anime](https://simkl.com/anime/best-anime/most-watched/).
+
+Each file is available in two sizes: **top 100** (`_100`) or **top 500** (`_500`) items. Titles with the most watchers are returned first.
+
+The files URLs ignore all query strings, so **do not add** any additional parameters (such as **``?random=***``**).
+
+
+<h3>Update Frequency</h3>
+
+| Data | Description | Update Frequency |
+|------|-------------|------------------|
+| **Today** | Most watched titles over the last 24 hours | Every hour |
+| **Week** | Most watched titles over the last 7 days | Once a day |
+| **Month** | Most watched titles over the last 30 days | Once a day |
+| **DVD Releases** | Latest popular DVD releases (Movies only) | Once a day |
+
+**All data is cached for 1 hour on Cloudflare *(you can check the last-modified HTTP Headers for the file generation date)*.**
+
+No API key are requred. Please set a `User-Agent` header with your app name and version (e.g. `myapp/1.0`) to avoid accidental blocking.
+
+><h3>⚠️ Attribution Required</h3>
+>
+>When displaying trending data in your app or website, you **must** include attribution to Simkl in the section title.
+><br><br>**Examples of accepted title formats:**
+>+ `Simkl Trending Movies`
+>+ `Simkl Trending Today`
+>+ `Simkl Trending Movies Today`
+>+ `Simkl Trending TV Shows`
+>+ `Simkl Trending Anime`
+>+ `Trending Movies on Simkl`
+>+ `Trending on Simkl Today`
+>+ `Trending on Simkl This Week`
+>
+>**Attribution links (for websites and sources):**
+>+ https://simkl.com/movies/best-movies/most-watched/
+>+ https://simkl.com/tv/best-shows/most-watched/
+>+ https://simkl.com/anime/best-anime/most-watched/
+>
+**For commercial use without attribution, please [contact us](/#reference/need-some-help).**
+
+<h2>List of Trending Data Files</h2>
+
+<h3>Combined data files (Movies, TV, Anime)</h3>
+These files contain Movies, TV Shows, and Anime in a single response — use them to minimize the number of requests when you need all categories at once.
+
+| Timeframe | Top 100 | Top 500 |
+|-----------|---------|---------|
+| Trending Today `tv+movies+anime` | [today_100.json](https://data.simkl.in/discover/trending/today_100.json) | [today_500.json](https://data.simkl.in/discover/trending/today_500.json) |
+| Trending This Week `tv+movies+anime` | [week_100.json](https://data.simkl.in/discover/trending/week_100.json) | [week_500.json](https://data.simkl.in/discover/trending/week_500.json) |
+| Trending This Month `tv+movies+anime` | [month_100.json](https://data.simkl.in/discover/trending/month_100.json) | [month_500.json](https://data.simkl.in/discover/trending/month_500.json) |
+
+<h3>Simkl Trending Movies</h3>
+
+| Timeframe | Top 100 | Top 500 |
+|-----------|---------|---------|
+| Today | [movies/today_100.json](https://data.simkl.in/discover/trending/movies/today_100.json) | [movies/today_500.json](https://data.simkl.in/discover/trending/movies/today_500.json) |
+| Week | [movies/week_100.json](https://data.simkl.in/discover/trending/movies/week_100.json) | [movies/week_500.json](https://data.simkl.in/discover/trending/movies/week_500.json) |
+| Month | [movies/month_100.json](https://data.simkl.in/discover/trending/movies/month_100.json) | [movies/month_500.json](https://data.simkl.in/discover/trending/movies/month_500.json) |
+
+**DVD Releases** — Latest popular DVD releases, updated once a day. Same data as shown on [Simkl DVD Releases](https://simkl.com/movies/dvd-releases/).
+
+| Top 100 | Top 500 |
+|---------|---------|
+| [dvd/releases_100.json](https://data.simkl.in/discover/dvd/releases_100.json) | [dvd/releases_500.json](https://data.simkl.in/discover/dvd/releases_500.json) |
+
+<h3>Simkl Trending TV Shows</h3>
+
+| Timeframe | Top 100 | Top 500 |
+|-----------|---------|---------|
+| Today | [tv/today_100.json](https://data.simkl.in/discover/trending/tv/today_100.json) | [tv/today_500.json](https://data.simkl.in/discover/trending/tv/today_500.json) |
+| Week | [tv/week_100.json](https://data.simkl.in/discover/trending/tv/week_100.json) | [tv/week_500.json](https://data.simkl.in/discover/trending/tv/week_500.json) |
+| Month | [tv/month_100.json](https://data.simkl.in/discover/trending/tv/month_100.json) | [tv/month_500.json](https://data.simkl.in/discover/trending/tv/month_500.json) |
+
+<h3>Simkl Trending Anime</h3>
+
+| Timeframe | Top 100 | Top 500 |
+|-----------|---------|---------|
+| Today | [anime/today_100.json](https://data.simkl.in/discover/trending/anime/today_100.json) | [anime/today_500.json](https://data.simkl.in/discover/trending/anime/today_500.json) |
+| Week | [anime/week_100.json](https://data.simkl.in/discover/trending/anime/week_100.json) | [anime/week_500.json](https://data.simkl.in/discover/trending/anime/week_500.json) |
+| Month | [anime/month_100.json](https://data.simkl.in/discover/trending/anime/month_100.json) | [anime/month_500.json](https://data.simkl.in/discover/trending/anime/month_500.json) |
+
+All trending items include Simkl rank and ratings, [poster images](/#introduction/about-simkl-api/images), as well as SIMKL, TVDB, TMDB, IMDB, and MAL IDs where available. Each item also contains additional metadata such as year, genres, country, and more that you can use to filter and sort locally in your app.
 
 # Group TV
 
@@ -1595,107 +1678,15 @@ Returns an array of all episodes of the TV Show
         }] 
         
         
-## Trending [/tv/trending/{interval}{?client_id}]
+## Trending [/#reference/trending/get-trending-tv-series]
 ### Get trending TV series [GET]
-<h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
-You can use any filters from the [Best](https://simkl.com/tv/best-anime/most-watched/) site section. 
+Looking for trending movies, TV shows, or anime? We provide ready-to-use JSON data files with trending data ranked by the number of watchers.
 
-Select any filter\slider and copy it from the URL to this API endpoint.
+**No API key or authentication required** — just fetch the JSON files directly.
 
-This endpoint's default url filters are `?wltime=today&langs=en&subtype=-t_documentary,-t_youtube,-t_entertainment`
+The files are available in top 100 and top 500 sizes, for today, this week, and this month, across all categories (Movies, TV Shows, Anime, or combined).
 
-+ Parameters
-
-    + interval = `today` (optional, string, `week`) ... Filter within the time period
-        + Values
-            + `today`
-            + `week`
-            + `month`
-    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
-
-+ Request
-
-    https://api.simkl.com/tv/trending/?extended=overview,metadata,tmdb,genres,trailer&client_id=***
-
-    PS: Please use your `client_id`.
-    
-    + Body
-
-+ Response 200 (application/json)
-        
-    + Body
-
-    [
-        {
-            "title": "Bluey",
-            "url": "\/tv\/922016\/bluey",
-            "poster": "73\/731473004195ba690",
-            "fanart": "76\/7674468ee5d6bd79b",
-            "ids": {
-                    "simkl_id": 922016,
-                    "slug": "bluey",
-                    "tmdb": "82728"
-            },
-            "release_date": "10\/01\/2018",
-            "rank": 1,
-            "drop_rate": "7.1%",
-            "watched": 320,
-            "plan_to_watch": 57,
-            "ratings": {
-                    "simkl": {
-                            "rating": 6.65,
-                            "votes": 23
-                    },
-                    "imdb": {
-                            "rating": 9.6,
-                            "votes": 10966
-                    }
-            },
-            "country": "au",
-            "runtime": "7m",
-            "status": "ongoing",
-            "total_episodes": 155,
-            "network": "ABC Kids",
-            "metadata": "2018 -  \u2022 ABC Kids \u2022 155 episodes",
-            "overview": "Bluey is an inexhaustible six year-old Blue Heeler dog, who loves to play and turns everyday family life into extraordinary adventures, developing her imagination as well as her mental, physical and emotional resilience.",
-            "genres": ["Animation", "Children", "Comedy", "Family"],
-            "trailer": "3pKDcQTY98E"
-        }, {
-            "title": "The Chosen",
-            "url": "\/tv\/995148\/the-chosen",
-            "poster": "96\/96387344b88c0a170",
-            "fanart": "90\/902468623a9ca1a0e",
-            "ids": {
-                    "simkl_id": 995148,
-                    "slug": "the-chosen",
-                    "tmdb": "85077"
-            },
-            "release_date": "09\/21\/2017",
-            "rank": 16,
-            "drop_rate": "16.1%",
-            "watched": 192,
-            "plan_to_watch": 104,
-            "ratings": {
-                    "simkl": {
-                            "rating": 7.26,
-                            "votes": 23
-                    },
-                    "imdb": {
-                            "rating": 9.3,
-                            "votes": 30133
-                    }
-            },
-            "country": "us",
-            "runtime": "55m",
-            "status": "ongoing",
-            "total_episodes": 25,
-            "network": "Angel.com",
-            "metadata": "2017 -  \u2022 Angel.com \u2022 25 episodes",
-            "overview": "A charismatic fisherman drowning in debt. A troubled woman wrestling with real demons. A young tax collector ostracized by society. A religious leader questioning his faith tradition.",
-            "genres": ["Drama", "Family", "History"],
-            "trailer": "K1-FoFj8Jbo"
-        }
-    ]
+👉 **See all available files and details in the [Trending data files](#reference/trending) section.**
 
     
 ## Genres [/tv/genres/{genre}/{type}/{country}/{network}/{year}/{sort}{?client_id}]
@@ -2270,109 +2261,15 @@ You can use `extended=full_anime_seasons` - same as `full`  + TVDB season and ep
      
      
         
-## Trending [/anime/trending/{interval}{?client_id}]
-### Get trending anime series [GET]
-<h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
-You can use any filters from the [Best](https://simkl.com/anime/best-anime/most-watched/) site section. 
+## Trending [/#reference/trending/get-trending-tv-series]
+### Get trending TV series [GET]
+Looking for trending movies, TV shows, or anime? We provide ready-to-use JSON data files with trending data ranked by the number of watchers.
 
-Select any filter\slider and copy it from the URL to this API endpoint.
+**No API key or authentication required** — just fetch the JSON files directly.
 
-This endpoint's default url filters are `?wltime=today`
+The files are available in top 100 and top 500 sizes, for today, this week, and this month, across all categories (Movies, TV Shows, Anime, or combined).
 
-+ Parameters
-
-    + interval = `today` (optional, string, `week`) ... Filter within the time period
-        + Values
-            + `today`
-            + `week`
-            + `month`
-    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
-
-+ Request
-
-    https://api.simkl.com/anime/trending/?extended=overview,metadata,tmdb,genres,trailer&client_id=***
-
-    PS: Please use your `client_id`.
-    
-    + Body
-
-+ Response 200 (application/json)
-        
-    + Body
-
-    [
-        {
-            "title": "Bleach: Sennen Kessen Hen",
-            "url": "\/anime\/1300367\/bleach-sennen-kessen-hen",
-            "poster": "97\/973878056c6c7a33d",
-            "fanart": "13\/1331024111faa4e05d",
-            "ids": {
-                    "simkl_id": 1300367,
-                    "slug": "bleach-sennen-kessen-hen",
-                    "tmdb": "100645"
-            },
-            "release_date": "10\/10\/2022",
-            "rank": 1,
-            "drop_rate": "0.9%",
-            "watched": 1247,
-            "plan_to_watch": 1052,
-            "ratings": {
-                    "simkl": {
-                            "rating": 9.08,
-                            "votes": 161
-                    },
-                    "mal": {
-                            "rating": 9.2,
-                            "votes": 111479
-                    }
-            },
-            "country": "jp",
-            "runtime": "25m",
-            "status": "ended",
-            "anime_type": "tv",
-            "total_episodes": 13,
-            "network": "TV Tokyo",
-            "metadata": "2022 - 2022 \u2022 TV Tokyo \u2022 13 episodes",
-            "overview": "* Based on an adventure supernatural shounen manga by Kubo Taito.<br><br>The peace is suddenly broken when warning sirens blare through the Soul Society. Residents there are disappearing without a trace, and nobody knows who`s behind it. Meanwhile, a dark shadow is also extending itself toward Ichigo and his friends in Karakura Town...",
-            "genres": ["Action", "Adventure", "Comedy", "Fantasy", "Magic", "Shounen", "Super Power", "Supernatural"],
-            "trailer": "1sygUhb8Q2Y"
-        }, {
-            "title": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
-            "url": "\/anime\/1462529\/kaguya-sama-wa-kokurasetai-ultra-romantic",
-            "poster": "11\/118961816276f04351",
-            "fanart": "12\/126537094d86545d2c",
-            "ids": {
-                    "simkl_id": 1462529,
-                    "slug": "kaguya-sama-wa-kokurasetai-ultra-romantic",
-                    "tmdb": null
-            },
-            "release_date": "04\/08\/2022",
-            "rank": 4,
-            "drop_rate": "0.7%",
-            "watched": 2222,
-            "plan_to_watch": 768,
-            "ratings": {
-                    "simkl": {
-                            "rating": 9.07,
-                            "votes": 466
-                    },
-                    "mal": {
-                            "rating": 9.1,
-                            "votes": 382462
-                    }
-            },
-            "country": "",
-            "runtime": "25m",
-            "status": "ended",
-            "anime_type": "tv",
-            "total_episodes": 13,
-            "network": null,
-            "metadata": "2022 - 2022 \u2022 13 episodes",
-            "overview": "* Based on a romantic comedy seinen manga by Akasaka Aka.<br><br>Can Miyuki and Kaguya help Yuu escape the aggro of all his female classmates, let alone win the favor of the girl he`s crushing on? Then, it`s Miyuki who is teaching Chika a new skill for a change. Kaguya faces the temptations and pitfalls of her new smartphone and social media. Ai takes on yet another secret identity. And the student council`s parents cross paths at school conferences where they must decide what colleges their children will apply to.<br><br>When you make plans, the gods laugh.<br><br>Note: The first episode premiered at screenings in Los Angeles and New York on April 2, ahead of the regular TV broadcast on April 9.",
-            "genres": ["Comedy", "Psychological", "Romance", "School", "Seinen"],
-            "trailer": "vFN5K-iAyV0"
-        }
-    ]
+👉 **See all available files and details in the [Trending data files](#reference/trending) section.**
     
 
 ## Genres [/anime/genres/{genre}/{type}/{network}/{year}/{sort}{?client_id}]
@@ -2845,106 +2742,15 @@ Returns a single detail info about the movie.
         }
         
 
-## Trending [/movies/trending/{interval}{?client_id}]
-### Get trending movies [GET]
-<h4>&#128275; Token Not Required &#10024; Full Info (Discover)</h4>
-You can use any filters from the [Best](https://simkl.com/movies/best-movies/most-watched/) site section. 
+## Trending [/#reference/trending/get-trending-tv-series]
+### Get trending TV series [GET]
+Looking for trending movies, TV shows, or anime? We provide ready-to-use JSON data files with trending data ranked by the number of watchers.
 
-Select any filter\slider and copy it from the URL to this API endpoint.
+**No API key or authentication required** — just fetch the JSON files directly.
 
-This endpoint's default url filters are `?budget=1-500&release=1995-2025&langs=en&wltime=today`
+The files are available in top 100 and top 500 sizes, for today, this week, and this month, across all categories (Movies, TV Shows, Anime, or combined).
 
-+ Parameters
-
-    + interval = `today` (optional, string, `week`) ... Filter within the time period
-        + Values
-            + `today`
-            + `week`
-            + `month`
-    + client_id (string, `***`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
-
-+ Request
-
-    https://api.simkl.com/movies/trending/?extended=overview,theater,metadata,tmdb,genres&client_id=***
-
-    PS: Please use your `client_id`.
-    
-    + Body
-
-+ Response 200 (application/json)
-        
-    + Body
-
-    [
-        {
-            "title": "Top Gun: Maverick",
-            "url": "\/movie\/526230\/top-gun-maverick",
-            "poster": "12\/12688617391bf69f62",
-            "fanart": "10\/10868538b672650006",
-            "ids": {
-                    "simkl_id": 526230,
-                    "slug": "top-gun-maverick",
-                    "tmdb": "361743"
-            },
-            "release_date": "05\/04\/2022",
-            "rank": 170,
-            "drop_rate": "1.4%",
-            "watched": 2750,
-            "plan_to_watch": 1058,
-            "ratings": {
-                    "simkl": {
-                            "rating": 8.23,
-                            "votes": 582
-                    },
-                    "imdb": {
-                            "rating": 8.4,
-                            "votes": 462046
-                    }
-            },
-            "country": "us",
-            "runtime": "2h 11m",
-            "status": "ended",
-            "dvd_date": "08\/25\/2022",
-            "metadata": "May 4, 2022 \u2022 Budget $170M \u2022 Box office $700,000",
-            "overview": "After more than thirty years of service as one of the Navy\u2019s top aviators, and dodging the advancement in rank that would ground him, Pete \u201cMaverick\u201d Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission the likes of which no living pilot has ever seen.",
-            "trailer":"giXco2jaZ_4",
-            "genres": ["Action", "Drama"],
-            "theater": "05\/04\/2022"},
-            {
-            "title": "Everything Everywhere All at Once",
-            "url": "\/movie\/897504\/everything-everywhere-all-at-once",
-            "poster": "12\/123389099421e4eec0",
-            "fanart": "12\/125011974ea60ac610",
-            "ids": {
-                    "simkl_id": 897504,
-                    "slug": "everything-everywhere-all-at-once",
-                    "tmdb": "545611"
-            },
-            "release_date": "03\/11\/2022",
-            "rank": 542,
-            "drop_rate": "1%",
-            "watched": 1607,
-            "plan_to_watch": 684,
-            "ratings": {
-                    "simkl": {
-                            "rating": 8.21,
-                            "votes": 518
-                    },
-                    "imdb": {
-                            "rating": 8.1,
-                            "votes": 260182
-                    }
-            },
-            "country": "us",
-            "runtime": "2h 20m",
-            "status": "ended",
-            "dvd_date": "05\/19\/2022",
-            "metadata": "March 11, 2022 \u2022 Budget $25M \u2022 Box office $103M",
-            "overview": "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save what's important to her by connecting with the lives she could have led in other universes.",
-            "genres": ["Action", "Adventure", "Family", "Science Fiction"],
-            "theater": "03\/11\/2022"
-        }
-    ]
+👉 **See all available files and details in the [Trending data files](#reference/trending) section.**
 
 
 ## Genres [/movies/genres/{genre}/{type}/{country}/{year}/{sort}{?client_id}]
@@ -6141,7 +5947,7 @@ Some users profiles are private so you need to pass token to see their stats
             }
         }
     
-# Group Need some help?
+# Group Need some help
 
 <a href="http://uptime.statuscake.com/?TestID=JBfz26Wtd2" title="Website Uptime Monitoring"><img src="https://app.statuscake.com/button/index.php?Track=rVMgFtK0BZ&Days=1&Design=1" /></a>
 

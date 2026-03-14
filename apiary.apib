@@ -3953,7 +3953,7 @@ After processing the updates, overwrite your saved timestamps with the new ones 
 
 **Note on Automatic Moves:**
 
-- When a user rates an item not in their list, it may automatically move to `Completed` or `Watching`. However, the `completed_at` timestamp may not update. Always check ratings when `rated_at` changes.
+- When a user rates an item not in their list, it may automatically move to `Completed` or `Watching`. The corresponding list timestamp (e.g. `completed_at`, `watching`) will be updated, and the item will appear in `date_from` queries.
 
 **Use of Extended Parameters:**
 
@@ -4024,9 +4024,9 @@ Name|Description
 ---|----
 `all`| latest update time within the category, use it as first check
 `settings`| any update in https://simkl.com/settings/ will trigger update time. For example when user changes his name or time zone.
-`rated_at` | If updated, use the <i>Get Ratings</i> endpoint with the <i>date_from</i> parameter to retrieve the latest rating updates or deletions.<br><br><b>CAUTION!</b> When a user rates a movie, it will be automatically moved to "Completed". If a user rates a TV show and it's not in the user’s watchlist, it will be automatically moved to the "Watching" watchlist.
+`rated_at` | If updated, use the <i>Get Ratings</i> endpoint with the <i>date_from</i> parameter to retrieve the latest rating updates or deletions.<br><br><b>CAUTION!</b> When a user rates a movie, it will be automatically moved to "Completed". If a user rates a TV show and it's not in the user’s watchlist, it will be automatically moved to the "Watching" watchlist. These auto-moves will also update the corresponding list timestamps (e.g. <code>completed</code>, <code>watching</code>), so the item will appear in <code>date_from</code> queries on the <i>Get All Items</i> endpoint.
 `playback`| if updated check the <i>Playback</i> endpoint with <i>date_from</i> parameter to get latest added playbacks or without the parameter to make a full sync.
-`plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`dropped`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
+`plantowatch`<br>`watching`<br>`completed`<br>`hold`<br>`dropped`| Items were added to one of the lists, status was changed, or episodes were marked/unmarked. Rating a new item (which auto-adds it to a list) or a rating that triggers a status change (e.g. movie moved to Completed) will also update these fields.<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
 `removed_from_list`| Check the <i>Get All Items</i> endpoint without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
 
 Steps for **how to use it** with `date_from` field: 

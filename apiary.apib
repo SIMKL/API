@@ -4741,6 +4741,21 @@ Key|Type|Value
 `item*`|object|movie, show or episode objects 
 `watched_at`|datetime|UTC datetime when the item was watched
 
+#### Episode-Level External IDs
+Episodes within seasons can include an optional `ids` object with `tvdb` and/or `anidb` IDs alongside the required `number` field. When provided, these IDs take priority over season/episode number for matching, which is useful when numbering differs between sources (e.g. specials, absolute ordering).
+
+```json
+"episodes": [
+    {
+        "number": 4,
+        "watched_at": "2024-09-01T09:10:11Z",
+        "ids": {
+            "tvdb": 5057304
+        }
+    }
+]
+```
+
 #### Moving between Watchlists 
 Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-specific-list)  if you only need to move items between Watchlists.
 
@@ -4877,10 +4892,16 @@ Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-
                                 "number": 2,
                                 "episodes": [
                                     {
-                                        "number": 1
+                                        "number": 1,
+                                        "ids": {
+                                            "tvdb": 4185813
+                                        }
                                     },
                                     {
-                                        "number": 2
+                                        "number": 2,
+                                        "ids": {
+                                            "tvdb": 4185814
+                                        }
                                     }
                                 ]
                             }
@@ -4920,10 +4941,16 @@ Use  ['Add Item to the List'](#reference/sync/add-item-to-the-list/add-items-to-
                         },
                         "episodes": [
                             {
-                                "number": 1
+                                "number": 1,
+                                "ids": {
+                                    "anidb": 151234
+                                }
                             },
                             {
-                                "number": 2
+                                "number": 2,
+                                "ids": {
+                                    "anidb": 151235
+                                }
                             }
                         ]
                     }
